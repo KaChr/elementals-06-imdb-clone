@@ -22,7 +22,7 @@ set('allow_anonymous_stats', false);
 
 // Hosts
 
-host('95.85.5.109')
+host('www.lanayru.me')
     ->stage('production')
     ->set('branch', 'master')
     ->set('deploy_path', '/var/www/www.lanayru.me')
@@ -30,7 +30,7 @@ host('95.85.5.109')
     ->IdentityFile('~/.ssh/id_digitalocean')
     ->port(22);
 
-host('95.85.5.109')
+host('develop.lanayru.me')
     ->stage('develop')
     ->set('branch', 'develop')
     ->set('deploy_path', '/var/www/develop.lanayru.me')
@@ -38,8 +38,9 @@ host('95.85.5.109')
     ->IdentityFile('~/.ssh/id_digitalocean')
     ->port(22);
 
-host('95.85.5.109')
+host('staging.lanayru.me')
     ->stage('staging')
+    ->set('branch', 'develop')
     ->set('deploy_path', '/var/www/staging.lanayru.me')
     ->user('elem')
     ->IdentityFile('~/.ssh/id_digitalocean')
