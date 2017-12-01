@@ -24,6 +24,7 @@ set('allow_anonymous_stats', false);
 
 host('95.85.5.109')
     ->stage('production')
+    ->set('branch', 'master')
     ->set('deploy_path', '/var/www/www.lanayru.me')
     ->user('elem')
     ->IdentityFile('~/.ssh/id_digitalocean')
@@ -31,6 +32,7 @@ host('95.85.5.109')
 
 host('95.85.5.109')
     ->stage('develop')
+    ->set('branch', 'develop')
     ->set('deploy_path', '/var/www/develop.lanayru.me')
     ->user('elem')
     ->IdentityFile('~/.ssh/id_digitalocean')
