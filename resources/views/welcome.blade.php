@@ -81,7 +81,7 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-                <h2>Production</h2>
+                <h2>Development</h2>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
