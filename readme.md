@@ -59,7 +59,7 @@ ___
 
 This is a quick guide on how to structure and define Many-To-Many relationships in Laravel using ledger (or pivot) tables.
 
-#### Creating models & migrations
+### Creating models & migrations
 
 Start by creating the corresponding models and migrations for the relationship. In this example I will use People and Movies
 
@@ -104,6 +104,8 @@ Run a migrate command to create these tables in the database.
 ```
 $ php artisan migrate
 ```
+
+### Creating the pivot/ledger-table
 
 Now, lets create our pivot table, in which we will reference the main tables. In terminal:
 
