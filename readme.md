@@ -53,8 +53,9 @@
 - [ ] Movies/Shows list
 
 
+___
 
-### Many-To-Many Relations in Laravel
+## Many-To-Many Relations in Laravel
 
 This is a quick guide on how to structure and define Many-To-Many relationships in Laravel using ledger (or pivot) tables.
 
