@@ -166,4 +166,27 @@ class Person extends Model
 }
 ```
 
+Now, to seed the pivot table with references, we use the attach-method.
+```
+$movie = new Movie; //Gets autoincremented id (movie_id)
+$movie->title = 'Batman';
+
+$person = new Person; //Gets autoincremented id ($person_id)
+$person->name = 'George Clooney'; 
+
+$movie->people()->attach($person_id);
+```
+
+If we now do
+```
+DB::select('select * from movie_person');
+=> [                                        
+     {#775                                  
+       +"movie_id": 1,                      
+       +"person_id": 1,                     
+       +"created_at": "2017-12-06 21:07:45",
+       +"updated_at": "2017-12-06 21:07:45",
+     }                             
+```
+
 Woop! Done!
