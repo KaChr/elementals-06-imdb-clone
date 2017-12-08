@@ -42,32 +42,43 @@ class AddMoviesFromApi extends Command
      */
     public function handle()
     {   
+        //Clear table before performing api-call
         DB::table('movies')->truncate();
+
+        //Make get-request to api
         $apiKey = 'ec3cda1b6d80802d7b2222e300f2f846';
         $client = new Client();
         $res = $client->get('https://api.themoviedb.org/3/movie/popular?api_key=' . $apiKey);
 
-        
 
         echo $res->getStatusCode(); 
-        echo (PHP_EOL);  
+        echo (PHP_EOL);
         $body = $res->getBody();
         $body = json_decode($body, true);
         $movies = $body['results'];
         $count = 0;
 
-        foreach($movies as $movie) {
+        //Insert row into table for every movie in response body
+        try {
+            
+            foreach($movies as $movie) {
+    
+                $row = new Movie();
+                $row->title = $movie['title'];
+                $row->summary = $movie['overview'];
+                $row->release_date = $movie['release_date'];
+                $row->rating = $movie['vote_average'];
+    
+                $row->save();
+                $count++;
+            }
 
-            $row = new Movie();
-            $row->title = $movie['title'];
-            $row->summary = $movie['overview'];
-            $row->release_date = $movie['release_date'];
-            $row->rating = $movie['vote_average'];
-
-            $row->save();
-            $count++;
+        } catch (Exception $e) {
+            echo 'Caught Exception: ' . $e . '. Something went wrong :(';
+            return;
         }
 
+        //Echo success
         echo '##############################';
         echo (PHP_EOL); 
         echo $count . ' movies added successfully!';
