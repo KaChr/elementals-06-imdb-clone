@@ -54,6 +54,7 @@ class AddMoviesFromApi extends Command
         $body = $res->getBody();
         $body = json_decode($body, true);
         $movies = $body['results'];
+        $count = 0;
 
         foreach($movies as $movie) {
 
@@ -64,11 +65,12 @@ class AddMoviesFromApi extends Command
             $row->rating = $movie['vote_average'];
 
             $row->save();
+            $count++;
         }
 
         echo '##############################';
         echo (PHP_EOL); 
-        echo 'All movies added successfully!';
+        echo $count . ' movies added successfully!';
         echo (PHP_EOL); 
         echo '##############################';
         echo (PHP_EOL);       
