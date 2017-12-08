@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\DB;
 use App\Movie;
 
 class AddMoviesFromApi extends Command
@@ -49,8 +49,8 @@ class AddMoviesFromApi extends Command
 
         
 
-        echo $res->getStatusCode();
-        // echo $res->getHeader('content-type');     
+        echo $res->getStatusCode(); 
+        echo (PHP_EOL);  
         $body = $res->getBody();
         $body = json_decode($body, true);
         $movies = $body['results'];
@@ -66,6 +66,11 @@ class AddMoviesFromApi extends Command
             $row->save();
         }
 
+        echo '##############################';
+        echo (PHP_EOL); 
         echo 'All movies added successfully!';
+        echo (PHP_EOL); 
+        echo '##############################';
+        echo (PHP_EOL);       
     }
 }
