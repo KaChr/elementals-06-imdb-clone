@@ -17,8 +17,8 @@ class CreateMoviesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('summary');
-            $table->integer('year');
-            $table->string('runtime');
+            $table->string('release_date');
+            $table->string('runtime')->nullable();
             $table->float('rating');
             $table->timestamps();
         });
