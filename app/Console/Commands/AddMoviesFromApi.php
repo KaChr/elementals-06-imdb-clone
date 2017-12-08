@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 use App\Movie;
 
 class AddMoviesFromApi extends Command
@@ -41,9 +42,12 @@ class AddMoviesFromApi extends Command
      */
     public function handle()
     {   
+        DB::table('movies')->truncate();
         $apiKey = 'ec3cda1b6d80802d7b2222e300f2f846';
         $client = new Client();
         $res = $client->get('https://api.themoviedb.org/3/movie/popular?api_key=' . $apiKey);
+
+        
 
         echo $res->getStatusCode();
         // echo $res->getHeader('content-type');     
