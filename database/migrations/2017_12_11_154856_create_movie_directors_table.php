@@ -15,6 +15,12 @@ class CreateMovieDirectorsTable extends Migration
     {
         Schema::create('movie_directors', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('movie_id')->unsigned();
+            $table->integer('person_id')->unsigned();
+
+            $table->foreign('movie_id')->references('id')->on('movies');
+            $table->foreign('person_id')->references('id')->on('people');
             $table->timestamps();
         });
     }
