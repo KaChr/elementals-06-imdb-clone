@@ -17,10 +17,13 @@ class CreateDirectorMovieTable extends Migration
 
             $table->integer('movie_id')->unsigned();
             $table->integer('person_id')->unsigned();
+            $table->engine='InnoDB';
 
-            $table->foreign('movie_id')->references('id')->on('movies');
-            $table->foreign('person_id')->references('id')->on('people');
             $table->timestamps();
+        });
+        Schema::table('director_movie', function (Blueprint $table){
+            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
+            $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');
         });
     }
 

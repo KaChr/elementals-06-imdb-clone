@@ -17,10 +17,12 @@ class CreateGenreMovieTable extends Migration
             
             $table->integer('movie_id')->unsigned();
             $table->integer('genre_id')->unsigned();
-
-            $table->foreign('genre_id')->references('id')->on('genres');
-            $table->foreign('movie_id')->references('id')->on('movies');
+            $table->engine='innoDB';
             $table->timestamps();
+        });
+        Schema::table('genre_movie', function (Blueprint $table) {
+            $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade');
+            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
         });
     }
 
