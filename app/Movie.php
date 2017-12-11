@@ -17,12 +17,12 @@ class Movie extends Model
     ];
 
     public function genre(){
-        return $this->hasMany('App\GenreMovie');
+        return $this->belongsToMany('App\GenreMovie');
     }
     public function actor(){
-        return $this->hasMany('App\ActorMovie');
+        return $this->belongsToMany('App\ActorMovie');
     }
     public function director(){
-        return $this->hasMany('App\DirectorMovie');
+        return $this->belongsToMany('App\DirectorMovie');
     }
 }
