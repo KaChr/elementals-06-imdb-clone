@@ -67,8 +67,11 @@ after('deploy:failed', 'deploy:unlock');
 
 
 // Migrate database before symlink new release.
-
-before('deploy:symlink', 'artisan:migrate');
+desc('Execute artisan migrate:fresh');
+task('artisan:migrate:fresh', function () {
+    run('{{bin/php}} {{release_path}}/artisan migrate:fresh');
+});
+before('deploy:symlink', 'artisan:migrate:fresh');
 
 
 
