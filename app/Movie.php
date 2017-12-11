@@ -15,4 +15,14 @@ class Movie extends Model
         'rating',
         'poster'
     ];
+
+    public function genre(){
+        return $this->hasMany('App\GenreMovie');
+    }
+    public function actor(){
+        return $this->hasMany('App\ActorMovie');
+    }
+    public function director(){
+        return $this->hasMany('App\DirectorMovie');
+    }
 }

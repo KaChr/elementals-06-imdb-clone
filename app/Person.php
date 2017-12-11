@@ -11,4 +11,14 @@ class Person extends Model
         'dob',
         'city'
     ];
+
+    public function actor(){
+        return $this->hasMany('App\ActorMovie');
+    }
+    public function director(){
+        return $this->hasMany('App\DirectorMovie');
+    }
+    public function role(){
+        return $this->belongsTo('App\Role');
+    }
 }
