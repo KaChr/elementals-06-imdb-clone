@@ -34,6 +34,6 @@ class CreateActorMovieTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('movie_actors');
+        Schema::dropIfExists('actor_movie');
     }
 }

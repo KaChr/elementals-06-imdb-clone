@@ -16,13 +16,13 @@ class Movie extends Model
         'poster'
     ];
 
-    public function genre(){
-        return $this->belongsToMany('App\GenreMovie');
+    public function genres(){
+        return $this->belongsToMany('App\Genre', 'genre_movie');
     }
-    public function actor(){
-        return $this->belongsToMany('App\ActorMovie');
+    public function actors(){
+        return $this->belongsToMany('App\Person', 'actor_movie');
     }
-    public function director(){
-        return $this->belongsToMany('App\DirectorMovie');
+    public function directors(){
+        return $this->belongsToMany('App\Person', 'director_movie');
     }
 }
