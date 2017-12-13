@@ -15,6 +15,10 @@ Route::get('/', function () {
 
     return view('welcome');
 });
+Route::get('/movie-api', function () {
+    
+        return view('movie-api');
+    });
 
 Auth::routes();
 

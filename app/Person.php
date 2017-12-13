@@ -12,13 +12,13 @@ class Person extends Model
         'city'
     ];
 
-    public function movieActors(){
+    public function moviesActor(){
         return $this->belongsToMany('App\Movie', 'actor_movie');
     }
-    public function movieDirectors(){
+    public function moviesDirector(){
         return $this->belongsToMany('App\Movie', 'director_movie');
     }
     public function roles(){
-        return $this->hasOne('App\Person');
+        return $this->hasOne('App\Role');
     }
 }

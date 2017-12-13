@@ -50,6 +50,10 @@ class MoviesController extends Controller
     public function show(Movie $movie)
     {
         //
+        //$movie = Movie::where('id', $movie->id)->first();
+        $movie = Movie::find($movie->id);
+
+        return view('movies.show', ['movie'=>$movie]);
     }
 
     /**
