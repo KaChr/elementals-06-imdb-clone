@@ -99,7 +99,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Harvel
                     <p class="versioninfo">Version {{ app()->version() }}</p>
                 </div>
 
