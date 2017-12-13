@@ -1,3 +1,4 @@
+@import 'header.css';
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
 /* modified path import of other modules */
 @-webkit-keyframes spinAround {
