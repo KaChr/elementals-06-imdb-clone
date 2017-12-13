@@ -27,21 +27,44 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu">
 
+        <a class="navbar-item-user">
+          <img src="https://bulma.io/images/bulma-logo.png" alt="User" width="112" height="28">
+        </a>
+
+
+        <hr class="navbar-divider">
+
         <a class="navbar-item" href="#">
-          Home
+          <span class="icon">
+            <i class="fa fa-home"></i>
+          </span>
+            Home
         </a>
         <a class="navbar-link" href="#">
-          Top 250
+        <span class="icon">
+          <i class="fa fa-star"></i>
+        </span>
+        Top 250
         </a>
-        <a class="navbar-link" href="#">
+        <a class="navbar-item" href="#">
+        <span class="icon">
+          <i class="fa fa-trophy"></i>
+        </span>
           Categories
         </a>
-        <a class="navbar-link" href="#">
+        <a class="navbar-item" href="#">
+        <span class="icon">
+          <i class="fa fa-television"></i>
+        </span>
           My watchlist
         </a>
         <a class="navbar-item" href="#">
+        <span class="icon">
+          <i class="fa fa-power-off"></i>
+        </span>
         Log out
         </a>
+
     </div>
 
   </div>
@@ -49,3 +72,19 @@
 <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>
+
+<!-- If a dropdown is wanted from top 250 add this:
+       <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link" href="#">
+              Top 250
+            </a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="#">
+              Movies
+            </a>
+            <a class="navbar-item" href="#">
+              Series
+            </a>
+          </div>
+        </div>  
+-->
