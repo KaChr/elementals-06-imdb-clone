@@ -16,7 +16,7 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 $err = curl_error($curl);
 
-curl_close($curl);     // DENNA MÅSTE DU TA BORT OM DU SKA GÖRA EN NY REQUEST
+//curl_close($curl);     // DENNA MÅSTE DU TA BORT OM DU SKA GÖRA EN NY REQUEST
 
 if ($err) {
   echo "cURL Error #:" . $err;
@@ -26,18 +26,18 @@ if ($err) {
   foreach($arr->results as $result){
     echo $result->title."<br>";
     echo "<img src=http://image.tmdb.org/t/p/w185" . $result->poster_path . ">" . "<br>";
+    $value = $result->id;
+    echo $value;
   }
 }
 
 // a href eller något.
-    //value = $result-id
 
 // en ny request för Details.
-/*
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.themoviedb.org/3/movie/    value = $result-id    ?language=en-US&api_key=cdc32d79384ddc6326eff808e85db1c7",
+  CURLOPT_URL => "https://api.themoviedb.org/3/movie/$value?language=en-US&api_key=cdc32d79384ddc6326eff808e85db1c7",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -47,25 +47,30 @@ curl_setopt_array($curl, array(
   CURLOPT_POSTFIELDS => "{}",
 ));
 
-$response = curl_exec($curl);
+$rezponse = curl_exec($curl);
 $err = curl_error($curl);
 
 
 
-curl_close($curl);
+//curl_close($curl);
 
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo $response;
-}
+ // echo $value;
+  $obj = json_decode($rezponse);
+  foreach($obj->genres as $genre){
 
-
-    //echo $result->title."<br>";
-    //echo $result->title."<br>";
+      echo $genre->name;
   }
 }
 
+
+    //echo $result->title."<br>";
+    //echo $result->title."<br>";
+  //}
+//}
+
 // EXAKT SAMMA SOM OVAN MEN URL:
 
-CURLOPT_URL => "https://api.themoviedb.org/3/movie/  $result.id (eller var du döpt den till)   /credits?api_key=cdc32d79384ddc6326eff808e85db1c7",
+//CURLOPT_URL => "https://api.themoviedb.org/3/movie/  $result.id (eller var du döpt den till)   /credits?api_key=cdc32d79384ddc6326eff808e85db1c7",
