@@ -7,15 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-<?php 
-    $actor = "patryk";
-?>
-{{$actor}}
 
-    <!--<h1>{{$movie->title}}</h1>
-    @foreach ($movie->actors as $actor)
+    <h1>{{$movie->title}}</h1>
+    @foreach($movie->actors as $actor)
     <h2>{{$actor->name}}</h2>
     {{$actor->dob}}
-    @endforeach--!>
+    @endforeach
 </body>
 </html>
