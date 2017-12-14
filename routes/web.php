@@ -17,9 +17,12 @@ Route::get('/', function () {
 });
 Route::get('/movie-api', function () {
     
-        return view('movie-api');
-    });
-
+    return view('movie-api');
+});
+Route::get('/omdb', function () {
+        
+    return view('omdb');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

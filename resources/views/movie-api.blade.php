@@ -3,7 +3,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=cdc32d79384ddc6326eff808e85db1c7",
+  CURLOPT_URL => "https://api.themoviedb.org/3/movie/297762?page=1&language=en-US&api_key=cdc32d79384ddc6326eff808e85db1c7",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -23,12 +23,20 @@ if ($err) {
 } else {
   $arr = json_decode($response);
 //   print_r($arr);
-  foreach($arr->results as $result){
-    echo $result->title."<br>";
-    echo "<img src=http://image.tmdb.org/t/p/w185" . $result->poster_path . ">" . "<br>";
-    $value = $result->id;
-    echo $value;
-  }
+echo $arr->title;
+echo "<br>";
+echo "<img src=http://image.tmdb.org/t/p/w185" . $arr->poster_path . ">";
+echo "<br>";
+$id = $arr->id;
+echo $id;
+echo "<br>";
+
+ // foreach($arr->results as $result){
+    //echo $result->title."<br>";
+    //echo "<img src=http://image.tmdb.org/t/p/w185" . $result->poster_path . ">" . "<br>";
+    //$value = $result->id;
+    //echo $value;
+  //}
 }
 
 // a href eller något.
@@ -37,7 +45,7 @@ if ($err) {
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.themoviedb.org/3/movie/$value?language=en-US&api_key=cdc32d79384ddc6326eff808e85db1c7",
+  CURLOPT_URL => "https://api.themoviedb.org/3/movie/$id?language=en-US&api_key=cdc32d79384ddc6326eff808e85db1c7",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -47,7 +55,7 @@ curl_setopt_array($curl, array(
   CURLOPT_POSTFIELDS => "{}",
 ));
 
-$rezponse = curl_exec($curl);
+$response = curl_exec($curl);
 $err = curl_error($curl);
 
 
@@ -58,10 +66,15 @@ if ($err) {
   echo "cURL Error #:" . $err;
 } else {
  // echo $value;
-  $obj = json_decode($rezponse);
-  foreach($obj->genres as $genre){
+  $arr = json_decode($response);  
+  foreach($arr->genres as $genre){
 
-      echo $genre->name;
+      //echo "$genre->name,";
+      foreach($genre as $gen){
+        echo $gen;
+        echo ",";
+      }
+      echo "<br>";
   }
 }
 
@@ -74,3 +87,32 @@ if ($err) {
 // EXAKT SAMMA SOM OVAN MEN URL:
 
 //CURLOPT_URL => "https://api.themoviedb.org/3/movie/  $result.id (eller var du döpt den till)   /credits?api_key=cdc32d79384ddc6326eff808e85db1c7",
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://api.themoviedb.org/3/movie/$id/credits?api_key=cdc32d79384ddc6326eff808e85db1c7",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "GET",
+  CURLOPT_POSTFIELDS => "{}",
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+//curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+ // echo $value;
+  $arr = json_decode($response);  
+  foreach($arr->cast as $casts){
+
+      echo $casts->name;
+      echo ", ";
+  }
+}
