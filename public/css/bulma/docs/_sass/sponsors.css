@@ -1,0 +1,15 @@
+.bd-sponsors {
+  align-items: center;
+  display: flex;
+}
+
+.bd-sponsors a {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-right: 3rem;
+  width: 150px;
+}
+ 
+
+ /*# sourceMappingURL= sponsors.css.map */

@@ -1,0 +1,18 @@
+{
+    "version": 3,
+    "mappings": "AKAA,UAAU,CAAV,UAAU;EACR,AAAA,IAAI;IACF,SAAS,EAAE,YAAY;;EACzB,AAAA,EAAE;IACA,SAAS,EAAE,cAAc",
+    "sources": [
+        "mystyle.sass",
+        "bulma/sass/utilities/_all.sass",
+        "bulma/sass/utilities/initial-variables.sass",
+        "bulma/sass/utilities/functions.sass",
+        "bulma/sass/utilities/derived-variables.sass",
+        "bulma/sass/utilities/animations.sass",
+        "bulma/sass/utilities/mixins.sass",
+        "bulma/sass/utilities/initial-variables.sass",
+        "bulma/sass/utilities/controls.sass",
+        "bulma/sass/utilities/derived-variables.sass"
+    ],
+    "names": [],
+    "file": "mystyle.css"
+}

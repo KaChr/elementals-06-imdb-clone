@@ -10,11 +10,14 @@
 
         <title>Laravel {{ app()->version() }}</title>
 
+        <!-- Bulma Link -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.css">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -125,5 +128,16 @@
                 </div>
             </div>
         </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <h3>&copy; eIMD 2017</h3>
+                    <p class="button is-danger">MIT License<p>
+                    <hr>
+                    <h4><a href="https://github.com/chas-academy/elementals-06-imdb-clone">GitHub Logo</a></h4>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
