@@ -26,10 +26,12 @@
   </div>
 
   <div id="navbarExampleTransparentExample" class="navbar-menu">
+  <figure class="image is-48x48">
+  <img src="https://bulma.io/images/placeholders/48x48.png">
+</figure>
+<p class="user-review">Izabel Rosén</p>
+<p class="user-review-written">0 reviews written</p>
 
-        <a class="navbar-item-user">
-          <img src="https://bulma.io/images/bulma-logo.png" alt="User" width="112" height="28">
-        </a>
 
 
         <hr class="navbar-divider">
@@ -40,7 +42,7 @@
           </span>
             Home
         </a>
-        <a class="navbar-link" href="#">
+        <a class="navbar-item" href="#">
         <span class="icon">
           <i class="fa fa-star"></i>
         </span>

@@ -20,7 +20,7 @@ a.navbar-item {
 
 hr.navbar-divider {
     display: block;
-    color: white;
+    background-color: #1f2f39;
     margin: 1rem;
 }
 
@@ -31,7 +31,17 @@ hr.navbar-divider {
 }
 
 .user-review, .user-review-written {
-    color: white;
-    margin-left: 1rem;
-
+    display: flex;
+    justify-content: space-around;
 }
+
+.user-review {
+    margin-top: -47px;
+    color: white;
+}
+
+.user-review-written {
+    margin-top: -0.5rem;
+    margin-left: 1.5rem;
+}
+
