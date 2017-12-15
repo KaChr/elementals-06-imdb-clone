@@ -5,7 +5,8 @@
          'john+wick',
          'it',
          'harry+potter',
-         'fifty+shades+of+grey'
+         'fifty+shades+of+grey',
+         'men+in+black'
      ];
      $i = 1;
      foreach($movies as $movie) {
@@ -29,8 +30,8 @@
             echo "cURL Error #:" . $err;
         } else { 
             $obj = json_decode($response);
-            //storing the content of movie into database
-            //if(!isset($query[0])){
+            $query = DB::table('movies')->select('title')->where('title', '=', $obj->Title)->get();
+            if(!isset($query[0])){
                 DB::table('movies')->insert([
                     'title'=>$obj->Title,
                     'summary'=>$obj->Plot,
@@ -38,11 +39,13 @@
                     'runtime'=>$obj->Runtime,
                     'rating'=>$obj->imdbRating,
                     'poster'=>$obj->Poster,
-                    'countries'=>$obj->Country
+                    'countries'=>$obj->Country,
+                    'imdbID'=>$obj->imdbID
                     ]);
-                //}
+                }
             //getting the genres of the film, exploiting it and storing in databse
             $genres = explode(", ", $obj->Genre);
+            //storing the content of movie into database
             foreach ($genres as $genre) {
                 //just inserting the genre titles we got into the table genres
                 $query = DB::table('genres')->select('genre_title')->where('genre_title', '=', $genre)->get();

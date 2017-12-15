@@ -22,6 +22,7 @@ class CreateMoviesTable extends Migration
             $table->float('rating')->nullable();
             $table->text('poster')->nullable();
             $table->string('countries')->nullable();
+            $table->string('imdbID')->nullable();
             $table->timestamps();
         });
     }
