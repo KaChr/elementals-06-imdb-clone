@@ -16,6 +16,9 @@
 </head>
 <body>
     <section class="item-info">
+        <p>År</p>
+        <h1>FILM TITEL</h1>
+        <p>GENRE</p>
         <a class="button is-outlined">
             <span class="icon">
                 <i class="fa fa-plus" area-hidden="true"></i>
