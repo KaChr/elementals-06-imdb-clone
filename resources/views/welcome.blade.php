@@ -128,16 +128,6 @@
                 </div>
             </div>
         </div>
-
-        <footer class="footer">
-            <div class="container">
-                <div class="content has-text-centered">
-                    <h3>&copy; eIMD 2017</h3>
-                    <p class="button is-danger">MIT License<p>
-                    <hr>
-                    <h4><a href="https://github.com/chas-academy/elementals-06-imdb-clone">GitHub Logo</a></h4>
-                </div>
-            </div>
-        </footer>
+        @include('includes/footer')
     </body>
 </html>
