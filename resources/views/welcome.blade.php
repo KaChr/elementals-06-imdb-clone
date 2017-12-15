@@ -121,6 +121,7 @@
                         <a class="button is-success">Success</a>
                         <a class="button is-warning">Warning</a>
                         <a class="button is-danger">Danger</a>
+                        <a class="button" href="/landingpage">Landing Page</a>
                     </div>
                 </div>
             </div>
