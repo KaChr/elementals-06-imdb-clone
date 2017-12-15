@@ -10,17 +10,20 @@
         width: 400px;
         margin: 0px;
     }
+    h1{
+        font-size: 26px;
+    }
+    img{
+        width: 180px
+    }
     </style>
 </head>
 <body>
     @foreach($movies as $movie)
     <div>
     <a href="/movies/{{$movie->id}}"><h1>{{$movie->title}}</h1></a>
-    <h3>{{$movie->summary}}</h3> 
-    <strong>{{$movie->release_date}}</strong><br> 
     <strong>{{$movie->runtime}}</strong><br> 
     <strong>{{$movie->rating}}</strong><br>
-    <img src="http://image.tmdb.org/t/p/w185{{$movie->poster}}"><br>
     <img src='{{$movie->poster}}'>
     </div>
     @endforeach

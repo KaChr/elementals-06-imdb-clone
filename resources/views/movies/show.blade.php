@@ -9,9 +9,16 @@
 <body>
 
     <h1>{{$movie->title}}</h1>
+    <img src="{{$movie->poster}}">
+    <p>{{$movie->rating}}</p>
+    <p>{{$movie->summary}}</p>
+    <h2>Actors</h2>
     @foreach($movie->actors as $actor)
-    <h2>{{$actor->name}}</h2>
-    {{$actor->dob}}
+    <p>{{$actor->name}}</p>
     @endforeach
+    <h2>Directors</h2>
+    @foreach($movie->directors as $director)
+    <p>{{$director->name}}</p>
+    @endforeach 
 </body>
 </html>

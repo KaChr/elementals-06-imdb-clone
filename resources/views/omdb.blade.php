@@ -1,5 +1,6 @@
 <?php
      $curl = curl_init();
+     //array of movies
      $movies = [
          'john+wick',
          'it',
@@ -8,6 +9,7 @@
      ];
      $i = 1;
      foreach($movies as $movie) {
+         //request to API using cURL
         curl_setopt_array($curl, array(
             CURLOPT_URL => "http://www.omdbapi.com/?t=$movie&plot=full&apikey=8ea32694",
             CURLOPT_RETURNTRANSFER => true,
@@ -27,6 +29,18 @@
             echo "cURL Error #:" . $err;
         } else { 
             $obj = json_decode($response);
+            //storing the content of movie into database
+            //if(!isset($query[0])){
+                DB::table('movies')->insert([
+                    'title'=>$obj->Title,
+                    'summary'=>$obj->Plot,
+                    'release_date'=>date('Y-m-d', strtotime($obj->Released)),
+                    'runtime'=>$obj->Runtime,
+                    'rating'=>$obj->imdbRating,
+                    'poster'=>$obj->Poster,
+                    'countries'=>$obj->Country
+                    ]);
+                //}
             //getting the genres of the film, exploiting it and storing in databse
             $genres = explode(", ", $obj->Genre);
             foreach ($genres as $genre) {
@@ -51,7 +65,7 @@
            
             $actors = explode(", ", $obj->Actors);
             foreach($actors as $actor) {
-
+                //inserting actor content into people table, storing name, date of birth and city
                 $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
                 if(!isset($query[0])){
                     DB::table('people')->insert([
@@ -61,9 +75,13 @@
                         ]);
 
                 }
-
+                //inserting movie id and person id(actor) in our pivot table
                 $query = DB::table('people')->select('id')->where('name', '=', $actor)->get();
-                if(!isset($query[0])){
+                if(isset($query[0])){
+                    $queryPivot = DB::table('actor_movie')->select('person_id')->where('movie_id', '=', $i)->
+                    where('person_id', '=', $query[0]->id)->get();
+                }
+                if(!isset($queryPivot[0])){
                     DB::table('actor_movie')->insert([
                         'movie_id' => $i,
                         'person_id' => $query[0]->id
@@ -88,8 +106,12 @@
                 }
                 //inserting the id of movie and the id of person(in this case director) into Database
                 $query = DB::table('people')->select('id')->where('name', '=', $director)->get();
+                if(isset($query[0])) {
+                    $queryPivot = DB::table('director_movie')->select('person_id')->where('movie_id', '=', $i)->
+                    where('person_id', '=', $query[0]->id)->get();
+                }
                 //if we have the data in table rows then it will not store it anymore(no duplicates)
-                if(!isset($query[0])){
+                if(!isset($queryPivot[0])){
                     DB::table('director_movie')->insert([
                         'movie_id' => $i,
                         'person_id' => $query[0]->id
@@ -97,16 +119,6 @@
 
                 }
             }
-            //storing the content of movie into database
-            DB::table('movies')->insert([
-                'title'=>$obj->Title,
-                'summary'=>$obj->Plot,
-                'release_date'=>date('Y-m-d', strtotime($obj->Released)),
-                'runtime'=>$obj->Runtime,
-                'rating'=>$obj->imdbRating,
-                'poster'=>$obj->Poster,
-                'countries'=>$obj->Country
-                ]);
             $i++;
         }
     }
