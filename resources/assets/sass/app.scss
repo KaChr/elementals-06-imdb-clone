@@ -1,6 +1,5 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 @import '/public/font/sourcesans.css';
 
@@ -27,6 +26,7 @@ body {
     font-family: $font-stack;    
 }
 
+//Typography
 h1,h2,h3,h4,h5 {
     font-weight: 900;
 }
@@ -54,3 +54,43 @@ h5 {
 p {
     font-size: 14px;
 }
+
+//Hero
+
+.hero-body {
+    padding-bottom: 1em;
+}
+
+.featured {
+    background-size: cover;
+    background-position: top center;
+    min-height: 325px;
+
+    h1,h2,h3,h4,h5 {
+        color: #FFF;
+    }
+}
+
+.featured__content--bottom {
+    width:100%;
+    align-self:flex-end;
+    justify-content: space-between;
+}
+
+.featured__info-genre {
+    font-size: 12px;
+    font-weight: 500;
+    color: #FFF;
+}
+
+.featured__rating {
+    align-items: flex-end;
+
+    span {
+        font-size:28px;
+        color: $warm-sun;
+        font-weight: bold;
+    }
+}
+
+

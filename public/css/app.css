@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@import url(/public/font/sourcesans.css);/*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
+@import url(/public/font/sourcesans.css);/*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
 /* modified path import of other modules */
 @-webkit-keyframes spinAround {
   from {
@@ -17602,4 +17602,45 @@ h5 {
 
 p {
   font-size: 14px;
+}
+
+.hero-body {
+  padding-bottom: 1em;
+}
+
+.featured {
+  background-size: cover;
+  background-position: top center;
+  min-height: 325px;
+}
+
+.featured h1, .featured h2, .featured h3, .featured h4, .featured h5 {
+  color: #FFF;
+}
+
+.featured__content--bottom {
+  width: 100%;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.featured__info-genre {
+  font-size: 12px;
+  font-weight: 500;
+  color: #FFF;
+}
+
+.featured__rating {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.featured__rating span {
+  font-size: 28px;
+  color: #FFCF4D;
+  font-weight: bold;
 }
