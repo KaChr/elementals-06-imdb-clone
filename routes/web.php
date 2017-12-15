@@ -12,10 +12,22 @@
 */
 
 Route::get('/', function () {
+
     return view('welcome');
 });
-
+Route::get('/movie-api', function () {
+    
+    return view('movie-api');
+});
+Route::get('/omdb', function () {
+        
+    return view('omdb');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('movies', 'MoviesController');
+Route::resource('people', 'PeopleController');
+Route::resource('genres', 'GenresController');
 

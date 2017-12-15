@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolesTable extends Migration
+class CreateDirectorMovieTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->string('title');
-            $table->engine='innoDB';
+        Schema::create('director_movie', function (Blueprint $table) {
 
-            $table->boolean('actor');
-            $table->boolean('director');
+            $table->integer('movie_id')->unsigned();
+            $table->integer('person_id')->unsigned();
+            $table->engine='InnoDB';
+
             $table->timestamps();
         });
-        Schema::table('roles', function (Blueprint $table){
-            $table->integer('person_id')->unsigned();
+        Schema::table('director_movie', function (Blueprint $table){
+            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
             $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');
         });
     }
@@ -34,6 +34,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('director_movie');
     }
 }
