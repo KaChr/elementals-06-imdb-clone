@@ -1,4 +1,4 @@
-     <?php
+<?php
      $curl = curl_init();
      $movies = [
          'john+wick',
@@ -48,10 +48,7 @@
                         ]);
                 }
             }
-            echo "<br>";
-            echo $obj->Director;
-            echo "<br>";
-            echo $obj->Actors;
+           
             $actors = explode(", ", $obj->Actors);
             foreach($actors as $actor) {
 
