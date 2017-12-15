@@ -25,6 +25,11 @@
         <a class="button is-outlined">TRAILER</a>
     </section>
     <section class="plot">
+        <figure class="image is-96x96">
+            <img src="https://bulma.io/images/placeholders/96x96.png">
+        </figure>
+        <h2>PLOT SUMMARY</h2>
+        <p>Text</p>
         <a class="button is-outlined">READ MORE</a>
     </section>
     <section class="cast-crew">
@@ -32,7 +37,7 @@
         <a href="#">WIEW ALL</a>
         <hr>
         <figure class="image is-64x64">
-            <img src="#">
+            <img src="https://bulma.io/images/placeholders/64x64.png">
         </figure>
         <h3>Actor name</h3>
         <p>as Role</p>
