@@ -17,7 +17,8 @@
     <p class="has-text-left is-size-7">MOVIE - ACTION, THRILLER</p>
     <h2 class="has-text-left has-text-weight-bold is-size-3">JOHN WICK 2</h2>
     <h1 class="has-text-right has-text-weight-bold is-size-3">7.3<h1>
-    <a class="button is-primary" href="#">More</a>
+    <a class="button" href="#">&#x271A; WATCHLIST</a>
+    <a class="button" id="trailer-button" href="#">TRAILER</a>
   </section>
 
   <!-- Movies -->

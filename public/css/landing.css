@@ -5,9 +5,9 @@ html, body {
 }
 
 .section.movie-poster {
-    height: 60vh;
+    height: 70vh;
     background-image: url("https://admin.codex.online/?action=asset&id=547E274F-A551-4951-8A16-2B79179CA66E");
-    background-position: top;
+    background-position: 25% 25%;
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -39,14 +39,17 @@ html, body {
     position: absolute;
     left: 2em;
     bottom: 1;
-    padding: 0 3em;
+    padding: 0 1em;
     background-color: transparent;
     border: 1px solid #7af9ba;
     color: #7af9ba;
     transition: 0.2s ease-in;
 }
+.section.movie-poster #trailer-button {
+    left: 11em;
+}
 .section.movie-poster .button:hover {
-    color: #F6F6F6;
+    color: black;
     background-color: #7af9ba;
     transition: 0.2s ease-in;
 }
@@ -59,7 +62,7 @@ html, body {
 }
 
 .columns img:hover {
-    border: white solid 1px;
+    border: #7af9ba solid 1px;
     cursor: pointer;
 
     transition: 0.5s ease-in;
@@ -68,11 +71,36 @@ html, body {
 /* Trailer */
 iframe {
     width: 100%;
+    margin: 0 auto;
+    display: block;
 }
 
 @media only screen and (max-width: 425px) {
     .section.movie-poster {
         background-position: right;
+        height: 75vh;
+    }
+
+
+}
+
+@media only screen and (max-width: 320px) {
+    }
+    .section.movie-poster h2 {
+        left: 5%;
+    }
+    .section.movie-poster p {
+        left: 5%;
+        
+    }
+    .section.movie-poster h1 {
+        left: 5%;
+    }
+    .section.movie-poster .button {
+        left: 5%;
+    }
+    .section.movie-poster #trailer-button {
+        left: 9em;
     }
 
 
