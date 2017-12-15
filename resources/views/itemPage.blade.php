@@ -28,6 +28,14 @@
         <a class="button is-outlined">READ MORE</a>
     </section>
     <section class="cast-crew">
+        <h2>CAST & CREW</h3>
+        <a href="#">WIEW ALL</a>
+        <hr>
+        <figure class="image is-64x64">
+            <img src="#">
+        </figure>
+        <h3>Actor name</h3>
+        <p>as Role</p>
     </section>
 </body>
 <footer>
