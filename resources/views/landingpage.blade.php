@@ -42,6 +42,21 @@
     </div>
   </section>
 
+  <!-- TV shows -->
+  <section class="columns is-multiline is-mobile is-gapless" id="upcoming">
+    <div class="column is-one-quarter">
+      <img src="https://designcontest-com-designcontest.netdna-ssl.com/blog/wp-content/uploads/2015/08/House-of-Cards-TV-Show-Poster-2.jpeg">
+    </div>
+    <div class="column is-one-quarter">
+      <img src="http://cdn.collider.com/wp-content/uploads/beauty-and-the-beast-tv-show-poster.jpg">
+    </div>
+    <div class="column is-one-quarter">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/71vJ3kPE67L._SY717_.jpg">
+    </div>
+    <div class="column is-one-quarter">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/71RRIZioMRL._SL1500_.jpg">
+    </div>
+  </section>
   
   <div class="box">
     <article class="media">
