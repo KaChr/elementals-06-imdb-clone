@@ -13,9 +13,13 @@
             <div class="container">
                 
                 @include('includes.typography')
-                <h1 class="title">Featured</h1>
+                <h1 class="title">Feature - Big</h1>
                 <hr>
                 @include('includes.hero')
+
+                <h1 class="title">Takeover</h1>
+                <hr>
+                @include('includes.takeover')
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>

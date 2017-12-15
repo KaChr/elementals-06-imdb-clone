@@ -22,6 +22,16 @@ $pale-silver: #F6F6F6;
 
 $font-stack: "Source Sans Pro", "Helvetica", "Arial", Sans-serif;
 
+//Mixins
+
+//Border radius
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    border-radius: $radius;
+    background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+  }
+  
+
 body {
     font-family: $font-stack;    
 }
@@ -55,7 +65,7 @@ p {
     font-size: 14px;
 }
 
-//Hero
+//Hero - Featured
 
 .hero-body {
     padding-bottom: 1em;
@@ -65,10 +75,6 @@ p {
     background-size: cover;
     background-position: top center;
     min-height: 325px;
-
-    h1,h2,h3,h4,h5 {
-        color: #FFF;
-    }
 }
 
 .featured__content--bottom {
@@ -83,6 +89,11 @@ p {
     color: #FFF;
 }
 
+.featured__info-title {
+    font-size: 28px;
+    color: #FFF;
+}
+
 .featured__rating {
     align-items: flex-end;
 
@@ -93,4 +104,87 @@ p {
     }
 }
 
+//Hero - Takeover
 
+.takeover {
+    background-size: cover;
+    background-position: top center;
+    min-height: 180px;
+    margin-bottom: 1em;
+}
+
+.takeover__content--bottom {
+    width:100%;
+    align-self:flex-end;
+    justify-content: space-between;
+}
+
+.takeover__info-genre {
+    font-size: 12px;
+    font-weight: 500;
+    color: #FFF;
+}
+
+.takeover__info-title {
+    font-size: 28px;
+    color: #FFF;
+}
+
+.takeover__cta {
+    align-items: flex-end;
+
+}
+
+//Buttons
+
+.button {
+    @include border-radius(2px);
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.button--small {
+    min-width: 96px;
+    min-height: 30px;
+}
+
+.button--big {
+    min-width: 140px;
+    min-height: 40px;
+}
+
+.button--border-blue {
+    border: 1px solid $sky-blue;
+    background: none;
+    color: #FFF;
+
+    &:hover {
+        border: 1px solid $sky-blue;    
+        background-color: $sky-blue;
+        color: #FFF;
+    }
+}
+
+.button--border-yellow {
+    border: 1px solid $warm-sun;
+    background: none;
+    color: #FFF;
+
+    &:hover {
+        border: 1px solid $warm-sun;    
+        background-color: $warm-sun;
+        color: #FFF;
+    }
+}
+
+.button--border-turquoise {
+    border: 1px solid $turquoise;
+    background: none;
+    color: #FFF;
+
+    &:hover {
+        border: 1px solid $turquoise;    
+        background-color: $turquoise;
+        color: #FFF;
+    }
+}
