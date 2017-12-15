@@ -6,3 +6,51 @@
 
 // Variables
 @import "bulma";
+
+//Main colors
+$deep-blue: #060B0E;
+$turquoise: #7AF9BA;
+$sky-blue: #6EADFF;
+$warm-sun: #FFCF4D;
+$gravel-grey: #4B4B4B;
+
+//Color variations
+$navy-blue: #1F2F39;
+$piggelin: #b7ffdb;
+$happy-blue: #5AD2FF;
+$aluminium: #DDDDDD;
+$pale-silver: #F6F6F6;
+
+$font-stack: "Source Sans Pro", "Helvetica", "Arial", Sans-serif;
+
+body {
+    font-family: $font-stack;    
+}
+
+h1,h2,h3,h4,h5 {
+    font-weight: 900;
+}
+
+h1 {
+    font-size: 64px;
+}
+
+h2 {
+    font-size: 38px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+p {
+    font-size: 14px;
+}

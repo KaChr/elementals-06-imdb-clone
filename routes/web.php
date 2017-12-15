@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function () {
 
     return view('welcome');
@@ -23,9 +25,17 @@ Route::get('/omdb', function () {
         
     return view('omdb');
 });
+
+Route::get('/components', function () {
+
+    return view('components');
+    
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 
 Route::resource('movies', 'MoviesController');
 Route::resource('people', 'PeopleController');

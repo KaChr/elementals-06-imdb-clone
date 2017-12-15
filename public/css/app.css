@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@import url(/public/font/sourcesans.css);/*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
 /* modified path import of other modules */
 @-webkit-keyframes spinAround {
   from {
@@ -17570,4 +17570,36 @@ input[type=range].slider.is-danger .has-output-tooltip + output {
 .tooltip.is-tooltip-danger::after {
   background: rgba(255, 56, 96, 0.9);
   color: #fff;
+}
+
+body {
+  font-family: "Source Sans Pro", "Helvetica", "Arial", Sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 900;
+}
+
+h1 {
+  font-size: 64px;
+}
+
+h2 {
+  font-size: 38px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+p {
+  font-size: 14px;
 }
