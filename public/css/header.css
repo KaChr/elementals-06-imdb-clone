@@ -1,12 +1,13 @@
 /* CSS FOR HEADER */
 
 #navbarExampleTransparentExample {
-    background-color: black;
+    background-color: #060b0e;
     height: 100vh;
     width: 250px;
+    margin-left: -52px;
 }
 .navbar-burger.burger {
-    background-color: black;
+    background-color: #060b0e;
 }
 
 .icon {
@@ -30,23 +31,33 @@ hr.navbar-divider {
     margin-top: 0.5rem;
 }
 
+.image-logo {
+    margin-top: -45px;
+    left: 10.5rem;
+}
+
 .user-review, .user-review-written {
     display: flex;
     justify-content: space-around;
 }
 
 .user-review {
-    margin-top: -47px;
+    margin-top: -40px;
+    margin-left: -2rem;
+    margin-bottom: 0.2rem;
     color: white;
+    font-size: 12px;
 }
 
 .user-review-written {
-    margin-top: -0.5rem;
-    margin-left: 1.5rem;
+    margin-top: -0.4rem;
+    margin-left: -1.5rem;
+    font-size: 10px;
 }
 
-span {
+.navbar-burger span {
     color: white;
+    display: none;
 }
 
 body {
@@ -54,6 +65,7 @@ body {
     height: 100%;
   }
   
+  /*
   .slideout-menu {
     position: fixed;
     top: 0;
@@ -78,7 +90,7 @@ body {
     position: relative;
     z-index: 1;
     will-change: transform;
-    background-color: #FFF; /* A background-color is required */
+    background-color: #FFF; /* A background-color is required *//*
     min-height: 100vh;
   }
   
@@ -90,4 +102,4 @@ body {
   
   .slideout-open .slideout-menu {
     display: block;
-  }
+  }*/
