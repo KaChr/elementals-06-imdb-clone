@@ -10,6 +10,7 @@
 
     <h1>{{$movie->title}}</h1>
     <img src="{{$movie->poster}}">
+    <img src="http://image.tmdb.org/t/p/w650{{$movie->movieBackdrop}}">;
     <p>{{$movie->rating}}</p>
     <p>{{$movie->summary}}</p>
     <p>{{$movie->runtime}}</p>

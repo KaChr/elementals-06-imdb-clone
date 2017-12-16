@@ -2,15 +2,18 @@
      $curl = curl_init();
      //array of movies
      $movies = [
-         'john+wick',
          'it',
          'harry+potter',
          'fifty+shades+of+grey',
-         'men+in+black'
+         'dunkirk',
+         'wonder+woman',
+         'blade+runner+2049',
+         'john+wick',
+         'thor:+ragnarök'
      ];
      $i = 1;
-     foreach($movies as $movie) {
-         //request to API using cURL
+    foreach($movies as $movie) {
+         //request to API using cURL¨
         curl_setopt_array($curl, array(
             CURLOPT_URL => "http://www.omdbapi.com/?t=$movie&plot=full&apikey=8ea32694",
             CURLOPT_RETURNTRANSFER => true,
@@ -25,11 +28,34 @@
         ));
         $response = curl_exec($curl);
         $err = curl_error($curl);
-        
+
         if ($err) {
             echo "cURL Error #:" . $err;
         } else { 
             $obj = json_decode($response);
+    
+            $imdbID = $obj->imdbID;
+            //new request to new API themoviedb using the imdbID that we got from OMDB to get the backdrop for our movies
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID?api_key=cdc32d79384ddc6326eff808e85db1c7",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_TIMEOUT => 6000000,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "GET",
+                CURLOPT_HTTPHEADER => array(
+                    'Content-Type: application/json',
+                ),
+            ));
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+        
+            if ($err) {
+                echo "cURL Error #:" . $err;
+            } else { 
+                $casts = json_decode($response);
+                echo "<img src=http://image.tmdb.org/t/p/w650" . $casts->backdrop_path . ">";
+            }
             $query = DB::table('movies')->select('title')->where('title', '=', $obj->Title)->get();
             if(!isset($query[0])){
                 DB::table('movies')->insert([
@@ -40,7 +66,8 @@
                     'rating'=>$obj->imdbRating,
                     'poster'=>$obj->Poster,
                     'countries'=>$obj->Country,
-                    'imdbID'=>$obj->imdbID
+                    'imdbID'=>$obj->imdbID,
+                    'movieBackdrop'=>$casts->backdrop_path
                     ]);
                 }
             //getting the genres of the film, exploiting it and storing in databse
@@ -74,7 +101,7 @@
                     DB::table('people')->insert([
                         'name' => $actor,
                         'dob' => date('Y-m-d'),
-                        'city' => 'random'
+                        'city' => 'random',
                         ]);
 
                 }
@@ -95,8 +122,8 @@
 
             $directors = explode(", ", $obj->Director);
             foreach($directors as $director){
-                /*inserting content of people in database. name, date of birth, city(maybe will regret from getting
-                the additional info about directors as dob and city, cause of lack of info in APIs)*/
+                //inserting content of people in database. name, date of birth, city(maybe will regret from getting
+                //the additional info about directors as dob and city, cause of lack of info in APIs)
                 $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
                 //if we have the data in table rows then it will not store it anymore(no duplicates)
                 if(!isset($query[0])){
@@ -109,7 +136,7 @@
                 }
                 //inserting the id of movie and the id of person(in this case director) into Database
                 $query = DB::table('people')->select('id')->where('name', '=', $director)->get();
-                if(isset($query[0])) {
+                if(isset($query[0])){
                     $queryPivot = DB::table('director_movie')->select('person_id')->where('movie_id', '=', $i)->
                     where('person_id', '=', $query[0]->id)->get();
                 }
@@ -124,6 +151,7 @@
             }
             $i++;
         }
+
     }
 
     curl_close($curl);
