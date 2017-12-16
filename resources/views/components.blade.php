@@ -13,13 +13,21 @@
             <div class="container">
                 
                 @include('includes.typography')
-                <h1 class="title">Feature - Big</h1>
                 <hr>
+                <h1 class="title">Feature - Big</h1>
                 @include('includes.hero')
 
-                <h1 class="title">Takeover</h1>
                 <hr>
+                <h1 class="title">Takeover</h1>
                 @include('includes.takeover')
+
+                <hr>
+                <h1 class="title">Divider</h1>
+                @include('includes.divider')
+
+                <h1 class="title">Review block, with divider</h1>
+                @include('includes.reviews')
+
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>

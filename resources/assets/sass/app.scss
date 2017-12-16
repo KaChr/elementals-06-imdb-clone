@@ -1,7 +1,7 @@
 
 // Fonts
 
-@import '/public/font/sourcesans.css';
+@import '/font/sourcesans.css';
 
 // Variables
 @import "bulma";
@@ -85,7 +85,7 @@ p {
 
 .featured__info-genre {
     font-size: 12px;
-    font-weight: 500;
+    font-weight: bold;
     color: #FFF;
 }
 
@@ -121,7 +121,7 @@ p {
 
 .takeover__info-genre {
     font-size: 12px;
-    font-weight: 500;
+    font-weight: bold;
     color: #FFF;
 }
 
@@ -186,5 +186,54 @@ p {
         border: 1px solid $turquoise;    
         background-color: $turquoise;
         color: #FFF;
+    }
+}
+
+//Divider 
+
+.divider {
+    width: 100%;
+    margin-bottom: 1em;
+
+    a {
+        color: $sky-blue;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+.divider__info {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.divider__line {
+    width: 100%;
+    height: 1px;
+    background-color: $aluminium;
+    display:block;
+}
+
+//Review block
+
+.review__poster {
+    position: relative;
+}
+
+.review__rating {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: $warm-sun;
+    font-size: 38px;
+    font-weight: 600;
+    text-shadow: 0px 0px 14px #000;
+}
+
+.review__avatar {
+    img {
+        @include border-radius(24px);
     }
 }
