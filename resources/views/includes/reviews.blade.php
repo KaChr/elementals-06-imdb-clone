@@ -15,20 +15,19 @@
                 </div>
             </div>
             <div class="column">
-                <div class="review__info">
+                <div class="review__info is-flex">
                     <span class="review__avatar">
                         <img src="http://via.placeholder.com/48x48" alt="avatar">
                     </span>
+                    <div>
+                        <h4 class="review__title">This is the review title</h4>
+                        <p class="review__author">by Joakim Unge</p>
+                    </div>
                 </div>
-                <h4>This is the review title</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Vestibulum in maximus turpis. Nam in ante vel erat dignissim imperdiet a et odio. 
-                    Proin sit amet sagittis augue, et iaculis metus. Curabitur sapien eros, mattis a risus at, 
-                    luctus pellentesque ligula. Phasellus vel ornare nisi. Nullam congue hendrerit tristique. 
-                    Vivamus et efficitur nunc. Aenean eu est ultrices urna egestas consequat. Donec at lacus eget purus placerat viverra. 
-                    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla blandit scelerisque ex, 
-                    nec vulputate metus ullamcorper dignissim
+                    Vestibulum in maximus turpis. Nam in ante vel erat dignissim imperdiet .. 
                 </p>
+                <button class="button button--small button--solid-blue">READ MORE</button>
             </div>  
         </div>
     </div>
@@ -41,15 +40,19 @@
                 </div>
             </div>
             <div class="column">
-                <h4>This is the review title</h4>
+                <div class="review__info is-flex">
+                    <span class="review__avatar">
+                        <img src="http://via.placeholder.com/48x48" alt="avatar">
+                    </span>
+                    <div>
+                        <h4 class="review__title">This is the review title</h4>
+                        <p class="review__author">by Joakim Unge</p>
+                    </div>
+                </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                     Vestibulum in maximus turpis. Nam in ante vel erat dignissim imperdiet a et odio. 
-                    Proin sit amet sagittis augue, et iaculis metus. Curabitur sapien eros, mattis a risus at, 
-                    luctus pellentesque ligula. Phasellus vel ornare nisi. Nullam congue hendrerit tristique. 
-                    Vivamus et efficitur nunc. Aenean eu est ultrices urna egestas consequat. Donec at lacus eget purus placerat viverra. 
-                    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla blandit scelerisque ex, 
-                    nec vulputate metus ullamcorper dignissim
                 </p>
+                <button class="button button--small button--solid-blue">READ MORE</button>
             </div>  
         </div>
     </div>

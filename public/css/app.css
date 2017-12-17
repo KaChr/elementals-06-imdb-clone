@@ -17683,8 +17683,10 @@ p {
   border-radius: 2px;
   background-clip: padding-box;
   /* stops bg color from leaking outside the border: */
+  margin-top: 1.5em;
   font-weight: 500;
   font-size: 12px;
+  border: none;
 }
 
 .button--small {
@@ -17707,6 +17709,15 @@ p {
   border: 1px solid #6EADFF;
   background-color: #6EADFF;
   color: #FFF;
+}
+
+.button--solid-blue {
+  background-color: #6EADFF;
+  color: #FFF;
+}
+
+.button--solid-blue:hover {
+  background-color: #5AD2FF;
 }
 
 .button--border-yellow {
@@ -17775,8 +17786,28 @@ p {
   text-shadow: 0px 0px 14px #000;
 }
 
+.review__info {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.review__avatar {
+  margin-right: 1em;
+}
+
 .review__avatar img {
   border-radius: 24px;
   background-clip: padding-box;
   /* stops bg color from leaking outside the border: */
+}
+
+.review__title {
+  font-size: 14px;
+}
+
+.review__author {
+  font-style: italic;
+  font-size: 12px;
+  color: #CCCCCC;
 }

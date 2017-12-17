@@ -17,6 +17,7 @@ $gravel-grey: #4B4B4B;
 $navy-blue: #1F2F39;
 $piggelin: #b7ffdb;
 $happy-blue: #5AD2FF;
+$mithril: #CCCCCC;
 $aluminium: #DDDDDD;
 $pale-silver: #F6F6F6;
 
@@ -139,8 +140,10 @@ p {
 
 .button {
     @include border-radius(2px);
+    margin-top: 1.5em;
     font-weight: 500;
     font-size: 12px;
+    border:none;
 }
 
 .button--small {
@@ -162,6 +165,14 @@ p {
         border: 1px solid $sky-blue;    
         background-color: $sky-blue;
         color: #FFF;
+    }
+}
+
+.button--solid-blue {
+    background-color: $sky-blue;
+    color: #FFF;
+    &:hover {
+        background-color: $happy-blue;
     }
 }
 
@@ -232,8 +243,23 @@ p {
     text-shadow: 0px 0px 14px #000;
 }
 
+.review__info {
+    align-items: center;
+}
+
 .review__avatar {
+    margin-right:1em;
     img {
         @include border-radius(24px);
     }
+}
+
+.review__title {
+    font-size: 14px;
+}
+
+.review__author {
+    font-style: italic;
+    font-size: 12px;
+    color: $mithril;
 }
