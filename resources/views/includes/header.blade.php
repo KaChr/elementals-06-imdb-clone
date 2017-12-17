@@ -20,11 +20,11 @@
 
 <nav class="navbar is-transparent">
   <div class="navbar-brand">
-  <div class="navbar-end">
+  <div class="navbar-start">
     <div class="navbar-burger burger" data-target="navMenu" onclick="toggleBurger()">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span class="span"></span>
+      <span class="span"></span>
+      <span class="span"></span>
     </div>
   </div>
 
@@ -34,6 +34,9 @@
 </figure>
 <p class="user-review">Izabel Rosén</p>
 <p class="user-review-written">0 reviews written</p>
+<figure class="image-logo image is-48x48">
+  <img src="https://bulma.io/images/placeholders/48x48.png">
+</figure>
 
 
 
@@ -69,6 +72,12 @@
         </span>
         Log out
         </a>
+
+        <figure class="image-license image is-48x48">
+  <img src="https://bulma.io/images/placeholders/48x48.png">
+</figure>
+  <p class="header-license"> © eMDB 2017 </p> 
+  <p class="header-license emdb"> MIT License </p>
 
     </div>
 
