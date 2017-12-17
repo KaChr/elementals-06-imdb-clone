@@ -17717,7 +17717,18 @@ p {
 }
 
 .button--solid-blue:hover {
+  color: #FFF;
   background-color: #5AD2FF;
+}
+
+.button--solid-yellow {
+  background-color: #FFCF4D;
+  color: #060B0E;
+}
+
+.button--solid-yellow:hover {
+  color: #FFF;
+  background-color: #FFCF4D;
 }
 
 .button--border-yellow {
@@ -17786,13 +17797,9 @@ p {
   text-shadow: 0px 0px 14px #000;
 }
 
-.review__info {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
 .review__avatar {
+  width: 48px;
+  height: 48px;
   margin-right: 1em;
 }
 

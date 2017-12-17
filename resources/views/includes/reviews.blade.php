@@ -17,17 +17,17 @@
             <div class="column">
                 <div class="review__info is-flex">
                     <span class="review__avatar">
-                        <img src="http://via.placeholder.com/48x48" alt="avatar">
+                        <img src="https://avatars1.githubusercontent.com/u/24225542?s=460&v=4" alt="avatar">
                     </span>
                     <div>
-                        <h4 class="review__title">This is the review title</h4>
+                        <h4 class="review__title">This is the title</h4>
                         <p class="review__author">by Joakim Unge</p>
                     </div>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Vestibulum in maximus turpis. Nam in ante vel erat dignissim imperdiet .. 
+                    Vestibulum in maximus turpis.
                 </p>
-                <button class="button button--small button--solid-blue">READ MORE</button>
+                <button class="button button--small button--solid-yellow">READ MORE</button>
             </div>  
         </div>
     </div>
@@ -42,17 +42,17 @@
             <div class="column">
                 <div class="review__info is-flex">
                     <span class="review__avatar">
-                        <img src="http://via.placeholder.com/48x48" alt="avatar">
+                        <img src="https://avatars1.githubusercontent.com/u/24225542?s=460&v=4" alt="avatar">
                     </span>
                     <div>
-                        <h4 class="review__title">This is the review title</h4>
+                        <h4 class="review__title">This is the title</h4>
                         <p class="review__author">by Joakim Unge</p>
                     </div>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Vestibulum in maximus turpis. Nam in ante vel erat dignissim imperdiet a et odio. 
+                    Vestibulum in maximus turpis.
                 </p>
-                <button class="button button--small button--solid-blue">READ MORE</button>
+                <button class="button button--small button--solid-yellow">READ MORE</button>
             </div>  
         </div>
     </div>

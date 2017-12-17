@@ -171,8 +171,20 @@ p {
 .button--solid-blue {
     background-color: $sky-blue;
     color: #FFF;
+
     &:hover {
-        background-color: $happy-blue;
+        color: #FFF;
+        background-color: $happy-blue; 
+    }
+}
+
+.button--solid-yellow {
+    background-color: $warm-sun;
+    color: $deep-blue;
+    
+    &:hover {
+        color: #FFF;
+        background-color: $warm-sun; 
     }
 }
 
@@ -244,10 +256,12 @@ p {
 }
 
 .review__info {
-    align-items: center;
+    // align-items: center;
 }
 
 .review__avatar {
+    width:48px;
+    height:48px;
     margin-right:1em;
     img {
         @include border-radius(24px);

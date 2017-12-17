@@ -14,20 +14,23 @@
                 
                 @include('includes.typography')
                 <hr>
-                <h1 class="title">Feature - Big</h1>
+                <h3>Feature - Big</h3>
                 @include('includes.hero')
 
                 <hr>
-                <h1 class="title">Takeover</h1>
+                <h3>Takeover</h3>
                 @include('includes.takeover')
+                
+                <section class="section">
+                    <hr>
+                    <h3>Divider</h3>
+                    @include('includes.divider')
+                </section>
 
-                <hr>
-                <h1 class="title">Divider</h1>
-                @include('includes.divider')
-
-                <h1 class="title">Review block, with divider</h1>
+                <section class="section">
+                <h3>Review block</h3>
                 @include('includes.reviews')
-
+                </section>
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
