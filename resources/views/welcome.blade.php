@@ -2,10 +2,13 @@
 <html lang="{{ app()->getLocale() }}">
     @include('includes.head')
     <body>
-        @include('includes/header')        
+        @include('includes/nav')
         @include('includes/hero')
-        @include('includes/person')
-        @include('includes/reviews')
+        <div class="container">
+            <section class="section">
+                @include('includes/person')
+            </section>
+        </div>
         @include('includes/footer')
     </body>
 </html>
