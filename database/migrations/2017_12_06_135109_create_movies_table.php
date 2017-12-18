@@ -26,6 +26,10 @@ class CreateMoviesTable extends Migration
             $table->string('movieBackdrop')->nullable();
             $table->timestamps();
         });
+
+        Schema::table('movies', function (Blueprint $table){
+            //$table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
+        });
     }
 
     /**

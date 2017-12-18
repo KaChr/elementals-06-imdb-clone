@@ -6,12 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+    body{
+        column-count: 5;
+    }
     div{
-        width: 400px;
+        width: 300px;
         margin: 0px;
     }
-    h1{
+    a{
         font-size: 26px;
+        display: inline-block;
+        width: 300px;
     }
     img{
         width: 180px
@@ -21,11 +26,11 @@
 <body>
     @foreach($movies as $movie)
     <div>
-    <a href="/movies/{{$movie->id}}"><h1>{{$movie->title}}</h1></a>
+    <a href="/movies/{{$movie->id}}">{{$movie->title}}</a>
     <img src='{{$movie->poster}}'><br>
-    <strong>{{$movie->runtime}}</strong><br> 
+    <!--<strong>{{$movie->runtime}}</strong><br> 
     <strong>{{$movie->rating}}</strong><br>
-    <strong>{{$movie->countries}}</strong>
+    <strong>{{$movie->countries}}</strong>-->
     </div>
     @endforeach
 </body>

@@ -1,4 +1,6 @@
 <?php
+//use GuzzleHttp\Exception\GuzzleException;
+//use GuzzleHttp\Client;
      $curl = curl_init();
      //array of movies
      $movies = [
@@ -8,10 +10,32 @@
          'dunkirk',
          'wonder+woman',
          'blade+runner+2049',
+         'thor:+ragnarök',
+         'natural+born+pranksters',
          'john+wick',
-         'thor:+ragnarök'
+         'john+wick:+chapter+2',
+         'watchmen',
+         'interstellar',
+         '2012',
+         'avatar',
+         'fifty+shades+darker',
+         'movie+43',
+         'the+lost+empire',
+         'the+girl+next+door',
+         'downfall'
      ];
-     $i = 1;
+     /*$apiKey = 'ec3cda1b6d80802d7b2222e300f2f846';
+     $client = new Client();
+     $res = $client->get('https://api.themoviedb.org/3/movie/popular?&api_key=' . $apiKey);
+     echo $res->getStatusCode(); 
+     echo (PHP_EOL);
+     $body = $res->getBody();
+     $body = json_decode($body, true);
+     $moviez = $body['results'];
+     foreach($moviez as $film){*
+     $film = $film['title'];
+     $film = preg_replace('/ /', '+', $film);*/
+     $i = 1;  
     foreach($movies as $movie) {
          //request to API using cURL¨
         curl_setopt_array($curl, array(
@@ -33,7 +57,6 @@
             echo "cURL Error #:" . $err;
         } else { 
             $obj = json_decode($response);
-    
             $imdbID = $obj->imdbID;
             //new request to new API themoviedb using the imdbID that we got from OMDB to get the backdrop for our movies
             curl_setopt_array($curl, array(
@@ -53,9 +76,10 @@
             if ($err) {
                 echo "cURL Error #:" . $err;
             } else { 
-                $casts = json_decode($response);
-                echo "<img src=http://image.tmdb.org/t/p/w650" . $casts->backdrop_path . ">";
+                $movieBackdrop = json_decode($response);
+                //echo "<img src=http://image.tmdb.org/t/p/w650" . $movieBackdrop->backdrop_path . ">";
             }
+            //inserting content of people in database. name, date of birth, city(maybe will regret from getting
             $query = DB::table('movies')->select('title')->where('title', '=', $obj->Title)->get();
             if(!isset($query[0])){
                 DB::table('movies')->insert([
@@ -67,7 +91,7 @@
                     'poster'=>$obj->Poster,
                     'countries'=>$obj->Country,
                     'imdbID'=>$obj->imdbID,
-                    'movieBackdrop'=>$casts->backdrop_path
+                    'movieBackdrop'=>$movieBackdrop->backdrop_path
                     ]);
                 }
             //getting the genres of the film, exploiting it and storing in databse
@@ -94,6 +118,7 @@
             }
            
             $actors = explode(", ", $obj->Actors);
+
             foreach($actors as $actor) {
                 //inserting actor content into people table, storing name, date of birth and city
                 $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
@@ -122,8 +147,8 @@
 
             $directors = explode(", ", $obj->Director);
             foreach($directors as $director){
-                //inserting content of people in database. name, date of birth, city(maybe will regret from getting
-                //the additional info about directors as dob and city, cause of lack of info in APIs)
+                /*inserting content of people in database. name, date of birth, city(maybe will regret from getting
+                 cause of lack of info in APIs)*/
                 $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
                 //if we have the data in table rows then it will not store it anymore(no duplicates)
                 if(!isset($query[0])){
@@ -151,7 +176,8 @@
             }
             $i++;
         }
-
+    
     }
 
     curl_close($curl);
+    //}
