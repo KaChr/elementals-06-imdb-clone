@@ -14,15 +14,19 @@ class CreateTvshowsTable extends Migration
     public function up()
     {
         Schema::create('tvshows', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title');
-            $table->integer('episodes');
-            $table->integer('seasons');
-            $table->text('summary');
-            $table->integer('year');
-            $table->string('runtime');
-            $table->float('rating');
+            $table->integer('item_id')->unsigned();
+            $table->string('title')->nullable();
+            $table->integer('episodes')->nullable();
+            $table->integer('seasons')->nullable();
+            $table->text('summary')->nullable();
+            $table->date('year')->nullable();
+            $table->string('runtime')->nullable();
+            $table->float('rating')->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('tvshows', function (Blueprint $table) {
+            $table->foreign('item_id')->references('id')->on('items');
         });
     }
 
