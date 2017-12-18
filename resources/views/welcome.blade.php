@@ -10,11 +10,14 @@
 
         <title>Laravel {{ app()->version() }}</title>
 
+        <!-- Bulma Link -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.css">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -125,5 +128,6 @@
                 </div>
             </div>
         </div>
+        @include('includes/footer')
     </body>
 </html>
