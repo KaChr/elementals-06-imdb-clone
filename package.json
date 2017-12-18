@@ -21,6 +21,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "latest": "^0.2.0"
+        "latest": "^0.2.0",
+        "slideout": "^1.0.1"
     }
 }
