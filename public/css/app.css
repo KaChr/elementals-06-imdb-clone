@@ -17873,3 +17873,7 @@ footer.footer hr {
 footer.footer a {
   color: #1F2F39;
 }
+
+footer.footer__logo {
+  margin-bottom: 1em;
+}
