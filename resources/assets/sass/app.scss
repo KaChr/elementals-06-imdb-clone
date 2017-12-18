@@ -315,3 +315,20 @@ p.p__fig {
   top: 25px;
   z-index: 1;
 }
+
+//Footer
+
+footer.footer{
+    background-color: $deep-blue;
+    color: #7AF9BA;
+}
+footer.footer h4 {
+    color: $navy-blue;
+}
+footer.footer hr {
+    margin: 2em 0;
+    border-top: 1px solid $navy-blue;
+}
+footer.footer a {
+    color: $navy-blue;
+}

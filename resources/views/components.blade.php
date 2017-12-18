@@ -42,6 +42,7 @@
                     @include('includes.rating')
                 </section>
             </div>
+            @include('includes.footer')
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
