@@ -38,6 +38,11 @@
                 </section>
 
                 <section class="section">
+                    <h3>Login form</h3>
+                    @include('includes.login')
+                </section>
+
+                <section class="section">
                     <h3>Rating diagram</h3>
                     @include('includes.rating')
                 </section>
