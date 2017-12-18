@@ -17818,3 +17818,17 @@ p {
   font-size: 12px;
   color: #CCCCCC;
 }
+
+.chart {
+  position: relative;
+  color: #fff;
+  background-color: #000;
+}
+
+.rating {
+  color: #fff;
+  position: absolute;
+  left: 50px;
+  top: 25px;
+  z-index: 1;
+}

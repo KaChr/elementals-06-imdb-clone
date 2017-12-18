@@ -28,8 +28,13 @@
                 </section>
 
                 <section class="section">
-                <h3>Review block</h3>
-                @include('includes.reviews')
+                    <h3>Review block</h3>
+                    @include('includes.reviews')
+                </section>
+
+                <section class="section">
+                    <h3>Rating diagram</h3>
+                    @include('includes.rating')
                 </section>
             </div>
         </div>
