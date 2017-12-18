@@ -10,4 +10,5 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/9ddb80cf53.css" media="all" rel="stylesheet">
 </head> 
