@@ -1,0 +1,14 @@
+footer.footer{
+    background-color: #060B0E;
+    color: #7AF9BA;
+}
+footer.footer h4 {
+    color: #24523b;
+}
+footer.footer hr {
+    margin: 2em 0;
+    border-top: 1px solid rgb(19, 37, 48);
+}
+footer.footer a {
+    color: #24523b;
+}
