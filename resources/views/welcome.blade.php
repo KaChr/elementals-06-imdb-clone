@@ -3,6 +3,9 @@
     @include('includes.head')
     <body>
         @include('includes/header')        
+        @include('includes/hero')
+        @include('includes/person')
+        @include('includes/reviews')
         @include('includes/footer')
     </body>
 </html>
