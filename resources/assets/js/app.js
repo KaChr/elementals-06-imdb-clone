@@ -8,6 +8,20 @@ require('./bootstrap');
 
 require('./bulma-extensions');
 
+/* ---- JAVASCRIPT FOR BURGER NAVBAR ---- */
+
+function toggleBurger() {
+    var burger = $('.burger');
+    var menu = $('.navbar-menu');
+    burger.toggleClass('is-active');
+    menu.toggleClass('is-active');
+}
+
+const navMenu = document.querySelector(".navbar-burger");
+
+navMenu.addEventListener('click', toggleBurger);
+
+
 //Convert degrees to radians
 const toRadians = (degrees) => {
     return degrees * (Math.PI / 180);
@@ -55,7 +69,7 @@ const makeCircleDiagram = (rating, canvasId, radius, color) => {
     context.fillText(rating.toFixed(1), x, y);
 }
 
-makeCircleDiagram(5.7, '#chart-1', 40, '#7AF9BA');
-makeCircleDiagram(8.2, '#chart-2', 40, '#E5446D');
-makeCircleDiagram(3.5, '#chart-3', 40, '#7359E5');
-makeCircleDiagram(1.91, '#chart-4', 40, '#E5C461');
+// makeCircleDiagram(5.7, '#chart-1', 40, '#7AF9BA');
+// makeCircleDiagram(8.2, '#chart-2', 40, '#E5446D');
+// makeCircleDiagram(3.5, '#chart-3', 40, '#7359E5');
+// makeCircleDiagram(1.91, '#chart-4', 40, '#E5C461');

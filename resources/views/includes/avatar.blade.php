@@ -1,5 +1,3 @@
-<h1>Hello!</h1>
-
 <figure class="image i82x82">
   <img src="http://via.placeholder.com/82x82">
 </figure>

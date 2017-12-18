@@ -9,3 +9,4 @@
     </div>
 </footer>
 <script src="https://use.fontawesome.com/9ddb80cf53.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
