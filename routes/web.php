@@ -26,15 +26,20 @@ Route::get('/omdb', function () {
     return view('omdb');
 });
 
+
+Route::get('/header', function () {
+    return view('includes.header');
+});
+
 Route::get('/components', function () {
 
     return view('components');
     
 });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 
 Route::resource('movies', 'MoviesController');
