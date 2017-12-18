@@ -17801,6 +17801,7 @@ p {
   width: 48px;
   height: 48px;
   margin-right: 1em;
+  margin-bottom: 0.5em;
 }
 
 .review__avatar img {
@@ -17817,6 +17818,24 @@ p {
   font-style: italic;
   font-size: 12px;
   color: #CCCCCC;
+}
+
+.person__avatar {
+  border-radius: 50%;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */
+  width: 64px;
+  height: 64px;
+  position: relative;
+  overflow: hidden;
+  margin-right: 1em;
+}
+
+.person__avatar img {
+  margin: -25% auto 0 auto;
+  display: inline;
+  height: auto;
+  width: 100%;
 }
 
 .chart {

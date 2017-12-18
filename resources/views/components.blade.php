@@ -33,6 +33,11 @@
                 </section>
 
                 <section class="section">
+                    <h3>Person block</h3>
+                    @include('includes.person')
+                </section>
+
+                <section class="section">
                     <h3>Rating diagram</h3>
                     @include('includes.rating')
                 </section>
