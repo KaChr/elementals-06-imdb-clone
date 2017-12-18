@@ -1,3 +1,6 @@
+
+/* ---- JAVASCRIPT FOR BURGER NAVBAR ---- */
+
 function toggleBurger() {
     var burger = $('.burger');
     var menu = $('.navbar-menu');
