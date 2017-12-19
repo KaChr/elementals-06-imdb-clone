@@ -15,8 +15,8 @@ class CreateGenreItemTable extends Migration
     {
         Schema::create('genre_item', function (Blueprint $table) {
             
-            $table->integer('item_id')->unsigned();
-            $table->integer('genre_id')->unsigned();
+            $table->integer('item_id')->nullable()->unsigned();
+            $table->integer('genre_id')->nullable()->unsigned();
             $table->engine='innoDB';
             $table->timestamps();
         });

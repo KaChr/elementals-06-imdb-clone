@@ -4,25 +4,27 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tvshow extends Model
+class Season extends Model
 {
     //
     protected $fillable = [
         'item_id',
-        'title',
-        'summary',
-        'year',
-        'runtime',
-        'rating'
+        'tvshow_id',
+        'season_nr'
     ];
 
     protected $primaryKey = 'item_id';
     
     public $incrementing = [false];
 
-    public function seasons()
+    public function episodes()
     {
-        return $this->hasMany('App\Season', 'seasons');
+        return $this->hasMany('App\Episode', 'episodes');
+    }
+
+    public function tvshow()
+    {
+        return $this->belongsTo('App\Tvshow', 'tvshows');
     }
 
     public function item()
