@@ -14,7 +14,7 @@ class CreateMoviesTable extends Migration
     public function up()
     {
         Schema::create('movies', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('item_id')->unsigned()->nullable();
             $table->string('title')->nullable();
             $table->text('summary')->nullable();
             $table->date('release_date')->nullable();
@@ -28,7 +28,7 @@ class CreateMoviesTable extends Migration
         });
 
         Schema::table('movies', function (Blueprint $table){
-            //$table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
         });
     }
 

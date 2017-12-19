@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDirectorMovieTable extends Migration
+class CreateActorItemTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateDirectorMovieTable extends Migration
      */
     public function up()
     {
-        Schema::create('director_movie', function (Blueprint $table) {
+        Schema::create('actor_item', function (Blueprint $table) {
 
-            $table->integer('movie_id')->unsigned();
+            $table->integer('item_id')->unsigned();
             $table->integer('person_id')->unsigned();
             $table->engine='InnoDB';
 
             $table->timestamps();
         });
-        Schema::table('director_movie', function (Blueprint $table){
-            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
+        Schema::table('actor_item', function (Blueprint $table) {
+             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');
         });
     }
@@ -34,6 +34,6 @@ class CreateDirectorMovieTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('director_movie');
+        Schema::dropIfExists('actor_item');
     }
 }
