@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
     @include('includes.head')
     <body>
-        @include('includes.header')
+        @include('includes.headertemp')
         <div id="app">
                 <section class="hero is-dark">
                     <div class="hero-body">

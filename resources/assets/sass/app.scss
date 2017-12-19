@@ -9,7 +9,7 @@
 
 @import "buttons";
 
-@import "component/header";
+// @import "component/header";
 
 @import "component/avatar";
 
@@ -151,7 +151,7 @@ p.p__fig {
 
 .button {
     @include border-radius(2px);
-    margin-top: 1.5em;
+    // margin-top: 1.5em;
     font-weight: 500;
     font-size: 12px;
     border:none;
@@ -186,6 +186,16 @@ p.p__fig {
     &:hover {
         color: #FFF;
         background-color: $happy-blue; 
+    }
+}
+
+.button--solid-turquoise {
+    background-color: $turquoise;
+    color: #FFF;
+
+    &:hover {
+        color: #FFF;
+        background-color: $piggelin; 
     }
 }
 

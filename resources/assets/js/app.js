@@ -8,18 +8,44 @@ require('./bootstrap');
 
 require('./bulma-extensions');
 
-/* ---- JAVASCRIPT FOR BURGER NAVBAR ---- */
+// /* ---- JAVASCRIPT FOR BURGER NAVBAR ---- */
 
-function toggleBurger() {
-    var burger = $('.burger');
-    var menu = $('.navbar-menu');
-    burger.toggleClass('is-active');
-    menu.toggleClass('is-active');
-}
+// function toggleBurger() {
+//     var burger = $('.burger');
+//     var menu = $('.navbar-menu');
+//     burger.toggleClass('is-active');
+//     menu.toggleClass('is-active');
+// }
 
-const navMenu = document.querySelector(".navbar-burger");
+// const navMenu = document.querySelector(".navbar-burger");
 
-navMenu.addEventListener('click', toggleBurger);
+// navMenu.addEventListener('click', toggleBurger);
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Get all "navbar-burger" elements
+    var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach(function ($el) {
+            $el.addEventListener('click', function () {
+
+                // Get the target from the "data-target" attribute
+                var target = $el.dataset.target;
+                var $target = document.getElementById(target);
+
+                // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+                $el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
+
+            });
+        });
+    }
+
+});
 
 
 //Convert degrees to radians
