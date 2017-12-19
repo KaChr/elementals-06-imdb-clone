@@ -17,7 +17,6 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->integer('author_id')->unsigned();
             $table->integer('review_id')->unsigned();
-            $table->string('title');
             $table->text('body');
             $table->timestamps();
         });
