@@ -50,7 +50,5 @@
             </div>
             @include('includes.footer')
         </div>
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src="https://use.fontawesome.com/9ddb80cf53.js"></script>
     </body>
 </html>

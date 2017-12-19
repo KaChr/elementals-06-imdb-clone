@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div id="navbarExampleTransparentExample" class="navbar-menu">
+  <div id="navbarExampleTransparentExample" class="navbar-menu is-dark">
         <div class="navbar-start">
         <a class="navbar-item" href="#">
             Home
@@ -22,7 +22,7 @@
             Categories
         </a>
         <a class="navbar-item" href="#">
-            Home
+            My Watchlist
         </a>
         </div>
         <div class="navbar-end">
