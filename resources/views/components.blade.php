@@ -2,6 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
     @include('includes.head')
     <body>
+        @include('includes.header')
         <div id="app">
                 <section class="hero is-dark">
                     <div class="hero-body">
@@ -39,7 +40,7 @@
 
                 <section class="section">
                     <h3>Login form</h3>
-                    @include('includes.login')
+                    @include('includes.input')
                 </section>
 
                 <section class="section">
