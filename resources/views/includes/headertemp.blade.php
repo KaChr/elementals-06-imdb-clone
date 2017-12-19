@@ -1,4 +1,4 @@
-<nav class="navbar is-black">
+<nav class="navbar is-dark">
   <div class="navbar-brand">
     <a class="navbar-item" href="https://bulma.io">
       <img src="{{ asset('images/emdb_logo_full@2x.png')}}" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
@@ -12,16 +12,16 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-start">
-        <a class="navbar-item" href="https://bulma.io/">
+        <a class="navbar-item" href="#">
             Home
         </a>
-        <a class="navbar-item" href="https://bulma.io/">
+        <a class="navbar-item" href="#">
             Top 250
         </a>
-        <a class="navbar-item" href="https://bulma.io/">
+        <a class="navbar-item" href="#">
             Categories
         </a>
-        <a class="navbar-item" href="https://bulma.io/">
+        <a class="navbar-item" href="#">
             Home
         </a>
         </div>

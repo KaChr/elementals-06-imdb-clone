@@ -353,3 +353,11 @@ footer.footer a {
 footer.footer__logo {
     margin-bottom: 1em;
 }
+
+//Navigation
+
+.navbar.is-dark {
+    background-color: $deep-blue;
+    color: #FFF;
+    font-family: $font-stack;
+}
