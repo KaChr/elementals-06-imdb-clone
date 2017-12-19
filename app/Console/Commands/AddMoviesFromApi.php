@@ -43,7 +43,7 @@ class AddMoviesFromApi extends Command
     public function handle()
     {   
         //Clear table before performing api-call
-        DB::table('movies')->truncate();
+        DB::table('movies');
 
         //Make get-request to api
         $apiKey = 'ec3cda1b6d80802d7b2222e300f2f846';
@@ -65,6 +65,7 @@ class AddMoviesFromApi extends Command
     
                 $row = new Movie();
                 $row->title = $movie['title'];
+                $row->poster = $movie['poster_path'];
                 $row->summary = $movie['overview'];
                 $row->release_date = $movie['release_date'];
                 $row->rating = $movie['vote_average'];
