@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Movie;
+use App\Item;
 use Illuminate\Http\Request;
 
 class MoviesController extends Controller
@@ -51,9 +52,11 @@ class MoviesController extends Controller
     {
         //
         //$movie = Movie::where('id', $movie->id)->first();
-        $movie = Movie::find($movie->id);
+        $id = $movie->item_id;
+        $movie = Movie::find($id);
 
-        return view('movies.show', ['movie'=>$movie]);
+        $item = Item::find($id);
+        return view('movies.show', ['movie'=>$movie, 'item'=>$item]);
     }
 
     /**

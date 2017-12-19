@@ -26,7 +26,7 @@
 <body>
     @foreach($movies as $movie)
     <div>
-    <a href="/movies/{{$movie->id}}">{{$movie->title}}</a>
+    <a href="/movies/{{$movie->item_id}}">{{$movie->title}}</a>
     <img src='{{$movie->poster}}'><br>
     <!--<strong>{{$movie->runtime}}</strong><br> 
     <strong>{{$movie->rating}}</strong><br>

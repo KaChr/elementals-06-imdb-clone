@@ -80,8 +80,13 @@
                 //echo "<img src=http://image.tmdb.org/t/p/w650" . $movieBackdrop->backdrop_path . ">";
             }
             //inserting content of people in database. name, date of birth, city(maybe will regret from getting
+            
+
             $query = DB::table('movies')->select('title')->where('title', '=', $obj->Title)->get();
             if(!isset($query[0])){
+                DB::table('items')->insert([
+                    'type' => 'movie'
+                ]);
                 DB::table('movies')->insert([
                     'item_id' => $i,
                     'title'=>$obj->Title,
@@ -96,7 +101,7 @@
                     ]);
                 }
             //getting the genres of the film, exploiting it and storing in databse
-            /*$genres = explode(", ", $obj->Genre);
+            $genres = explode(", ", $obj->Genre);
             //storing the content of movie into database
             foreach ($genres as $genre) {
                 //just inserting the genre titles we got into the table genres
@@ -110,15 +115,20 @@
                 //here we are making the connection with pivot table, so it connects the movie and the genres
                 $query = DB::table('genres')->select('id')->where('genre_title', '=', $genre)->get();
                 // print_r($query[0]->id);
-                if(!isset($query[0])){
+                if(isset($query[0])){
+                    $queryPivot = DB::table('genre_item')->select('item_id')->where('item_id', '=', $i)->
+                    where('genre_id', '=', $query[0]->id)->get();
+                }
+
+                if(!isset($queryPivot[0])){
                     DB::table('genre_item')->insert([
                         'item_id' => $i,
                         'genre_id' => $query[0]->id
                         ]);
                 }
             }
-                */
-         /*   $actors = explode(", ", $obj->Actors);
+                
+           $actors = explode(", ", $obj->Actors);
 
             foreach($actors as $actor) {
                 //inserting actor content into people table, storing name, date of birth and city
@@ -150,7 +160,7 @@
             foreach($directors as $director){
                 /*inserting content of people in database. name, date of birth, city(maybe will regret from getting
                  cause of lack of info in APIs)*/
-               /* $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
+                $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
                 //if we have the data in table rows then it will not store it anymore(no duplicates)
                 if(!isset($query[0])){
                     DB::table('people')->insert([
@@ -173,12 +183,10 @@
                         'person_id' => $query[0]->id
                         ]);
 
-                }*/
+                }
             }
             $i++;
         }
     
-    //}
-
+    }
     curl_close($curl);
-    //}
