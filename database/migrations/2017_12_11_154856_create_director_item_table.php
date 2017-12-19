@@ -15,8 +15,8 @@ class CreateDirectorItemTable extends Migration
     {
         Schema::create('director_item', function (Blueprint $table) {
 
-            $table->integer('item_id')->unsigned();
-            $table->integer('person_id')->unsigned();
+            $table->integer('item_id')->nullable()->unsigned();
+            $table->integer('person_id')->nullable()->unsigned();
             $table->engine='InnoDB';
 
             $table->timestamps();
