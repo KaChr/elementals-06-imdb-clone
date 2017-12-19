@@ -15,7 +15,7 @@
     <title>Item page</title> 
 </head>
 <body>
-    <section class="item-info">
+    <!-- <section class="item-info">
         <p>År</p>
         <h1>FILM TITEL</h1>
         <p>GENRE</p>
@@ -26,16 +26,16 @@
             <span>WATCHLIST</span>
         </a>
         <a class="button is-outlined">TRAILER</a>
+    </section> -->
+    <section id="plot">
+            <img src="http://www.impawards.com/2014/posters/john_wick_xlg.jpg" alt="Movie poster">
+        <article class="plot-text">
+            <h2>PLOT SUMMARY</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa quia aut tempora minima, nihil sed molestiae repudiandae provident sint facere eius odit in veniam qui alias minus mollitia, quae aspernatur.</p>
+            <!-- <a class="button is-outlined">READ MORE</a> -->
+        </article>
     </section>
-    <section class="plot">
-        <figure class="image is-96x96">
-            <img src="https://bulma.io/images/placeholders/96x96.png">
-        </figure>
-        <h2>PLOT SUMMARY</h2>
-        <p>Text</p>
-        <a class="button is-outlined">READ MORE</a>
-    </section>
-    <section class="cast-crew">
+    <!-- <section class="cast-crew">
         <h2>CAST & CREW</h3>
         <a href="#">WIEW ALL</a>
         <hr>
@@ -44,7 +44,7 @@
         </figure>
         <h3>Actor name</h3>
         <p>as Role</p>
-    </section>
+    </section> -->
 </body>
 <footer>
     

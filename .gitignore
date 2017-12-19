@@ -13,3 +13,7 @@ yarn-error.log
 .DS_Store
 elementals.pem
 _design
+.vscode
+/public/css/app.css
+/public/js/app.js
+
