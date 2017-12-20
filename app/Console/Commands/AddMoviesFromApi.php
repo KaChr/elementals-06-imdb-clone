@@ -46,7 +46,7 @@ class AddMoviesFromApi extends Command
         DB::table('movies');
 
         //Make get-request to api
-        /*$apiKey = 'ec3cda1b6d80802d7b2222e300f2f846';
+        $apiKey = 'ec3cda1b6d80802d7b2222e300f2f846';
         $client = new Client();
         $res = $client->get('https://api.themoviedb.org/3/movie/popular?api_key=' . $apiKey);
 
@@ -77,7 +77,7 @@ class AddMoviesFromApi extends Command
         } catch (Exception $e) {
             echo 'Caught Exception: ' . $e . '. Something went wrong :(';
             return;
-        }*/
+        }
 
         //Echo success
         echo '##############################';

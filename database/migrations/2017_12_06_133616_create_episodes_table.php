@@ -14,11 +14,19 @@ class CreateEpisodesTable extends Migration
     public function up()
     {
         Schema::create('episodes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('summary');
-            $table->float('rating');
-            $table->string('airdate');
+            $table->integer('item_id')->unsigned();
+            $table->integer('season_id')->unsigned();
+            $table->integer('episode_nr')->nullable();
+            $table->string('title')->nullable();
+            $table->text('summary')->nullable();
+            $table->float('rating')->nullable();
+            $table->string('airdate')->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('episodes', function (Blueprint $table) {
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('season_id')->references('item_id')->on('seasons');
         });
     }
 

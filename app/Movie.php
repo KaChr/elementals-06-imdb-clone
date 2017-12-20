@@ -8,7 +8,7 @@ class Movie extends Model
 {
     //
     protected $fillable = [
-        'id',
+        'item_id',
         'title',
         'summary',
         'release_date',
@@ -17,13 +17,12 @@ class Movie extends Model
         'poster'
     ];
 
-    public function genres(){
-        return $this->belongsToMany('App\Genre', 'genre_movie');
+    protected $primaryKey = 'item_id';
+    
+    public $incrementing = [false];
+
+    public function item(){
+        return $this->belongsTo('App\Item', 'items');
     }
-    public function actors(){
-        return $this->belongsToMany('App\Person', 'actor_movie');
-    }
-    public function directors(){
-        return $this->belongsToMany('App\Person', 'director_movie');
-    }
+
 }
