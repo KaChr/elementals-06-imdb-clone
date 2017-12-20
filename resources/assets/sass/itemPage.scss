@@ -6,16 +6,20 @@
 //     background-color: greenyellow;
 // }
 
-img {
+#plot {
+    background-color: black;
+}
+
+.poster-img {
     float: left;
-    height: 100px;
-    width: 100px;
+    height: 180px;
+    width: 130px;
     margin: 10px;
 }
 
-
-#plot {
-    background-color: black;
+.plot-text {
+    color: white;
+    padding: 1em;
 }
 
 // .cast-crew {
