@@ -1,0 +1,23 @@
+.input {
+    @include border-radius(2px);
+    border: 1px solid $aluminium;
+    box-shadow:none;
+    padding: 1em;
+    height:3em;
+
+    &:focus {
+        border: 1px solid $sky-blue;
+        box-shadow:none;
+    }
+    
+}
+
+.control.has-icons-left .icon, .control.has-icons-right .icon {
+    height: 3em;
+    width: 3em;
+}
+
+.control.has-icons-right .input, .control.has-icons-right .select select {
+    padding-left: 3em;
+    padding-right: 3em;
+}
