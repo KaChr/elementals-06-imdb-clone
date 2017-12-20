@@ -37,6 +37,10 @@ Route::get('/components', function () {
     
 });
 
+Route::get('/splash', function () {
+    return view('splash');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
