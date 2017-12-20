@@ -39,7 +39,7 @@
                 </section>
 
                 <section class="section">
-                    <h3>Login form</h3>
+                    <h3>Input field</h3>
                     @include('includes.input')
                 </section>
 
