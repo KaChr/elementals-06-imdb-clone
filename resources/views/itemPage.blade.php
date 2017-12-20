@@ -4,6 +4,7 @@
     @include('includes.head')
 </head>
 <body>
+    @include('includes.headertemp')
     <!-- <section class="item-info">
         <p>År</p>
         <h1>FILM TITEL</h1>
