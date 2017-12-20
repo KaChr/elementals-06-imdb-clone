@@ -21,15 +21,12 @@ Route::get('/movie-api', function () {
     
     return view('movie-api');
 });
+
 Route::get('/omdb', function () {
         
     return view('omdb');
 });
 
-
-Route::get('/header', function () {
-    return view('includes.header');
-});
 
 Route::get('/components', function () {
 
