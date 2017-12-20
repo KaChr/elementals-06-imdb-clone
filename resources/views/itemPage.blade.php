@@ -28,12 +28,14 @@
         <a class="button is-outlined">TRAILER</a>
     </section> -->
     <section id="plot">
+        <div class="container">
             <img class="poster-img" src="http://www.impawards.com/2014/posters/john_wick_xlg.jpg" alt="Movie poster">
         <article class="plot-text">
-            <h2>PLOT SUMMARY</h2>
+            <h3>PLOT SUMMARY</h3>
             <p>Ex-hitman John Wick comes out of retirement to track down the gangsters that took everything from him.</p>
             <!-- <a class="button is-outlined">READ MORE</a> -->
         </article>
+        </div>
     </section>
     <!-- <section class="cast-crew">
         <h2>CAST & CREW</h3>
