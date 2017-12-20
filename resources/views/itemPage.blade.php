@@ -37,16 +37,11 @@
         </article>
         </div>
     </section>
-    <!-- <section class="cast-crew">
-        <h2>CAST & CREW</h3>
-        <a href="#">WIEW ALL</a>
-        <hr>
-        <figure class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/64x64.png">
-        </figure>
-        <h3>Actor name</h3>
-        <p>as Role</p>
-    </section> -->
+    <section class="cast-crew">
+        <div class="container">
+      @include('includes.person')
+        </div>
+    </section>
 
     <footer>
     

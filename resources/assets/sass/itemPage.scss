@@ -1,24 +1,28 @@
-* {
-    width: 100%;
-}
+// * {
+//     width: 100%;
+// }
 
 // .item-info {
 //     background-color: greenyellow;
 // }
 
+.plot {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
 .poster-img {
     float: left;
     width: 182px;
     height: 268px;
-    margin: 10px;
+    margin: 2em 1em 2em 1em;
 }
 
 .plot-text {
-    color: white;
     padding: 1em;
 }
 
-// .cast-crew {
-//     background-color: red;
-// }
+.cast-crew {
+    margin: 1em;
+}
 
