@@ -3,7 +3,7 @@
     @include('includes.head')
     <style>
     body {
-    background-color: #060B0E;
+    background-color: white;
     }
     #user-profilepage {
         display: flex;
@@ -11,7 +11,8 @@
         align-items: center;
         margin: 1rem;
         margin-bottom: 0;
-        color: white;
+        padding-top: 0.8rem;
+
     }
     h4 {
         margin-top: 0.5rem;
@@ -22,18 +23,13 @@
     }
 
 
-    .divider hr {
-        background-color: #1F2F39;
-        margin-top: 0.7rem;
-        margin-bottom: 0;
+    .divider__profile {
+        color: #1F2F39;
+        margin-bottom: -20px;
+        padding: 0 0.5rem;
 
     }
-    .divider {
-        margin-bottom: 0;
-        margin-right: 1rem;
-        margin-bottom: 1rem;
 
-    }
 
     .users-watchlist-button {
         display: flex;
@@ -41,9 +37,9 @@
         margin: 0.8rem;
     }
 
-    .users-lists-profile {
+    /*.users-lists-profile {
         margin: 1rem;
-    }
+    }*/
 
     .divider-list-profile hr{
         margin-right: 1rem;
@@ -52,6 +48,14 @@
         background-color: #1F2F39;
     }
 
+    .section__top {
+        padding-top: 1.5rem;
+    }
+
+    .latest__rating {
+        margin: 2rem;
+        font-size: 70px;
+    }
 
     </style>
     <body>
@@ -64,21 +68,19 @@
             <img src="https://bulma.io/images/placeholders/96x96.png">
         </figure> 
         <h4> Izabel Rosén </h4>
+        <p>izabel.rosen@chasacademy.se</p>
             <p> Edit 
             <i class="fa fa-cog" aria-hidden="true"></i>
             </p>
-        <div class="divider">
+        <div class="divider divider__profile">
             <hr>
         </div>
     </section>
 
-    <!-- Watchlist button -->
-    <div class="users-watchlist-button">
-    <a class="button is-medium is-warning">WATCHLIST</a>
-    </div>
+    <!-- User list: Reviews -->
+    <section class="section section__top">
 
-    <!-- Users lists -->
-    <div class="users-lists-profile">
+        <!-- Divider -->
         <div class="divider">
             <div class="divider__info is-flex">
                 <h5 class="divider__title">LATEST REVIEWS</h5>
@@ -86,15 +88,20 @@
             </div>
             <span class="divider__line"></span>
         </div>
+        <!-- Divider ends -->
+
+        <!-- Movie poster with text and user avatar -->
         <section class="columns">
             <div class="column">
                 <div class="columns is-mobile">
+
                     <div class="column is-two-fifths-mobile">
                         <div class="review__poster">
                             <span class="review__rating">7.7</span>
                             <img src="https://image.tmdb.org/t/p/original/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg" alt="">
                         </div>
-                    </div>
+                    </div> <!-- end column is two fifths mobile -->
+
                     <div class="column">
                         <div class="review__info is-flex">
                             <span class="review__avatar">
@@ -105,18 +112,19 @@
                                 <p class="review__author">by Joakim Unge</p>
                             </div>
                         </div>
+
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                             Vestibulum in maximus turpis.
                         </p>
                         <button class="button button--small button--solid-yellow">READ MORE</button>
-                    </div>  
-                </div>
-        </div>
+                    </div>  <!-- end column-->
 
-        <div class="divider-list-profile">
-            <hr>
-        </div>
+                </div> <!-- end columns is mobile -->
+            </div> <!-- end column -->
+        </section> <!-- end columns -->
 
+
+        <!-- Divider -->
         <div class="divider">
             <div class="divider__info is-flex">
                 <h5 class="divider__title">LATEST RATINGS</h5>
@@ -124,7 +132,45 @@
             </div>
             <span class="divider__line"></span>
         </div>
+        <!-- Divider ends -->
 
+        <!-- Movie poster with text and user avatar -->
+        <section class="columns">
+            <div class="column">
+                <div class="columns is-mobile">
+
+                    <div class="column is-two-fifths-mobile">
+                        <div class="review__poster">
+                            <img src="https://image.tmdb.org/t/p/original/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg" alt="">
+                        </div>
+                    </div> <!-- end column is two fifths mobile -->
+
+                    <div class="column">
+
+                        <div class="review__info is-flex">
+                            <span class="review__avatar">
+                                <img src="https://avatars1.githubusercontent.com/u/24225542?s=460&v=4" alt="avatar">
+                            </span>
+                            <div>
+                                <h4 class="review__title">This is the title</h4>
+                                <p class="review__author">by Joakim Unge</p>
+                            </div>
+                        </div>
+
+                        <div class="column is-two-fifths-mobile">
+                        <div class="review__poster">
+                            <span class="review__rating latest__rating">7.7</span>
+                            
+                        </div>
+                    </div> <!-- end column is two fifths mobile -->
+                    </div>  <!-- end column-->
+
+                </div> <!-- end columns is mobile -->
+            </div> <!-- end column -->
+        </section> <!-- end columns -->
+
+
+        <!-- Divider -->
         <div class="divider">
             <div class="divider__info is-flex">
                 <h5 class="divider__title">RECENTLY VIEWED</h5>
@@ -132,9 +178,37 @@
             </div>
             <span class="divider__line"></span>
         </div>
+        <!-- Divider ends -->
 
+        <!-- Recently viewed by user -->
+        <section class="columns">
+            <div class="column">
+                <div class="columns is-mobile">
 
-    </div>
+                    <div class="column is-two-fourths-mobile">
+                        <div class="review__poster">
+                            <img src="https://image.tmdb.org/t/p/original/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg" alt="">
+                            <p> This is the title </p>
+                        </div>
+                    </div> <!-- end column is two fifths mobile -->
+
+                    <div class="column is-two-fourths-mobile">
+                        <div class="review__poster">
+                            <img src="https://image.tmdb.org/t/p/original/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg" alt="">
+                            <p> This is the title </p>
+                        </div>
+                    </div> <!-- end column is two fifths mobile -->
+
+                    <div class="column is-two-fourths-mobile">
+                        <div class="review__poster">
+                            <img src="https://image.tmdb.org/t/p/original/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg" alt="">
+                            <p> This is the title </p>
+                        </div>
+                    </div> <!-- end column is two fourths mobile -->
+                </div> <!-- end columns is mobile -->
+            </div> <!-- end column -->
+        </section> <!-- end columns -->
+</section> <!-- end section section__top -->
 
 
 
