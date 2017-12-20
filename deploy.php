@@ -2,6 +2,7 @@
 namespace Deployer;
 
 require 'recipe/laravel.php';
+require 'recipe/npm.php';
 
 // Project name
 set('application', 'elementals');
@@ -71,6 +72,15 @@ desc('Execute artisan migrate:fresh');
 task('artisan:migrate:fresh', function () {
     run('{{bin/php}} {{release_path}}/artisan migrate:fresh');
 });
+
+// Migrate database before symlink new release.
+desc('Build production');
+task('npm-production', function () {
+    run("cd {{release_path}} && sudo {{bin/npm}} run production");
+});
+
+after('deploy:update_code', 'npm:install');
+after('npm:install', 'npm-production');
 before('deploy:symlink', 'artisan:migrate:fresh');
 
 
