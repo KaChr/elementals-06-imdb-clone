@@ -28,10 +28,10 @@
         <a class="button is-outlined">TRAILER</a>
     </section> -->
     <section id="plot">
-            <img src="http://www.impawards.com/2014/posters/john_wick_xlg.jpg" alt="Movie poster">
+            <img class="poster-img" src="http://www.impawards.com/2014/posters/john_wick_xlg.jpg" alt="Movie poster">
         <article class="plot-text">
             <h2>PLOT SUMMARY</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa quia aut tempora minima, nihil sed molestiae repudiandae provident sint facere eius odit in veniam qui alias minus mollitia, quae aspernatur.</p>
+            <p>Ex-hitman John Wick comes out of retirement to track down the gangsters that took everything from him.</p>
             <!-- <a class="button is-outlined">READ MORE</a> -->
         </article>
     </section>
@@ -45,8 +45,9 @@
         <h3>Actor name</h3>
         <p>as Role</p>
     </section> -->
-</body>
-<footer>
+
+    <footer>
     
-</footer>
+    </footer>
+</body>
 </html>
