@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     @include('includes.head')
+
+    <style>
+        .upload__photo {
+            text-align: center !important;
+            margin-bottom: 3rem;
+        }
+
+        .person__avatar {
+            display: block !important;
+            margin-left: auto;
+            margin-right: auto;
+            height: 200px !important;
+            width: 200px !important;
+        }
+
+    </style>
 <body>
 @include('includes.headertemp')
 
@@ -10,16 +26,27 @@
 <div class="columns">
     <div class="column is-4">
 
-    <div class="field">
-  <div class="control">
-    <input class="input" type="text" placeholder="First name">
-  </div>
-</div>
-<div class="field">
-  <div class="control">
-    <input class="input" type="text" placeholder="Surname">
-  </div>
-</div>
+        <!-- Upload photo -->
+        <div class="upload__photo">
+            <div class="person__avatar">
+                <img src="https://image.tmdb.org/t/p/w1280/bOlYWhVuOiU6azC4Bw6zlXZ5QTC.jpg" alt="avatar">
+            </div>
+            <p>Upload photo</p>
+        </div>
+
+        <!-- First name -->
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="First name">
+          </div>
+        </div>
+
+        <!-- Surname -->
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="Surname">
+          </div>
+        </div>
 
         <!-- Username -->
         <div class="field">
