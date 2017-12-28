@@ -18,6 +18,16 @@
             margin-bottom: 1rem;
         }
 
+        .button--solid-sky-blue {
+            background-color: #6EADFF;
+            color: white;
+            width: 200px !important;
+            display: block !important;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2.5rem;
+        }
+
 
     </style>
 <body>
@@ -34,7 +44,6 @@
             <div class="person__avatar">
                 <img src="https://image.tmdb.org/t/p/w1280/bOlYWhVuOiU6azC4Bw6zlXZ5QTC.jpg" alt="avatar">
             </div>
-
             <!-- Upload picture -->
             <div class="file is-medium is-centered">
               <label class="file-label">
@@ -104,6 +113,8 @@
                 </span>
             </p>
         </div>
+
+        <button class="button is-medium button--solid-sky-blue">SIGN UP</button>
     </div>
 </div>
 </section>
