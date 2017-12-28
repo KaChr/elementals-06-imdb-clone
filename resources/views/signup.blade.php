@@ -6,6 +6,7 @@
         .upload__photo {
             text-align: center !important;
             margin-bottom: 3rem;
+            font-size: 2rem;
         }
 
         .person__avatar {
@@ -14,7 +15,9 @@
             margin-right: auto;
             height: 200px !important;
             width: 200px !important;
+            margin-bottom: 1rem;
         }
+
 
     </style>
 <body>
@@ -26,12 +29,26 @@
 <div class="columns">
     <div class="column is-4">
 
-        <!-- Upload photo -->
+        <!-- Placeholder for user profile picture -->
         <div class="upload__photo">
             <div class="person__avatar">
                 <img src="https://image.tmdb.org/t/p/w1280/bOlYWhVuOiU6azC4Bw6zlXZ5QTC.jpg" alt="avatar">
             </div>
-            <p>Upload photo</p>
+
+            <!-- Upload picture -->
+            <div class="file is-medium is-centered">
+              <label class="file-label">
+                <input class="file-input" type="file" name="resume">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fa fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Upload picture
+                  </span>
+                </span>
+              </label>
+            </div>
         </div>
 
         <!-- First name -->
