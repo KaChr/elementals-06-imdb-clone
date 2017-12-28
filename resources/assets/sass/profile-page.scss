@@ -1,0 +1,45 @@
+.user-profilepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    margin-bottom: 0;
+    padding-top: 0.8rem;
+}
+
+.image img {
+    border-radius: 50%;
+}
+
+.profile__page {
+    margin-bottom: 0.5rem;
+}
+
+
+.divider__profile {
+    color: #1F2F39;
+    margin-bottom: -20px;
+    padding: 0 0.5rem;
+}
+
+.users-watchlist-button {
+    display: flex;
+    justify-content: center;
+    margin: 0.8rem;
+}
+
+.divider-list-profile hr{
+    margin-right: 1rem;
+    margin-left: 1rem;
+    margin-top: 0;
+    background-color: #1F2F39;
+}
+
+.section__top {
+    padding-top: 1.5rem;
+}
+
+.latest__rating {
+    margin: 2rem;
+    font-size: 70px;
+}

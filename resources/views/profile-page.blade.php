@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     @include('includes.head')
+
+<!--
     <style>
-    body {
-    background-color: white;
-    }
-    #user-profilepage {
+
+    .user-profilepage {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: 1rem;
         margin-bottom: 0;
         padding-top: 0.8rem;
-
     }
-    h4 {
-        margin-top: 0.5rem;
 
-    }
     .image img {
         border-radius: 50%;
+    }
+
+    .profile__page {
+        margin-bottom: 0.5rem;
     }
 
 
@@ -27,19 +27,13 @@
         color: #1F2F39;
         margin-bottom: -20px;
         padding: 0 0.5rem;
-
     }
-
 
     .users-watchlist-button {
         display: flex;
         justify-content: center;
         margin: 0.8rem;
     }
-
-    /*.users-lists-profile {
-        margin: 1rem;
-    }*/
 
     .divider-list-profile hr{
         margin-right: 1rem;
@@ -55,16 +49,18 @@
     .latest__rating {
         margin: 2rem;
         font-size: 70px;
-    }
+    } 
 
-    </style>
+    </style> -->
     <body>
         @include('includes.headertemp')
 
     <!-- Users profile -->
-    <section id="user-profilepage">
+    <section class="user-profilepage">
         <!-- <h4> Profile </h4> -->
-        <figure class="image is-96x96">
+
+
+        <figure class="image is-96x96 profile__page">
             <img src="https://bulma.io/images/placeholders/96x96.png">
         </figure> 
         <h4> Izabel Rosén </h4>
@@ -75,6 +71,7 @@
         <div class="divider divider__profile">
             <hr>
         </div>
+
     </section>
 
     <!-- User list: Reviews -->
