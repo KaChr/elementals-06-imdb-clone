@@ -13,6 +13,9 @@
 
 .profile__page {
     margin-bottom: 0.5rem;
+    text-align: center !important;
+    margin-bottom: 3rem;
+    font-size: 2rem;
 }
 
 
@@ -43,3 +46,17 @@
     margin: 2rem;
     font-size: 70px;
 }
+
+.profile__info {
+    text-align: center !important;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+}
+
+
+            display: block !important;
+            margin-left: auto;
+            margin-right: auto;
+            height: 200px !important;
+            width: 200px !important;
+            margin-bottom: 1rem;
