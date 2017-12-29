@@ -2,77 +2,23 @@
 <html lang="{{ app()->getLocale() }}">
     @include('includes.head')
 
-<!--
-    <style>
-
-    .user-profilepage {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 1rem;
-        margin-bottom: 0;
-        padding-top: 0.8rem;
-    }
-
-    .image img {
-        border-radius: 50%;
-    }
-
-    .profile__page {
-        margin-bottom: 0.5rem;
-    }
-
-
-    .divider__profile {
-        color: #1F2F39;
-        margin-bottom: -20px;
-        padding: 0 0.5rem;
-    }
-
-    .users-watchlist-button {
-        display: flex;
-        justify-content: center;
-        margin: 0.8rem;
-    }
-
-    .divider-list-profile hr{
-        margin-right: 1rem;
-        margin-left: 1rem;
-        margin-top: 0;
-        background-color: #1F2F39;
-    }
-
-    .section__top {
-        padding-top: 1.5rem;
-    }
-
-    .latest__rating {
-        margin: 2rem;
-        font-size: 70px;
-    } 
-
-    </style> -->
-    <body>
-        @include('includes.headertemp')
+<body>
+    @include('includes.headertemp')
 
     <!-- Users profile -->
-    <section class="user-profilepage">
-        <!-- <h4> Profile </h4> -->
-
-
+    <section class="user__profilepage">
         <figure class="image is-96x96 profile__page">
             <img src="https://bulma.io/images/placeholders/96x96.png">
         </figure> 
-        <h4> Izabel Rosén </h4>
-        <p>izabel.rosen@chasacademy.se</p>
-            <p> Edit 
-            <i class="fa fa-cog" aria-hidden="true"></i>
-            </p>
+        
+        <h4 class="user__name"> Izabel Rosén </h4>
+        <p class="user__email">izabel.rosen@chasacademy.se</p>
+        <a href="#" class="edit__profilepage"> Edit <i class="fa fa-cog" aria-hidden="true"></i></a>
         <div class="divider divider__profile">
             <hr>
         </div>
-
     </section>
+
 
     <!-- User list: Reviews -->
     <section class="section section__top">
@@ -206,8 +152,6 @@
             </div> <!-- end column -->
         </section> <!-- end columns -->
 </section> <!-- end section section__top -->
-
-
 
 @include('includes.footer')
 </body>
