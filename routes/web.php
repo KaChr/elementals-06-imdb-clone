@@ -37,7 +37,7 @@ Route::get('/components', function () {
     
 });
 
-Route::get('/profile-page', function () {
+Route::get('/profilepage', function () {
 
     return view('profile-page');
     
