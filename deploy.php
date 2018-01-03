@@ -37,7 +37,6 @@ task('npm:install', function () {
 });
 
 // Hosts
-
 host('www.lanayru.me')
     ->stage('production')
     ->set('branch', 'master')
@@ -69,7 +68,6 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 
-
 //Restart Php-fpm
 desc('Restart PHP-FPM service');
 task('php-fpm:restart', function () {
@@ -94,8 +92,15 @@ task('npm-production', function () {
     run("cd {{release_path}} && sudo {{bin/npm}} run production");
 });
 
+desc('Build dev');
+task('npm-dev', function () {
+    run("cd {{release_path}} && sudo {{bin/npm}} run dev");
+});
+
 after('deploy:update_code', 'npm:install');
 after('npm:install', 'npm-production');
+after('npm:install', 'npm-dev');
+
 before('deploy:symlink', 'artisan:migrate:fresh');
 
 
