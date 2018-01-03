@@ -34,6 +34,11 @@ Route::get('/components', function () {
     
 });
 
+
+Route::get('/profilepage', function () {
+    return view('profile-page');   
+}
+           
 Route::get('/splash', function () {
     return view('splash');
 });
@@ -42,6 +47,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::resource('movies', 'MoviesController');
 Route::resource('people', 'PeopleController');
 Route::resource('genres', 'GenresController');
+
