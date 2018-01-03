@@ -21,15 +21,12 @@ Route::get('/movie-api', function () {
     
     return view('movie-api');
 });
+
 Route::get('/omdb', function () {
         
     return view('omdb');
 });
 
-
-Route::get('/header', function () {
-    return view('includes.header');
-});
 
 Route::get('/components', function () {
 
@@ -37,10 +34,13 @@ Route::get('/components', function () {
     
 });
 
-Route::get('/profilepage', function () {
 
-    return view('profile-page');
-    
+Route::get('/profilepage', function () {
+    return view('profile-page');   
+}
+           
+Route::get('/splash', function () {
+    return view('splash');
 });
 
 Auth::routes();

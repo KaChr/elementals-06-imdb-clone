@@ -6,6 +6,9 @@
         @include('includes/hero')
         <div class="container">
             <section class="section">
+                @include('includes/reviews')
+            </section>
+            <section class="section">
                 @include('includes/person')
             </section>
         </div>
