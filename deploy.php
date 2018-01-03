@@ -99,7 +99,7 @@ task('npm-dev', function () {
 
 after('deploy:update_code', 'npm:install');
 after('npm:install', 'npm-production');
-after('npm:install', 'npm-dev');
+// after('npm:install', 'npm-dev');
 
 before('deploy:symlink', 'artisan:migrate:fresh');
 
