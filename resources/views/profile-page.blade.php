@@ -6,14 +6,14 @@
     @include('includes.headertemp')
 
     <!-- Users profile -->
-    <section class="user__profilepage">
-        <figure class="image is-96x96 profile__page">
+    <section class="user">
+        <figure class="image is-96x96 user__avatar">
             <img src="https://bulma.io/images/placeholders/96x96.png">
         </figure> 
         
         <h4 class="user__name"> Izabel Rosén </h4>
         <p class="user__email">izabel.rosen@chasacademy.se</p>
-        <a href="#" class="edit__profilepage"> Edit <i class="fa fa-cog" aria-hidden="true"></i></a>
+        <a href="#" class="user__edit"> Edit <i class="fa fa-cog" aria-hidden="true"></i></a>
         <div class="divider divider__profile">
             <hr>
         </div>
@@ -21,7 +21,7 @@
 
 
     <!-- User list: Reviews -->
-    <section class="section section__top">
+    <section class="section user__latest--list">
 
         <!-- Divider -->
         <div class="divider">
@@ -67,6 +67,7 @@
         </section> <!-- end columns -->
 
 
+        <!-- User list: latest ratings -->
         <!-- Divider -->
         <div class="divider">
             <div class="divider__info is-flex">
@@ -101,11 +102,10 @@
                         </div>
 
                         <div class="column is-two-fifths-mobile">
-                        <div class="review__poster">
-                            <span class="review__rating latest__rating">7.7</span>
-                            
-                        </div>
-                    </div> <!-- end column is two fifths mobile -->
+                            <div class="review__poster">
+                                <span class="review__rating latest__rating">7.7</span>
+                            </div>
+                        </div> <!-- end column is two fifths mobile -->
                     </div>  <!-- end column-->
 
                 </div> <!-- end columns is mobile -->
@@ -113,6 +113,7 @@
         </section> <!-- end columns -->
 
 
+        <!-- User: recently viewed -->
         <!-- Divider -->
         <div class="divider">
             <div class="divider__info is-flex">
@@ -123,7 +124,6 @@
         </div>
         <!-- Divider ends -->
 
-        <!-- Recently viewed by user -->
         <section class="columns">
             <div class="column">
                 <div class="columns is-mobile">
@@ -151,7 +151,7 @@
                 </div> <!-- end columns is mobile -->
             </div> <!-- end column -->
         </section> <!-- end columns -->
-</section> <!-- end section section__top -->
+</section> <!-- end section -->
 
 @include('includes.footer')
 </body>
