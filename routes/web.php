@@ -38,10 +38,6 @@ Route::get('/splash', function () {
     return view('splash');
 });
 
-Route::get('/signup', function () {
-    return view('signup');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
