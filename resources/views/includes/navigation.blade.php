@@ -12,30 +12,45 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu is-dark">
         <div class="navbar-start">
-        <a class="navbar-item" href="#">
-            Home
-        </a>
-        <a class="navbar-item" href="#">
-            Top 250
-        </a>
-        <a class="navbar-item" href="#">
-            Categories
-        </a>
-        <a class="navbar-item" href="#">
-            My Watchlist
-        </a>
+            <a class="navbar-item" href="#">
+                Home
+            </a>
+            <a class="navbar-item" href="#">
+                Top 250
+            </a>
+            <a class="navbar-item" href="#">
+                Categories
+            </a>
+            <a class="navbar-item" href="#">
+                My Watchlist
+            </a>
         </div>
         <div class="navbar-end">
-        <div class="navbar-item">
-            <div class="field is-grouped">
-            <p class="control">
-                <a class="button button--small button--solid-blue">Log In</a>
-            </p>
-            <p class="control">
-                <a class="button button--small button--solid-turquoise">Sign up</a>
-            </p>
+            <div class="navbar-item">
+                <div class="field is-grouped">
+                    @guest
+                        <p class="control">
+                            <a href="{{ route('login') }}" class="button button--small button--solid-blue">Log In</a>
+                        </p>
+                        <p class="control">
+                            <a href="{{ route('register') }}" class="button button--small button--solid-turquoise">Sign up</a>
+                        </p>
+                    @else
+                        <p class="control">
+                            {{ Auth::user()->name }}
+                        </p>
+                        <p class="control">
+                            <a href="{{ route('logout') }}" 
+                            class="button button--small button--solid-blue" 
+                            onclick="event.preventDefault(); 
+                            document.getElementById('logout-form').submit();">
+                            Log out
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                        </p>
+                    @endguest
+                </div>
             </div>
-        </div>
         </div>
   </div>
 </nav>
