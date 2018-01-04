@@ -22,6 +22,7 @@ class CreateTvshowsTable extends Migration
             $table->date('year')->nullable();
             $table->string('runtime')->nullable();
             $table->float('rating')->nullable();
+            $table->text('poster')->nullable();
             $table->timestamps();
         });
 

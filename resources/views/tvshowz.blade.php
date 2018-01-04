@@ -3,9 +3,12 @@
 //use GuzzleHttp\Client;
      $curl = curl_init();
      //array of movies
-     $movies = [
-         'it',
-         'harry+potter',
+     $tvshows = [
+         'game+of+thrones',
+         'vikings',
+         'scorpion',
+         'sherlock'
+         /*'harry+potter',
          'fifty+shades+of+grey',
          'dunkirk',
          'wonder+woman',
@@ -22,7 +25,7 @@
          'movie+43',
          'the+lost+empire',
          'the+girl+next+door',
-         'downfall'
+         'downfall'*/
      ];
      /*$apiKey = 'ec3cda1b6d80802d7b2222e300f2f846';
      $client = new Client();
@@ -36,10 +39,10 @@
      $film = $film['title'];
      $film = preg_replace('/ /', '+', $film);*/
      $i = 1;  
-    foreach($movies as $movie) {
+    foreach($tvshows as $tvshow) {
          //request to API using cURL¨
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://www.omdbapi.com/?t=$movie&plot=full&apikey=8ea32694",
+            CURLOPT_URL => "http://www.omdbapi.com/?t=$tvshow&apikey=8ea32694",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_TIMEOUT => 6000000,
@@ -57,7 +60,7 @@
             echo "cURL Error #:" . $err;
         } else { 
             $obj = json_decode($response);
-            $imdbID = $obj->imdbID;
+            /*$imdbID = $obj->imdbID;
             //new request to new API themoviedb using the imdbID that we got from OMDB to get the backdrop for our movies
             curl_setopt_array($curl, array(
                 CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID?api_key=cdc32d79384ddc6326eff808e85db1c7",
@@ -77,60 +80,36 @@
                 echo "cURL Error #:" . $err;
             } else { 
                 $movieBackdrop = json_decode($response);
-
-                curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID/credits?api_key=ec3cda1b6d80802d7b2222e300f2f846",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_TIMEOUT => 6000000,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "GET",
-                CURLOPT_HTTPHEADER => array(
-                    // Set Here Your Requesred Headers
-                    'Content-Type: application/json',
-                ),
-            ));
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-    
-            if ($err) {
-                echo "cURL Error #:" . $err;
-            } else {
-                $movie_credits = json_decode($response);
-                $cast_i = 0;
-                foreach($movie_credits->cast as $cast){
-                    echo "<img src='http://image.tmdb.org/t/p/w185{$cast->profile_path}'>";
-                    //echo $cast->name;
-                    $cast_i ++;
-                    if($cast_i >= 4){
-                        break;
-                    }
-                }
-                
                 //echo "<img src=http://image.tmdb.org/t/p/w650" . $movieBackdrop->backdrop_path . ">";
-        
+            }*/
             //inserting content of people in database. name, date of birth, city(maybe will regret from getting
-
-            $query = DB::table('movies')->select('title')->where('title', '=', $obj->Title)->get();
+            $query = DB::table('tvshows')->select('title')->where('title', '=', $obj->Title)->get();
             if(!isset($query[0])){
                 DB::table('items')->insert([
-                    'type' => 'movie'
+                    'type' => 'tvshow'
                 ]);
-                DB::table('movies')->insert([
+                DB::table('tvshows')->insert([
                     'item_id' => $i,
-                    'title'=>$obj->Title,
-                    'summary'=>$obj->Plot,
+                    'title' => $obj->Title,
+                    'seasons' => $obj->totalSeasons,
+                    'summary' => $obj->Plot,
+                    //'year' => $obj->Year,
+                    'runtime' => $obj->Runtime,
+                    'poster' => $obj->Poster,
+                    'rating' => $obj->imdbRating
+                    /*'episodes'=>$obj->,
+                    'seasons'=
                     'release_date'=>date('Y-m-d', strtotime($obj->Released)),
                     'runtime'=>$obj->Runtime,
                     'rating'=>$obj->imdbRating,
                     'poster'=>$obj->Poster,
                     'countries'=>$obj->Country,
                     'imdbID'=>$obj->imdbID,
-                    'movieBackdrop'=>$movieBackdrop->backdrop_path
+                    'movieBackdrop'=>$movieBackdrop->backdrop_path*/
                     ]);
                 }
             //getting the genres of the film, exploiting it and storing in databse
-            $genres = explode(", ", $obj->Genre);
+            /*$genres = explode(", ", $obj->Genre);
             //storing the content of movie into database
             foreach ($genres as $genre) {
                 //just inserting the genre titles we got into the table genres
@@ -159,17 +138,14 @@
                 
            $actors = explode(", ", $obj->Actors);
 
-            foreach($actors as $index => $actor) {
+            foreach($actors as $actor) {
                 //inserting actor content into people table, storing name, date of birth and city
                 $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
                 if(!isset($query[0])){
-                    $prof_pic = $movie_credits->cast[$index]->profile_path;
-                    echo "<img src='http://image.tmdb.org/t/p/w185{$prof_pic}'>";
                     DB::table('people')->insert([
                         'name' => $actor,
                         'dob' => date('Y-m-d'),
                         'city' => 'random',
-                        'profile_pic' => $prof_pic
                         ]);
 
                 }
@@ -192,7 +168,7 @@
             foreach($directors as $director){
                 /*inserting content of people in database. name, date of birth, city(maybe will regret from getting
                  cause of lack of info in APIs)*/
-                $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
+            /*    $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
                 //if we have the data in table rows then it will not store it anymore(no duplicates)
                 if(!isset($query[0])){
                     DB::table('people')->insert([
@@ -216,12 +192,8 @@
                         ]);
 
                 }
-            }
+            }*/
             $i++;
-        
-                }
-            }
-        
         }
     
     }

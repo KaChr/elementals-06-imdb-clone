@@ -23,6 +23,10 @@ Route::get('/omdb', function () {
         
     return view('omdb');
 });
+Route::get('/tvshowz', function () {
+    
+return view('tvshowz');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -30,4 +34,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('movies', 'MoviesController');
 Route::resource('people', 'PeopleController');
 Route::resource('genres', 'GenresController');
+
+Route::get('tvshows', 'TvshowsController@index');
+
 

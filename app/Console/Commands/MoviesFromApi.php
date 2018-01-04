@@ -1,4 +1,48 @@
 <?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
+use App\Movie;
+use App\Item;
+
+class MoviesFromApi extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'api:movies';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Connects to themoviedb API and fetches movies and feeds the data into your database';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {   
 //use GuzzleHttp\Exception\GuzzleException;
 //use GuzzleHttp\Client;
      $curl = curl_init();
@@ -77,8 +121,10 @@
                 echo "cURL Error #:" . $err;
             } else { 
                 $movieBackdrop = json_decode($response);
-
-                curl_setopt_array($curl, array(
+                //echo "<img src=http://image.tmdb.org/t/p/w650" . $movieBackdrop->backdrop_path . ">";
+            }
+            //inserting content of people in database. name, date of birth, city(maybe will regret from getting
+            curl_setopt_array($curl, array(
                 CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID/credits?api_key=ec3cda1b6d80802d7b2222e300f2f846",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
@@ -97,20 +143,10 @@
                 echo "cURL Error #:" . $err;
             } else {
                 $movie_credits = json_decode($response);
-                $cast_i = 0;
                 foreach($movie_credits->cast as $cast){
-                    echo "<img src='http://image.tmdb.org/t/p/w185{$cast->profile_path}'>";
                     //echo $cast->name;
-                    $cast_i ++;
-                    if($cast_i >= 4){
-                        break;
-                    }
                 }
-                
-                //echo "<img src=http://image.tmdb.org/t/p/w650" . $movieBackdrop->backdrop_path . ">";
-        
-            //inserting content of people in database. name, date of birth, city(maybe will regret from getting
-
+            }
             $query = DB::table('movies')->select('title')->where('title', '=', $obj->Title)->get();
             if(!isset($query[0])){
                 DB::table('items')->insert([
@@ -159,17 +195,14 @@
                 
            $actors = explode(", ", $obj->Actors);
 
-            foreach($actors as $index => $actor) {
+            foreach($actors as $actor) {
                 //inserting actor content into people table, storing name, date of birth and city
                 $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
                 if(!isset($query[0])){
-                    $prof_pic = $movie_credits->cast[$index]->profile_path;
-                    echo "<img src='http://image.tmdb.org/t/p/w185{$prof_pic}'>";
                     DB::table('people')->insert([
                         'name' => $actor,
                         'dob' => date('Y-m-d'),
                         'city' => 'random',
-                        'profile_pic' => $prof_pic
                         ]);
 
                 }
@@ -218,11 +251,75 @@
                 }
             }
             $i++;
-        
-                }
-            }
-        
         }
     
     }
     curl_close($curl);
+        //Clear table before performing api-call
+/*DB::table('movies');
+        $curl = curl_init();
+        //Make get-request to api
+        $movies = [
+            'it',
+            'harry+potter',
+            'fifty+shades+of+grey',
+            'dunkirk',
+            'wonder+woman',
+            'blade+runner+2049',
+            'thor:+ragnarök',
+            'natural+born+pranksters',
+            'john+wick',
+            'john+wick:+chapter+2',
+            'watchmen',
+            'interstellar',
+            '2012',
+            'avatar',
+            'fifty+shades+darker',
+            'movie+43',
+            'the+lost+empire',
+            'the+girl+next+door',
+            'downfall'
+        ];
+        $i = 1;
+        $client = new Client();
+    foreach($movies as $movie) {
+        $res = $client->get("http://www.omdbapi.com/?t=$movie&plot=full&apikey=8ea32694");
+
+        $obj = $res->getBody();
+        $obj = json_decode($obj);
+        //Insert row into table for every movie in response body
+                $row1 = new Item();
+                $row1->type = 'movie';
+
+                $row = new Movie();
+                $row->title = $obj->Title;
+                $row->item_id = $i;
+                /*$row->poster = $movie['poster_path'];
+                $row->summary = $movie['overview'];
+                $row->release_date = $movie['release_date'];
+                $row->rating = $movie['vote_average'];
+    
+                $row->save();
+        }
+        $i++;
+        //Echo success
+        echo $res->getStatusCode(); 
+        echo (PHP_EOL);
+        echo '##############################';
+        echo (PHP_EOL); 
+        echo 'movies added successfully!';
+        echo (PHP_EOL); 
+        echo '##############################';
+        echo (PHP_EOL);     
+    
+    }*/ 
+ echo (PHP_EOL);
+ echo '##############################';
+ echo (PHP_EOL); 
+ echo 'movies added successfully!';
+ echo (PHP_EOL); 
+ echo '##############################';
+ echo (PHP_EOL);
+}
+ //Echo success
+}
