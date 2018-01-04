@@ -17,7 +17,7 @@ class CreateActoractorTable extends Migration
 
             $table->integer('actor_id')->unsigned();
             $table->foreign('actor_id')->references('id')
-            ->on('actors')->onDelete('cascade');
+            ->on('people')->onDelete('cascade');
 
             $table->integer('movie_id')->unsigned();
             $table->foreign('movie_id')->references('id')
@@ -34,6 +34,6 @@ class CreateActoractorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actor_actor');
+        Schema::dropIfExists('actor_movie');
     }
 }
