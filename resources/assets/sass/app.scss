@@ -14,7 +14,14 @@
 @import "splash";
 
 body {
-    font-family: $font-stack;    
+    font-family: $font-stack;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;  
+}
+
+#app {
+    flex:1;
 }
 
 //Typography
