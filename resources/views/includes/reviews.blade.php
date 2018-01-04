@@ -9,10 +9,12 @@
     <div class="column">
         <div class="columns is-mobile">
             <div class="column is-two-fifths-mobile">
-                <div class="review__poster">
-                    <span class="review__rating">7.7</span>
-                    <img src="https://image.tmdb.org/t/p/original/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg" alt="">
-                </div>
+                <a href="">  
+                    <div class="review__poster">
+                        <span class="review__rating">7.7</span>
+                        <img src="https://image.tmdb.org/t/p/original/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg" alt="">
+                    </div>
+                </a>
             </div>
             <div class="column">
                 <div class="review__info is-flex">
@@ -34,10 +36,12 @@
     <div class="column">
         <div class="columns is-mobile">
             <div class="column is-two-fifths-mobile">
+            <a href=""> 
                 <div class="review__poster">
                     <span class="review__rating">8.2</span>
                     <img src="https://image.tmdb.org/t/p/original/xGWVjewoXnJhvxKW619cMzppJDQ.jpg" alt="">
                 </div>
+            </a>
             </div>
             <div class="column">
                 <div class="review__info is-flex">
