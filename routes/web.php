@@ -40,15 +40,9 @@ Route::get('/profilepage', function () {
     return view('profile-page');   
 });
            
-<<<<<<< e8c39433eedb022db9a9f9242375146988194ef3
 // Route::get('/home', function () {
 //     return view('home');
 // });
-=======
-Route::get('/home', function () {
-    return view('home');
-});
->>>>>>> Remove old header from welcome.blade. Add routes to splash
 
 Auth::routes();
 
