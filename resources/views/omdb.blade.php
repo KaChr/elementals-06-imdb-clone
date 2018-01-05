@@ -164,7 +164,7 @@
                 $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
                 if(!isset($query[0])){
                     $prof_pic = $movie_credits->cast[$index]->profile_path;
-                    echo "<img src='http://image.tmdb.org/t/p/w185{$prof_pic}'>";
+                    //echo "<img src='http://image.tmdb.org/t/p/w185{$prof_pic}'>";
                     DB::table('people')->insert([
                         'name' => $actor,
                         'dob' => date('Y-m-d'),
