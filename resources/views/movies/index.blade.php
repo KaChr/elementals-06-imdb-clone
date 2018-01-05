@@ -28,9 +28,6 @@
     <div>
     <a href="/movies/{{$movie->item_id}}">{{$movie->title}}</a>
     <img src='{{$movie->poster}}'><br>
-    <!--<strong>{{$movie->runtime}}</strong><br> 
-    <strong>{{$movie->rating}}</strong><br>
-    <strong>{{$movie->countries}}</strong>-->
     </div>
     @endforeach
 </body>

@@ -43,8 +43,7 @@ class MoviesFromApi extends Command
      */
     public function handle()
     { 
-        //use GuzzleHttp\Exception\GuzzleException;
-        //use GuzzleHttp\Client;
+        
              $curl = curl_init();
              //array of movies
              $movies = [
@@ -69,17 +68,7 @@ class MoviesFromApi extends Command
                  'the+disaster+artist',
                  'the+room',
              ];
-             /*$apiKey = 'ec3cda1b6d80802d7b2222e300f2f846';
-             $client = new Client();
-             $res = $client->get('https://api.themoviedb.org/3/movie/popular?&api_key=' . $apiKey);
-             echo $res->getStatusCode(); 
-             echo (PHP_EOL);
-             $body = $res->getBody();
-             $body = json_decode($body, true);
-             $moviez = $body['results'];
-             foreach($moviez as $film){*
-             $film = $film['title'];
-             $film = preg_replace('/ /', '+', $film);*/
+
              $i = 1;  
             foreach($movies as $movie) {
                  //request to API using cURL¨
@@ -131,7 +120,6 @@ class MoviesFromApi extends Command
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                         CURLOPT_CUSTOMREQUEST => "GET",
                         CURLOPT_HTTPHEADER => array(
-                            // Set Here Your Requesred Headers
                             'Content-Type: application/json',
                         ),
                     ));
@@ -144,18 +132,13 @@ class MoviesFromApi extends Command
                         $movie_credits = json_decode($response);
                         $cast_i = 0;
                         foreach($movie_credits->cast as $cast){
-                            //echo "<img src='http://image.tmdb.org/t/p/w185{$cast->profile_path}'>";
-                            //echo $cast->name;
+
                             $cast_i ++;
                             if($cast_i >= 4){
                                 break;
                             }
                         }
-                        
-                        //echo "<img src=http://image.tmdb.org/t/p/w650" . $movieBackdrop->backdrop_path . ">";
-                
                     //inserting content of people in database. name, date of birth, city(maybe will regret from getting
-        
                     $query = DB::table('movies')->select('title')->where('title', '=', $obj->Title)->get();
                     if(!isset($query[0])){
                         DB::table('items')->insert([
