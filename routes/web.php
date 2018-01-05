@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
 
-    return view('welcome');
+    return view('splash');
 });
 
 Route::get('/movie-api', function () {
@@ -40,9 +40,9 @@ Route::get('/profilepage', function () {
     return view('profile-page');   
 });
            
-Route::get('/splash', function () {
-    return view('splash');
-});
+// Route::get('/home', function () {
+//     return view('home');
+// });
 
 Auth::routes();
 
