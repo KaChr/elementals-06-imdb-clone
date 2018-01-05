@@ -1,6 +1,7 @@
 <?php
 namespace Deployer;
 
+// require 'recipe/npm.php';
 require 'recipe/laravel.php';
 
 // Project name
@@ -20,8 +21,22 @@ add('shared_dirs', ['storage']);
 add('writable_dirs', ['storage']);
 set('allow_anonymous_stats', false);
 
-// Hosts
+// Npm
+set('bin/npm', function () {
+    return run('which npm');
+});
 
+desc('Install npm packages');
+task('npm:install', function () {
+    if (has('previous_release')) {
+        if (test('[ -d {{previous_release}}/node_modules ]')) {
+            run('cp -R {{previous_release}}/node_modules {{release_path}}');
+        }
+    }
+    run("cd {{release_path}} && {{bin/npm}} install");
+});
+
+// Hosts
 host('www.lanayru.me')
     ->stage('production')
     ->set('branch', 'master')
@@ -53,7 +68,6 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 
-
 //Restart Php-fpm
 desc('Restart PHP-FPM service');
 task('php-fpm:restart', function () {
@@ -71,7 +85,24 @@ desc('Execute artisan migrate:fresh');
 task('artisan:migrate:fresh', function () {
     run('{{bin/php}} {{release_path}}/artisan migrate:fresh');
 });
+
+// Migrate database before symlink new release.
+desc('Build production');
+task('npm-production', function () {
+    run("cd {{release_path}} && sudo {{bin/npm}} run production");
+});
+
+desc('Build dev');
+task('npm-dev', function () {
+    run("cd {{release_path}} && sudo {{bin/npm}} run dev");
+});
+
+after('deploy:update_code', 'npm:install');
+after('npm:install', 'npm-production');
+// after('npm:install', 'npm-dev');
+
 before('deploy:symlink', 'artisan:migrate:fresh');
+
 
 
 

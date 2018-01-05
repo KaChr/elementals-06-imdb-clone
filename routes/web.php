@@ -15,10 +15,12 @@ Route::get('/', function () {
 
     return view('welcome');
 });
+
 Route::get('/movie-api', function () {
     
     return view('movie-api');
 });
+
 Route::get('/omdb', function () {
         
     return view('omdb');
@@ -27,6 +29,21 @@ Route::get('/tvshowz', function () {
     
 return view('tvshowz');
 });
+
+Route::get('/components', function () {
+
+    return view('components');
+    
+});
+
+Route::get('/profilepage', function () {
+    return view('profile-page');   
+});
+           
+Route::get('/splash', function () {
+    return view('splash');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

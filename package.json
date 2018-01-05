@@ -14,12 +14,14 @@
         "bulma": "^0.6.1",
         "bulma-extensions": "^0.5.2",
         "cross-env": "^5.1",
+        "css-loader": "^0.28.7",
         "jquery": "^3.2",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "latest": "^0.2.0"
+        "latest": "^0.2.0",
+        "slideout": "^1.0.1"
     }
 }
