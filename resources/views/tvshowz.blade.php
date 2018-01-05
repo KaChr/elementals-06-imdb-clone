@@ -3,9 +3,12 @@
 //use GuzzleHttp\Client;
      $curl = curl_init();
      //array of movies
-     $movies = [
-         'it',
-         'harry+potter',
+     $tvshows = [
+         'game+of+thrones',
+         'vikings',
+         'scorpion',
+         'sherlock'
+         /*'harry+potter',
          'fifty+shades+of+grey',
          'dunkirk',
          'wonder+woman',
@@ -22,7 +25,7 @@
          'movie+43',
          'the+lost+empire',
          'the+girl+next+door',
-         'downfall'
+         'downfall'*/
      ];
      /*$apiKey = 'ec3cda1b6d80802d7b2222e300f2f846';
      $client = new Client();
@@ -36,10 +39,10 @@
      $film = $film['title'];
      $film = preg_replace('/ /', '+', $film);*/
      $i = 1;  
-    foreach($movies as $movie) {
+    foreach($tvshows as $tvshow) {
          //request to API using cURL¨
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://www.omdbapi.com/?t=$movie&plot=full&apikey=8ea32694",
+            CURLOPT_URL => "http://www.omdbapi.com/?t=$tvshow&plot=full&apikey=8ea32694",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_TIMEOUT => 6000000,
@@ -57,7 +60,7 @@
             echo "cURL Error #:" . $err;
         } else { 
             $obj = json_decode($response);
-            $imdbID = $obj->imdbID;
+            /*$imdbID = $obj->imdbID;
             //new request to new API themoviedb using the imdbID that we got from OMDB to get the backdrop for our movies
             curl_setopt_array($curl, array(
                 CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID?api_key=cdc32d79384ddc6326eff808e85db1c7",
@@ -78,21 +81,31 @@
             } else { 
                 $movieBackdrop = json_decode($response);
                 //echo "<img src=http://image.tmdb.org/t/p/w650" . $movieBackdrop->backdrop_path . ">";
-            }
+            }*/
             //inserting content of people in database. name, date of birth, city(maybe will regret from getting
-            $query = DB::table('movies')->select('title')->where('title', '=', $obj->Title)->get();
+            $query = DB::table('tvshows')->select('title')->where('title', '=', $obj->Title)->get();
             if(!isset($query[0])){
-                DB::table('movies')->insert([
+                DB::table('items')->insert([
+                    'type' => 'tvshow'
+                ]);
+                DB::table('tvshows')->insert([
                     'item_id' => $i,
-                    'title'=>$obj->Title,
-                    'summary'=>$obj->Plot,
+                    'title' => $obj->Title,
+                    'seasons' => $obj->totalSeasons,
+                    'summary' => $obj->Plot,
+                    //'year' => $obj->Year,
+                    'runtime' => $obj->Runtime,
+                    'poster' => $obj->Poster,
+                    'rating' => $obj->imdbRating
+                    /*'episodes'=>$obj->,
+                    'seasons'=
                     'release_date'=>date('Y-m-d', strtotime($obj->Released)),
                     'runtime'=>$obj->Runtime,
                     'rating'=>$obj->imdbRating,
                     'poster'=>$obj->Poster,
                     'countries'=>$obj->Country,
                     'imdbID'=>$obj->imdbID,
-                    'movieBackdrop'=>$movieBackdrop->backdrop_path
+                    'movieBackdrop'=>$movieBackdrop->backdrop_path*/
                     ]);
                 }
             //getting the genres of the film, exploiting it and storing in databse
@@ -110,15 +123,20 @@
                 //here we are making the connection with pivot table, so it connects the movie and the genres
                 $query = DB::table('genres')->select('id')->where('genre_title', '=', $genre)->get();
                 // print_r($query[0]->id);
-                if(!isset($query[0])){
+                if(isset($query[0])){
+                    $queryPivot = DB::table('genre_item')->select('item_id')->where('item_id', '=', $i)->
+                    where('genre_id', '=', $query[0]->id)->get();
+                }
+
+                if(!isset($queryPivot[0])){
                     DB::table('genre_item')->insert([
                         'item_id' => $i,
                         'genre_id' => $query[0]->id
                         ]);
                 }
             }
-                */
-         /*   $actors = explode(", ", $obj->Actors);
+                
+           $actors = explode(", ", $obj->Actors);
 
             foreach($actors as $actor) {
                 //inserting actor content into people table, storing name, date of birth and city
@@ -150,7 +168,7 @@
             foreach($directors as $director){
                 /*inserting content of people in database. name, date of birth, city(maybe will regret from getting
                  cause of lack of info in APIs)*/
-               /* $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
+            /*    $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
                 //if we have the data in table rows then it will not store it anymore(no duplicates)
                 if(!isset($query[0])){
                     DB::table('people')->insert([
@@ -173,12 +191,10 @@
                         'person_id' => $query[0]->id
                         ]);
 
-                }*/
-            }
+                }
+            }*/
             $i++;
         }
     
-    //}
-
+    }
     curl_close($curl);
-    //}

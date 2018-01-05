@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Movie;
-use App\Item;
+use App\Tvshow;
 use Illuminate\Http\Request;
 
-class MoviesController extends Controller
+class TvshowsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,9 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        //
-        $movies = Movie::all();
-
-        return view('movies.index', ['movies'=>$movies]);
+        $tvshows = Tvshow::all();
+        
+        return view('tvshows.index', ['tvshows'=>$tvshows]);
     }
 
     /**
@@ -45,27 +43,25 @@ class MoviesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Movie  $movie
+     * @param  \App\Tvshow  $tvshow
      * @return \Illuminate\Http\Response
      */
-    public function show(Movie $movie)
+    public function show(Tvshow $tvshow)
     {
-        //
-        //$movie = Movie::where('id', $movie->id)->first();
-        $id = $movie->item_id;
-        $movie = Movie::find($id);
+        $id = $tvshow->item_id;
+        $tvshow = Tvshow::find($id);
 
         $item = Item::find($id);
-        return view('movies.show', ['movie'=>$movie, 'item'=>$item]);
+        return view('tvshows.show', ['tvshow'=>$tvshow, 'item'=>$item]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Movie  $movie
+     * @param  \App\Tvshow  $tvshow
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movie $movie)
+    public function edit(Tvshow $tvshow)
     {
         //
     }
@@ -74,10 +70,10 @@ class MoviesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Movie  $movie
+     * @param  \App\Tvshow  $tvshow
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request, Tvshow $tvshow)
     {
         //
     }
@@ -85,10 +81,10 @@ class MoviesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Movie  $movie
+     * @param  \App\Tvshow  $tvshow
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy(Tvshow $tvshow)
     {
         //
     }
