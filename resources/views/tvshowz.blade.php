@@ -42,7 +42,7 @@
     foreach($tvshows as $tvshow) {
          //request to API using cURL¨
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://www.omdbapi.com/?t=$tvshow&apikey=8ea32694",
+            CURLOPT_URL => "http://www.omdbapi.com/?t=$tvshow&plot=full&apikey=8ea32694",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_TIMEOUT => 6000000,
