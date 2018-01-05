@@ -39,10 +39,6 @@ Route::get('/components', function () {
 Route::get('/profilepage', function () {
     return view('profile-page');   
 });
-           
-// Route::get('/home', function () {
-//     return view('home');
-// });
 
 Auth::routes();
 
