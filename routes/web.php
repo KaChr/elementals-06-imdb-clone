@@ -32,7 +32,6 @@ return view('tvshowz');
 Route::get('/components', function () {
 
     return view('components');
-    
 });
 
 Route::get('/profilepage', function () {
