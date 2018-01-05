@@ -52,6 +52,6 @@ Route::resource('movies', 'MoviesController');
 Route::resource('people', 'PeopleController');
 Route::resource('genres', 'GenresController');
 
-Route::get('tvshows', 'TvshowsController@index');
+Route::resource('tvshows', 'TvshowsController');
 
 

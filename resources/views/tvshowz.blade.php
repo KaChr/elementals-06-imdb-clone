@@ -60,7 +60,8 @@
             echo "cURL Error #:" . $err;
         } else { 
             $obj = json_decode($response);
-            /*$imdbID = $obj->imdbID;
+            $imdbID = $obj->imdbID;
+            dd($imdbID);
             //new request to new API themoviedb using the imdbID that we got from OMDB to get the backdrop for our movies
             curl_setopt_array($curl, array(
                 CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID?api_key=cdc32d79384ddc6326eff808e85db1c7",
@@ -81,7 +82,7 @@
             } else { 
                 $movieBackdrop = json_decode($response);
                 //echo "<img src=http://image.tmdb.org/t/p/w650" . $movieBackdrop->backdrop_path . ">";
-            }*/
+            }
             //inserting content of people in database. name, date of birth, city(maybe will regret from getting
             $query = DB::table('tvshows')->select('title')->where('title', '=', $obj->Title)->get();
             if(!isset($query[0])){
@@ -95,6 +96,7 @@
                     'summary' => $obj->Plot,
                     //'year' => $obj->Year,
                     'runtime' => $obj->Runtime,
+                    'countries' => $obj->Country,
                     'poster' => $obj->Poster,
                     'rating' => $obj->imdbRating
                     /*'episodes'=>$obj->,
@@ -109,7 +111,7 @@
                     ]);
                 }
             //getting the genres of the film, exploiting it and storing in databse
-            /*$genres = explode(", ", $obj->Genre);
+            $genres = explode(", ", $obj->Genre);
             //storing the content of movie into database
             foreach ($genres as $genre) {
                 //just inserting the genre titles we got into the table genres
@@ -164,11 +166,11 @@
                 }
             } 
 
-            $directors = explode(", ", $obj->Director);
+            $directors = explode(", ", $obj->Writer);
             foreach($directors as $director){
                 /*inserting content of people in database. name, date of birth, city(maybe will regret from getting
                  cause of lack of info in APIs)*/
-            /*    $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
+                $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
                 //if we have the data in table rows then it will not store it anymore(no duplicates)
                 if(!isset($query[0])){
                     DB::table('people')->insert([
@@ -192,7 +194,7 @@
                         ]);
 
                 }
-            }*/
+            }
             $i++;
         }
     
