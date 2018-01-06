@@ -1,0 +1,32 @@
+#top-250 {
+    margin: 15px 0 15px 15px;
+}
+
+div.grid-chart {
+    margin: 0 15px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+    div.grid-chart {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    div.grid-chart {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media only screen and (max-width: 340px) {
+    div.grid-chart {
+        grid-gap: 4px;
+        margin: 0 4px;
+        h4 {
+            display: none;
+        }
+    }
+}
