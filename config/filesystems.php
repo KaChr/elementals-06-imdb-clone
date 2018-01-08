@@ -38,7 +38,7 @@ return [
     | been setup for each driver as an example of the required options.
     |
     | Supported Drivers: "local", "ftp", "s3", "rackspace"
-    |
+    | Added file manager: "uploads"
     */
 
     'disks' => [
@@ -61,6 +61,11 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
+        ],
+
+        'uploads' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'),
         ],
 
     ],
