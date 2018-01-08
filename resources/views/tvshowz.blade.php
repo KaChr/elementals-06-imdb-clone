@@ -7,7 +7,8 @@
          'game+of+thrones',
          'vikings',
          'scorpion',
-         'sherlock'
+         'sherlock',
+         'dark'
          /*'harry+potter',
          'fifty+shades+of+grey',
          'dunkirk',
@@ -114,8 +115,8 @@
                             break;
                         }
                     }
-                    dd($cast);
-                    
+                    //dd($cast);
+            $backdrop_url = "http://image.tmdb.org/t/p/w1280";
             //inserting content of people in database. name, date of birth, city(maybe will regret from getting
             $query = DB::table('tvshows')->select('title')->where('title', '=', $obj->Title)->get();
             if(!isset($query[0])){
@@ -140,7 +141,7 @@
                     'poster'=>$obj->Poster,
                     'countries'=>$obj->Country,
                     'imdbID'=>$obj->imdbID,*/
-                    'tvBackdrop'=> $tvBackdrop
+                    'tvBackdrop'=> $backdrop_url . $tvBackdrop
                     ]);
                 }
             //getting the genres of the film, exploiting it and storing in databse
@@ -173,16 +174,43 @@
                 
            $actors = explode(", ", $obj->Actors);
 
-            foreach($actors as $index => $actor) {
+            foreach($actors as $actor) {
+                $actor = str_replace(' ', '+', $actor);
+                        curl_setopt_array($curl, array(
+                            CURLOPT_URL => "https://api.themoviedb.org/3/search/person?api_key=cdc32d79384ddc6326eff808e85db1c7&query=$actor",
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_ENCODING => "",
+                            CURLOPT_TIMEOUT => 6000000,
+                            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                            CURLOPT_CUSTOMREQUEST => "GET",
+                            CURLOPT_HTTPHEADER => array(
+                                'Content-Type: application/json',
+                            ),
+                        ));
+                        $response = curl_exec($curl);
+                        $err = curl_error($curl);
+                    
+                        if ($err) {
+                            echo "cURL Error #:" . $err;
+                        } else { 
+                            
+                            $actor_pics = json_decode($response);
+                            foreach($actor_pics->results as $actor_pic){
+                                $actor_img = $actor_pic->profile_path;
+                            }
+                            
+                        }
+                        $actor = str_replace('+', ' ', $actor);
+
+                $profile_url = "http://image.tmdb.org/t/p/w185";
                 //inserting actor content into people table, storing name, date of birth and city
                 $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
                 if(!isset($query[0])){
-                    $prof_pic = $tv_credits->cast[$index]->profile_path;
                     DB::table('people')->insert([
                         'name' => $actor,
                         'dob' => date('Y-m-d'),
                         'city' => 'random',
-                        //'profile_pic' => $prof_pic
+                        'profile_pic' => $profile_url . $actor_img
                         ]);
 
                 }
