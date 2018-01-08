@@ -11,12 +11,11 @@
 |
 */
 
-
-
 Route::get('/', function () {
 
-    return view('welcome');
+    return view('splash');
 });
+
 Route::get('/movie-api', function () {
     
     return view('movie-api');
@@ -26,7 +25,10 @@ Route::get('/omdb', function () {
         
     return view('omdb');
 });
-
+Route::get('/tvshowz', function () {
+    
+return view('tvshowz');
+});
 
 Route::get('/components', function () {
 
@@ -34,9 +36,13 @@ Route::get('/components', function () {
     
 });
 
-Route::get('/splash', function () {
-    return view('splash');
+Route::get('/profilepage', function () {
+    return view('profile-page');   
 });
+           
+// Route::get('/home', function () {
+//     return view('home');
+// });
 
 Auth::routes();
 
@@ -45,3 +51,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('movies', 'MoviesController');
 Route::resource('people', 'PeopleController');
 Route::resource('genres', 'GenresController');
+
+Route::get('tvshows', 'TvshowsController@index');
+

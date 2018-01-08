@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Movie;
-use App\Item;
+use App\Comment;
 use Illuminate\Http\Request;
 
-class MoviesController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,6 @@ class MoviesController extends Controller
     public function index()
     {
         //
-        $movies = Movie::all();
-
-        return view('movies.index', ['movies'=>$movies]);
     }
 
     /**
@@ -45,27 +41,21 @@ class MoviesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Movie  $movie
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Movie $movie)
+    public function show(Comment $comment)
     {
         //
-        //$movie = Movie::where('id', $movie->id)->first();
-        $id = $movie->item_id;
-        $movie = Movie::find($id);
-
-        $item = Item::find($id);
-        return view('movies.show', ['movie'=>$movie, 'item'=>$item]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Movie  $movie
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movie $movie)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -74,10 +64,10 @@ class MoviesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Movie  $movie
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -85,10 +75,10 @@ class MoviesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Movie  $movie
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy(Comment $comment)
     {
         //
     }

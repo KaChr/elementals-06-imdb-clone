@@ -1,41 +1,41 @@
-<nav class="navbar has-shadow">
-    <div class="container">
-        <div class="navbar-brand">
-
-            <div class="navbar-burger burger" data-target="navMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            
-            <a href="{{ url('/') }}" class="navbar-item">{{ config('app.name', 'elements') }}</a>
-        </div>
-
-        <div class="navbar-menu" id="navMenu">
-            <div class="navbar-start"></div>
-
-            <div class="navbar-end">
-                @if (Auth::guest())
-                    <a class="navbar-item " href="{{ route('login') }}">Login</a>
-                    <a class="navbar-item " href="{{ route('register') }}">Register</a>
-                @else
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link" href="#">{{ Auth::user()->name }}</a>
-
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </div>
-                    </div>
-                @endif
-            </div>
-        </div>
+<nav class="navbar is-dark">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="{{ route('home') }}">
+      <img src="{{ asset('images/emdb_logo_full@2x.png')}}" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+    </a>
+    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
+  </div>
+
+  <div id="navbarExampleTransparentExample" class="navbar-menu is-dark">
+        <div class="navbar-start">
+        <a class="navbar-item" href="#">
+            Home
+        </a>
+        <a class="navbar-item" href="#">
+            Top 250
+        </a>
+        <a class="navbar-item" href="#">
+            Categories
+        </a>
+        <a class="navbar-item" href="#">
+            My Watchlist
+        </a>
+        </div>
+        <div class="navbar-end">
+        <div class="navbar-item">
+            <div class="field is-grouped">
+            <p class="control">
+                <a class="button button--small button--solid-blue">Log In</a>
+            </p>
+            <p class="control">
+                <a class="button button--small button--solid-turquoise">Sign up</a>
+            </p>
+            </div>
+        </div>
+        </div>
+  </div>
 </nav>
