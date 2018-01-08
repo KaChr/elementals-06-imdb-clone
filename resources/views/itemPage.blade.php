@@ -9,12 +9,7 @@
   <div class="hero-body is-flex">
       <div class="featured__content--bottom is-flex">
         <div class="featured__info">
-        <div class="featured__rating number--rating is-flex">
-          <span>7.0</span>
-        </div>
-            <!-- <div>
-                <canvas id="chart-1" class="chart"></canvas>
-            </div>               -->
+            @include('includes.rating')       
           <p class="year">2014</p>
           <h1 class="featured__info-title">JOHN WICK</h1>
           <ul class="button--ul">

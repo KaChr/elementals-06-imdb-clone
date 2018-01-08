@@ -59,10 +59,10 @@ const makeCircleDiagram = (rating, canvasId, radius, color) => {
     const radians = toRadians(degrees);
 
     const canvas = document.querySelector(canvasId);
-    canvas.width = 500;
-    canvas.height = 500;
-    canvas.style.width = '250px';
-    canvas.style.height = '250px';
+    canvas.width = 250;
+    canvas.height = 250;
+    canvas.style.width = '150px';
+    canvas.style.height = '150px';
 
     //Determine screen dpi and scale accordingly
     const context = canvas.getContext('2d');
@@ -95,7 +95,7 @@ const makeCircleDiagram = (rating, canvasId, radius, color) => {
     context.fillText(rating.toFixed(1), x, y);
 }
 
-// makeCircleDiagram(5.7, '#chart-1', 40, '#7AF9BA');
+makeCircleDiagram(5.7, '#chart-1', 40, '#7AF9BA');
 // makeCircleDiagram(8.2, '#chart-2', 40, '#E5446D');
 // makeCircleDiagram(3.5, '#chart-3', 40, '#7359E5');
 // makeCircleDiagram(1.91, '#chart-4', 40, '#E5C461');

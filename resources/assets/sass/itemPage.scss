@@ -9,23 +9,19 @@
     min-height: 600px !important;
 }
 
-// .chart {
-//     position: relative;
-//     color: #fff;
-//     background-color: #000;
-//     // background-color: transparent !important;
-// }
+.chart {
+    position: relative;
+    color: #fff;
+    // background-color: #000;
+    background-color: transparent !important;
+}
   
-// .rating {
-//     color: #fff;
-//     position: absolute;
-//     left: 50px;
-//     top: 25px;
-//     z-index: 1;
-// }
-
-.number--rating {
-    justify-content: center;
+.rating {
+    color: #fff;
+    position: absolute;
+    left: 50px;
+    top: 25px;
+    z-index: 1;
 }
 
 .year {
