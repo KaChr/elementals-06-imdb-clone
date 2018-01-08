@@ -2,9 +2,31 @@
 //     width: 100%;
 // }
 
-// .item-info {
-//     background-color: greenyellow;
+
+.item {
+    align-items: center;
+    text-align: center;
+    min-height: 600px !important;
+}
+
+// .chart {
+//     position: relative;
+//     color: #fff;
+//     background-color: #000;
+//     // background-color: transparent !important;
 // }
+  
+// .rating {
+//     color: #fff;
+//     position: absolute;
+//     left: 50px;
+//     top: 25px;
+//     z-index: 1;
+// }
+
+.number--rating {
+    justify-content: center;
+}
 
 .year {
     font-style: italic;
@@ -13,16 +35,12 @@
 
 .button--ul {
     display: flex;
+    justify-content: center;
 }
 
 .button--ul>li {
     justify-content: space-between;
     margin: 0.5em;
-}
-
-.item {
-    align-items: center;
-    text-align: center;
 }
 
 .button--border-blue{

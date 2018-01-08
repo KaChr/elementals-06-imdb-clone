@@ -5,13 +5,16 @@
 </head>
 <body>
     @include('includes.headertemp')
-    <!-- <section class="item-info">
-        <div class="container"> -->
         <section class="hero featured item" style="background-image: url('https://image.tmdb.org/t/p/original/mFb0ygcue4ITixDkdr7wm1Tdarx.jpg')">
   <div class="hero-body is-flex">
       <div class="featured__content--bottom is-flex">
         <div class="featured__info">
-          <!-- @include('includes.rating')   -->
+        <div class="featured__rating number--rating is-flex">
+          <span>7.0</span>
+        </div>
+            <!-- <div>
+                <canvas id="chart-1" class="chart"></canvas>
+            </div>               -->
           <p class="year">2014</p>
           <h1 class="featured__info-title">JOHN WICK</h1>
           <ul class="button--ul">
@@ -30,15 +33,6 @@
       </div>
   </div> 
 </section>
-        <!-- <a class="button is-outlined">
-            <span class="icon">
-                <i class="fa fa-plus" area-hidden="true"></i>
-            </span>
-            <span>WATCHLIST</span>
-        </a>
-        <a class="button is-outlined">TRAILER</a>
-        </div>
-    </section>  -->
     <section id="plot">
         <div class="container">
             <img class="poster-img" src="http://www.impawards.com/2014/posters/john_wick_xlg.jpg" alt="Movie poster">
