@@ -14,7 +14,7 @@
           <!-- @include('includes.rating')   -->
           <p class="year">2014</p>
           <h1 class="featured__info-title">JOHN WICK</h1>
-          <ul>
+          <ul class="button--ul">
               <li>
                   <button class="button button--small button--border-blue" type="button">
                     <span class="icon">
@@ -46,6 +46,7 @@
             <h4>PLOT SUMMARY</h4>
             <p>Ex-hitman John Wick comes out of retirement to track down the gangsters that took everything from him.</p>
             <!-- <a class="button is-outlined">READ MORE</a> -->
+            <button class="button button--small button--read-more" type="button">READ MORE</button>
         </article>
         </div>
     </section>

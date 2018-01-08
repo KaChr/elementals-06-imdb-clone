@@ -11,6 +11,15 @@
     color: #fff;
 }
 
+.button--ul {
+    display: flex;
+}
+
+.button--ul>li {
+    justify-content: space-between;
+    margin: 0.5em;
+}
+
 .item {
     align-items: center;
     text-align: center;
@@ -20,6 +29,13 @@
 border: 1px solid #6eadff;
 background: none;
 color: #FFF;
+}
+
+.button--read-more {
+    border: 1px solid #6eadff !important;
+    background: none;
+    color: #6eadff;
+    margin-top: 1em;
 }
 
 .icon {
