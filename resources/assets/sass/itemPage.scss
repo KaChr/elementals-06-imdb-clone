@@ -6,6 +6,26 @@
 //     background-color: greenyellow;
 // }
 
+.year {
+    font-style: italic;
+    color: #fff;
+}
+
+.item {
+    align-items: center;
+    text-align: center;
+}
+
+.button--border-blue{
+border: 1px solid #6eadff;
+background: none;
+color: #FFF;
+}
+
+.icon {
+    padding-right: 1em;
+}
+
 .plot {
     // margin-top: 2em;
     margin-left: 1em;

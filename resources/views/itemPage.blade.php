@@ -7,14 +7,24 @@
     @include('includes.headertemp')
     <!-- <section class="item-info">
         <div class="container"> -->
-        <section class="hero is-light featured" style="background-image: url('https://image.tmdb.org/t/p/original/mFb0ygcue4ITixDkdr7wm1Tdarx.jpg')">
+        <section class="hero featured item" style="background-image: url('https://image.tmdb.org/t/p/original/mFb0ygcue4ITixDkdr7wm1Tdarx.jpg')">
   <div class="hero-body is-flex">
       <div class="featured__content--bottom is-flex">
         <div class="featured__info">
           <!-- @include('includes.rating')   -->
-          <!-- <p>2014</p> ? -->
+          <p class="year">2014</p>
           <h1 class="featured__info-title">JOHN WICK</h1>
-          <!-- buttons: watchlist and trailer -->
+          <ul>
+              <li>
+                  <button class="button button--small button--border-blue" type="button">
+                    <span class="icon">
+                        <i class="fa fa-plus" area-hidden="true"></i>
+                    </span>
+                    WATCHLIST
+                  </button>
+              </li>
+              <li><button class="button button--small button--border-blue" type="button">TRAILER</button></li>
+          </ul>
           <span class="featured__info-genre">ACTION, THRILLER</span>
         </div>
       </div>
