@@ -61,10 +61,9 @@
         } else { 
             $obj = json_decode($response);
             $imdbID = $obj->imdbID;
-            dd($imdbID);
             //new request to new API themoviedb using the imdbID that we got from OMDB to get the backdrop for our movies
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID?api_key=cdc32d79384ddc6326eff808e85db1c7",
+                CURLOPT_URL => "https://api.themoviedb.org/3/find/$imdbID?api_key=cdc32d79384ddc6326eff808e85db1c7&language=en-US&external_source=imdb_id",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_TIMEOUT => 6000000,
@@ -80,9 +79,43 @@
             if ($err) {
                 echo "cURL Error #:" . $err;
             } else { 
-                $movieBackdrop = json_decode($response);
+                $tvdata = json_decode($response);
+                //dd($tvdata);
+                foreach($tvdata->tv_results as $data){
+                    //echo $tvBackdrop->backdrop_path;
+                   $tvid = $data->id;
+                   $tvBackdrop = $data->backdrop_path;
+                } 
                 //echo "<img src=http://image.tmdb.org/t/p/w650" . $movieBackdrop->backdrop_path . ">";
-            }
+            
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => "https://api.themoviedb.org/3/tv/$tvid/credits?api_key=cdc32d79384ddc6326eff808e85db1c7&language=en-US",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_TIMEOUT => 6000000,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "GET",
+                    CURLOPT_HTTPHEADER => array(
+                        'Content-Type: application/json',
+                    ),
+                ));
+                $response = curl_exec($curl);
+                $err = curl_error($curl);
+        
+                if ($err) {
+                    echo "cURL Error #:" . $err;
+                } else {
+                    $tv_credits = json_decode($response);
+                    //dd($tv_credits);
+                    $cast_i = 0;
+                    foreach($tv_credits->cast as $cast){
+                        $cast_i ++;
+                        if($cast_i >= 4){
+                            break;
+                        }
+                    }
+                    dd($cast);
+                    
             //inserting content of people in database. name, date of birth, city(maybe will regret from getting
             $query = DB::table('tvshows')->select('title')->where('title', '=', $obj->Title)->get();
             if(!isset($query[0])){
@@ -98,7 +131,7 @@
                     'runtime' => $obj->Runtime,
                     'countries' => $obj->Country,
                     'poster' => $obj->Poster,
-                    'rating' => $obj->imdbRating
+                    'rating' => $obj->imdbRating,
                     /*'episodes'=>$obj->,
                     'seasons'=
                     'release_date'=>date('Y-m-d', strtotime($obj->Released)),
@@ -106,8 +139,8 @@
                     'rating'=>$obj->imdbRating,
                     'poster'=>$obj->Poster,
                     'countries'=>$obj->Country,
-                    'imdbID'=>$obj->imdbID,
-                    'movieBackdrop'=>$movieBackdrop->backdrop_path*/
+                    'imdbID'=>$obj->imdbID,*/
+                    'tvBackdrop'=> $tvBackdrop
                     ]);
                 }
             //getting the genres of the film, exploiting it and storing in databse
@@ -140,14 +173,16 @@
                 
            $actors = explode(", ", $obj->Actors);
 
-            foreach($actors as $actor) {
+            foreach($actors as $index => $actor) {
                 //inserting actor content into people table, storing name, date of birth and city
                 $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
                 if(!isset($query[0])){
+                    $prof_pic = $tv_credits->cast[$index]->profile_path;
                     DB::table('people')->insert([
                         'name' => $actor,
                         'dob' => date('Y-m-d'),
                         'city' => 'random',
+                        //'profile_pic' => $prof_pic
                         ]);
 
                 }
@@ -197,6 +232,8 @@
             }
             $i++;
         }
-    
+
+        }
+    }
     }
     curl_close($curl);
