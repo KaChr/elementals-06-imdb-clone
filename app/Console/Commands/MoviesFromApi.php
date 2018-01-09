@@ -43,8 +43,8 @@ class MoviesFromApi extends Command
      */
     public function handle()
     { 
-        
-             $curl = curl_init();
+
+        $curl = curl_init();
              //array of movies
              $movies = [
                  'it',
@@ -111,6 +111,7 @@ class MoviesFromApi extends Command
                         echo "cURL Error #:" . $err;
                     } else { 
                         $movieBackdrop = json_decode($response);
+                        $movie_backdrop = $movieBackdrop->backdrop_path;
         
                         curl_setopt_array($curl, array(
                         CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID/credits?api_key=ec3cda1b6d80802d7b2222e300f2f846",
@@ -130,14 +131,15 @@ class MoviesFromApi extends Command
                         echo "cURL Error #:" . $err;
                     } else {
                         $movie_credits = json_decode($response);
-                        $cast_i = 0;
+                        /*$cast_i = 0;
                         foreach($movie_credits->cast as $cast){
 
                             $cast_i ++;
                             if($cast_i >= 4){
                                 break;
                             }
-                        }
+                            $actor_name = $cast->name;
+                        }*/
                         $backdrop_url = "http://image.tmdb.org/t/p/w1280";
                     //inserting content of people in database. name, date of birth, city(maybe will regret from getting
                     $query = DB::table('movies')->select('title')->where('title', '=', $obj->Title)->get();
@@ -155,7 +157,7 @@ class MoviesFromApi extends Command
                             'poster'=>$obj->Poster,
                             'countries'=>$obj->Country,
                             'imdbID'=>$obj->imdbID,
-                            'movieBackdrop'=>$backdrop_url . $movieBackdrop->backdrop_path
+                            'movieBackdrop'=>$backdrop_url . $movie_backdrop
                             ]);
                         }
                     //getting the genres of the film, exploiting it and storing in databse
@@ -186,46 +188,24 @@ class MoviesFromApi extends Command
                         }
                     }
                         
-                   $actors = explode(", ", $obj->Actors);
-        
-                    foreach($actors as $index => $actor) {
-                        $actor = str_replace(' ', '+', $actor);
-                        curl_setopt_array($curl, array(
-                            CURLOPT_URL => "https://api.themoviedb.org/3/search/person?api_key=cdc32d79384ddc6326eff808e85db1c7&query=$actor",
-                            CURLOPT_RETURNTRANSFER => true,
-                            CURLOPT_ENCODING => "",
-                            CURLOPT_TIMEOUT => 6000000,
-                            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                            CURLOPT_CUSTOMREQUEST => "GET",
-                            CURLOPT_HTTPHEADER => array(
-                                'Content-Type: application/json',
-                            ),
-                        ));
-                        $response = curl_exec($curl);
-                        $err = curl_error($curl);
-                    
-                        if ($err) {
-                            echo "cURL Error #:" . $err;
-                        } else { 
-                            
-                            $actor_pics = json_decode($response);
-                            foreach($actor_pics->results as $actor_pic){
-                                $actor_img = $actor_pic->profile_path;
+                   $profile_url = "http://image.tmdb.org/t/p/w185";
+                   $cast_i = 0;
+                    foreach($movie_credits->cast as $index => $actor) {
+                        $cast_i ++;
+                            if($cast_i >= 5){
+                                break;
                             }
-                            
-                        }
-                        $actor = str_replace('+', ' ', $actor);
+                        $actor = $actor->name;
                         //inserting actor content into people table, storing name, date of birth and city
-                        $profile_url = "http://image.tmdb.org/t/p/w185";
-
                         $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
                         if(!isset($query[0])){
+                            $prof_pic = $movie_credits->cast[$index]->profile_path;
                             //echo "<img src='http://image.tmdb.org/t/p/w185{$prof_pic}'>";
                             DB::table('people')->insert([
                                 'name' => $actor,
                                 'dob' => date('Y-m-d'),
                                 'city' => 'random',
-                                'profile_pic' =>$profile_url . $actor_img
+                                'profile_pic' => $profile_url . $prof_pic
                                 ]);
         
                         }
@@ -281,6 +261,7 @@ class MoviesFromApi extends Command
                 }
             }
             curl_close($curl);
+            
  echo (PHP_EOL);
  echo '##############################';
  echo (PHP_EOL); 
