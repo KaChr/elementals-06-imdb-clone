@@ -27,11 +27,15 @@ class HomeController extends Controller
     public function index()
     {
 
-        // Get movie with highest rating
-        $latest = Movie::orderBy('rating', 'desc')->first();
-        $item = Item::find($latest->item_id);
+        // Get X movies with highest rating
+        $featured = Movie::orderBy('rating', 'desc')->limit(3)->get();
+
+        foreach($featured as $feature) {
+            $item[] = Item::find($feature->item_id);
+        }
         
         // Get latest reviews
+        
         // $reviews = Review::orderBy('reviews.created_at', 'desc')
         //     ->join('users', 'author_id', '=', 'users.id')
         //     ->join('movies', 'reviews.item_id', '=', 'movies.item_id')
@@ -44,7 +48,7 @@ class HomeController extends Controller
             ->limit(2)->get(['reviews.*', 'users.name', 'movies.poster', 'reviews.rating AS review_rating']);
 
         return view('home', [
-            'featured' => $latest, 
+            'featured' => $featured, 
             'item' => $item, 
             'reviews' => $reviews]);
     }
