@@ -24,10 +24,10 @@
     </style>
 </head>
 <body>
-    @foreach($movies as $movie)
+    @foreach($tvshows as $tvshow)
     <div>
-    <a href="/movies/{{$movie->item_id}}">{{$movie->title}}</a>
-    <img src='{{$movie->poster}}'><br>
+    <a href="/tvshows/{{$tvshow->item_id}}">{{$tvshow->title}}</a>
+    <img src='{{$tvshow->poster}}'><br>
     </div>
     @endforeach
 </body>

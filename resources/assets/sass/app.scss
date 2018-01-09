@@ -14,7 +14,14 @@
 @import "splash";
 
 body {
-    font-family: $font-stack;    
+    font-family: $font-stack;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;  
+}
+
+#app {
+    flex:1;
 }
 
 //Typography
@@ -334,3 +341,68 @@ footer.footer__logo {
     color: #FFF;
     font-family: $font-stack;
 }
+
+//Signup
+.user__avatar {
+    @include border-radius(50%);
+    width:200px !important;
+    height:200px !important;
+    position: relative;
+    overflow:hidden;
+    margin-bottom:1rem;
+    display: block !important;
+    margin-left: auto;
+    margin-right: auto;
+    img {
+        margin: -25% auto 0 auto;
+        display:inline;
+        height:auto;
+        width:100%;
+    }
+}
+
+.upload__photo {
+    text-align: center !important;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+}
+
+.has-text-centered {
+    margin-top: 1.5rem;
+}
+
+// Profile page
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    margin-bottom: 0;
+    padding-top: 0.8rem;
+}
+
+.image img {
+    border-radius: 50%;
+}
+
+.user__edit {
+    color: #4a4a4a;
+}
+
+.user__avatar {
+    margin-bottom: 0.5rem;
+}
+
+.divider__profile {
+    margin-bottom: -20px;
+    padding: 0 0.5rem;
+}
+
+.user__latest--list {
+    padding-top: 1.5rem;
+}
+
+.latest__rating {
+    margin: 2rem;
+    font-size: 70px;
+} 

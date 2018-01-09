@@ -10,17 +10,25 @@
 
     <h1>{{$movie->title}}</h1>
     <img src="{{$movie->poster}}">
-    <img src="http://image.tmdb.org/t/p/w650{{$movie->movieBackdrop}}">;
+    <img src="{{$movie->movieBackdrop}}">;
     <p>{{$movie->rating}}</p>
     <p>{{$movie->summary}}</p>
     <p>{{$movie->runtime}}</p>
     <p>{{$movie->countries}}</p>
+    <h2>Genres</h2>
+    <p>
+    @foreach($item->genres as $genre)
+        {{ $loop->first ? '' : ', '}}
+        {{$genre->genre_title}}
+    @endforeach
+    </p>
     <h2>Actors</h2>
-    @foreach($movie->actors as $actor)
+    @foreach($item->actors as $actor)
     <p>{{$actor->name}}</p>
+    <img src="{{$actor->profile_pic}}">;
     @endforeach
     <h2>Directors</h2>
-    @foreach($movie->directors as $director)
+    @foreach($item->directors as $director)
     <p>{{$director->name}}</p>
     @endforeach 
 </body>

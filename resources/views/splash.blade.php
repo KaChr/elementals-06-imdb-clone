@@ -12,8 +12,8 @@
                         <div class="columns is-centered">
                             <div class="column is-4 is-flex splash__content">
                                 <img id="splash__logo" src="{{ asset('images/emdb_logo@1x.png') }}" alt="" width="" height="">
-                                <button class="button button--big button--solid-blue">Log in</button>
-                                <button class="button button--big button--solid-turquoise">Sign up</button>   
+                                <a href="{{ route('login') }}"><button class="button button--big button--solid-blue">Log in</button></a>
+                                <a href="{{ route('register') }}"><button class="button button--big button--solid-turquoise">Sign up</button></a> 
                             </div>
                         </div>                             
                     </div>
