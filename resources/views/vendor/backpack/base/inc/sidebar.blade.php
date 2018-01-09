@@ -14,6 +14,15 @@
           <!-- ================================================ -->
           <li><a href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
 
+          <!-- Movies -->
+          <li><a href="{{  backpack_url('movie') }}"><i class="fa fa-film"></i> <span>Movies</span></a></li>
+
+          <!-- Series -->
+          <li><a href="{{  backpack_url('tvshow') }}"><i class="fa fa-television"></i> <span>Tv shows</span></a></li>
+          
+          <!-- Users -->
+          <li><a href="{{  backpack_url('user') }}"><i class="fa fa-users"></i> <span>Users</span></a></li>
+
           <!-- File manager -->
           <li><a href="{{  backpack_url('elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
 
