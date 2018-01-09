@@ -25,9 +25,9 @@ Route::get('/omdb', function () {
         
     return view('omdb');
 });
-Route::get('/tvshowz', function () {
+Route::get('/testing', function () {
     
-return view('tvshowz');
+return view('testing');
 });
 
 Route::get('/components', function () {
