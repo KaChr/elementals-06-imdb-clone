@@ -1,0 +1,20 @@
+div.column.is-5 {
+    box-shadow: none;
+    p, a {
+        color:white;
+    }
+    div {
+        background-color:transparent;
+        box-shadow: none;
+        
+    }
+}
+
+div.columns.is-marginless.is-centered {
+    background-image:url("https://image.tmdb.org/t/p/original/pafm4gX43byVURznhB4TMlEfymr.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    height:60vh;
+    border:none;
+}
