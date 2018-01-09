@@ -7,6 +7,7 @@
     background-clip: padding-box;  /* stops bg color from leaking outside the border: */
 }
 
+//Gradient overlay. Mostly for large imagery with content on top
 @mixin gradient-overlay($height) {
     &::after {
         content: "";
