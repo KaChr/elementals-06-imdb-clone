@@ -10,7 +10,7 @@
 
     <h1>{{$movie->title}}</h1>
     <img src="{{$movie->poster}}">
-    <img src="http://image.tmdb.org/t/p/w1280{{$movie->movieBackdrop}}">;
+    <img src="{{$movie->movieBackdrop}}">
     <p>{{$movie->rating}}</p>
     <p>{{$movie->summary}}</p>
     <p>{{$movie->runtime}}</p>
@@ -25,7 +25,7 @@
     <h2>Actors</h2>
     @foreach($item->actors as $actor)
     <p>{{$actor->name}}</p>
-    <img src="http://image.tmdb.org/t/p/w185{{$actor->profile_pic}}">;
+    <img src="{{$actor->profile_pic}}">
     @endforeach
     <h2>Directors</h2>
     @foreach($item->directors as $director)
