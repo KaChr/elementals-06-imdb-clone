@@ -31,6 +31,3 @@
        <!-- ========== End of top menu right items ========== -->
     </ul>
 </div>
-
-<!-- File manager -->
-<li><a href="{{  backpack_url('elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
