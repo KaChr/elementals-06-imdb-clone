@@ -1,25 +1,25 @@
 <section class="columns is-gapless">
-  <div class="column">
-    <section class="hero takeover" style="background-image: url('http://image.tmdb.org/t/p/w1920{{$featured[1]->movieBackdrop}}')">
-      <div class="hero-body is-flex">
-          <div class="takeover__content--bottom is-flex">
-            <div class="takeover__info">
-              <span class="takeover__info-genre">
-              @foreach($item[1]->genres as $genre)
-                  {{ $loop->first ? '' : ', '}}
-                  {{$genre->genre_title}}
-                @endforeach
-                </span>
-              <h1 class="takeover__info-title">{{ $featured[1]->title }}</h1>
+  <div class="column hide-overflow">
+      <section class="hero takeover" style="background-image: url('http://image.tmdb.org/t/p/w1920{{$featured[1]->movieBackdrop}}')">
+        <div class="hero-body is-flex">
+            <div class="takeover__content--bottom is-flex">
+              <div class="takeover__info">
+                <span class="takeover__info-genre">
+                @foreach($item[1]->genres as $genre)
+                    {{ $loop->first ? '' : ', '}}
+                    {{$genre->genre_title}}
+                  @endforeach
+                  </span>
+                <h1 class="takeover__info-title">{{ $featured[1]->title }}</h1>
+              </div>
+              <div class="takeover__cta is-flex">
+                  <button class="button button--small button--border-turquoise">WATCH TRAILER</button>
+              </div>
             </div>
-            <div class="takeover__cta is-flex">
-                <button class="button button--small button--border-turquoise">WATCH TRAILER</button>
-            </div>
-          </div>
-      </div>
-    </section>
+        </div>
+      </section>
   </div>
-  <div class="column">
+  <div class="column hide-overflow">
     <section class="hero takeover" style="background-image: url('http://image.tmdb.org/t/p/w1920{{$featured[2]->movieBackdrop}}')">
       <div class="hero-body is-flex">
           <div class="takeover__content--bottom is-flex">
