@@ -30,6 +30,7 @@
     <h2>Directors</h2>
     @foreach($item->directors as $director)
     <p>{{$director->name}}</p>
+    <img src="{{$director->profile_pic}}">
     @endforeach 
 </body>
 </html>
