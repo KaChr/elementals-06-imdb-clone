@@ -111,7 +111,6 @@ class MoviesFromApi extends Command
                         echo "cURL Error #:" . $err;
                     } else { 
                         $movieBackdrop = json_decode($response);
-                        $movie_backdrop = $movieBackdrop->backdrop_path;
         
                         curl_setopt_array($curl, array(
                         CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID/credits?api_key=ec3cda1b6d80802d7b2222e300f2f846",
@@ -157,7 +156,7 @@ class MoviesFromApi extends Command
                             'poster'=>$obj->Poster,
                             'countries'=>$obj->Country,
                             'imdbID'=>$obj->imdbID,
-                            'movieBackdrop'=>$backdrop_url . $movie_backdrop
+                            'movieBackdrop'=>$backdrop_url . $movieBackdrop->backdrop_path
                             ]);
                         }
                     //getting the genres of the film, exploiting it and storing in databse
@@ -192,7 +191,7 @@ class MoviesFromApi extends Command
                    $cast_i = 0;
                     foreach($movie_credits->cast as $index => $actor) {
                         $cast_i ++;
-                            if($cast_i >= 5){
+                            if($cast_i >= 7){
                                 break;
                             }
                         $actor = $actor->name;
