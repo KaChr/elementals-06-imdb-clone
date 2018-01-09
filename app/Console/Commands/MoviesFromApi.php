@@ -227,22 +227,21 @@ class MoviesFromApi extends Command
                     $cast_i = 0;
                     foreach($movie_credits->crew as $index => $director){
                         $cast_i ++;
-                            if($cast_i >= 1){
+                            if($cast_i >= 2){
                                 break;
                             }
                             $director = $director->name;
-                            dd($director->name);
                         /*inserting content of people in database. name, date of birth, city(maybe will regret from getting
                          cause of lack of info in APIs)*/
                         $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
                         //if we have the data in table rows then it will not store it anymore(no duplicates)
                         if(!isset($query[0])){
-                            $prof_pic = $movie_credits->crew[$index]->profile_path;
+                            $director_pic = $movie_credits->crew[$index]->profile_path;
                             DB::table('people')->insert([
                                 'name' => $director,
                                 'dob' => date('Y-m-d'),
                                 'city' => 'random',
-                                'profile_pic' => $profile_url . $prof_pic
+                                'profile_pic' => $profile_url . $director_pic
                                 ]);
         
                         }
