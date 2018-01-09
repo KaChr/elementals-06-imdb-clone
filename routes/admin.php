@@ -4,4 +4,6 @@
 <?php
 
 // Backpack\CRUD: Define the resources for the entities you want to CRUD.
-CRUD::resource('tag', 'TagCrudController');
+CRUD::resource('movie', 'MovieCrudController');
+
+CRUD::resource('tvshow', 'TvShowCrudController');
