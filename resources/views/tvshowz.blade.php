@@ -8,7 +8,15 @@
          'vikings',
          'scorpion',
          'sherlock',
-         'dark'
+         'dark',
+         'black+mirror',
+         'the+arrow',
+         'the+punisher',
+         'suits',
+         'the+flash',
+         'the+100',
+         'legion',
+         'luke+cage'
          /*'harry+potter',
          'fifty+shades+of+grey',
          'dunkirk',
@@ -28,17 +36,7 @@
          'the+girl+next+door',
          'downfall'*/
      ];
-     /*$apiKey = 'ec3cda1b6d80802d7b2222e300f2f846';
-     $client = new Client();
-     $res = $client->get('https://api.themoviedb.org/3/movie/popular?&api_key=' . $apiKey);
-     echo $res->getStatusCode(); 
-     echo (PHP_EOL);
-     $body = $res->getBody();
-     $body = json_decode($body, true);
-     $moviez = $body['results'];
-     foreach($moviez as $film){*
-     $film = $film['title'];
-     $film = preg_replace('/ /', '+', $film);*/
+     
      $i = 1;  
     foreach($tvshows as $tvshow) {
          //request to API using cURL¨
@@ -107,14 +105,13 @@
                     echo "cURL Error #:" . $err;
                 } else {
                     $tv_credits = json_decode($response);
-                    //dd($tv_credits);
-                    $cast_i = 0;
+                    /*$cast_i = 0;
                     foreach($tv_credits->cast as $cast){
                         $cast_i ++;
                         if($cast_i >= 4){
                             break;
                         }
-                    }
+                    }*/
                     //dd($cast);
             $backdrop_url = "http://image.tmdb.org/t/p/w1280";
             //inserting content of people in database. name, date of birth, city(maybe will regret from getting
@@ -126,7 +123,7 @@
                 DB::table('tvshows')->insert([
                     'item_id' => $i,
                     'title' => $obj->Title,
-                    'seasons' => $obj->totalSeasons,
+                    //'seasons' => $obj->totalSeasons,
                     'summary' => $obj->Plot,
                     //'year' => $obj->Year,
                     'runtime' => $obj->Runtime,
@@ -172,45 +169,26 @@
                 }
             }
                 
-           $actors = explode(", ", $obj->Actors);
+           //$actors = explode(", ", $obj->Actors);
 
-            foreach($actors as $actor) {
-                $actor = str_replace(' ', '+', $actor);
-                        curl_setopt_array($curl, array(
-                            CURLOPT_URL => "https://api.themoviedb.org/3/search/person?api_key=cdc32d79384ddc6326eff808e85db1c7&query=$actor",
-                            CURLOPT_RETURNTRANSFER => true,
-                            CURLOPT_ENCODING => "",
-                            CURLOPT_TIMEOUT => 6000000,
-                            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                            CURLOPT_CUSTOMREQUEST => "GET",
-                            CURLOPT_HTTPHEADER => array(
-                                'Content-Type: application/json',
-                            ),
-                        ));
-                        $response = curl_exec($curl);
-                        $err = curl_error($curl);
-                    
-                        if ($err) {
-                            echo "cURL Error #:" . $err;
-                        } else { 
-                            
-                            $actor_pics = json_decode($response);
-                            foreach($actor_pics->results as $actor_pic){
-                                $actor_img = $actor_pic->profile_path;
-                            }
-                            
+           $profile_url = "http://image.tmdb.org/t/p/w185";
+
+            $cast_i = 0;
+            foreach($tv_credits->cast as $index => $actor){
+                $cast_i ++;
+                        if($cast_i >= 7){
+                            break;
                         }
-                        $actor = str_replace('+', ' ', $actor);
-
-                $profile_url = "http://image.tmdb.org/t/p/w185";
+                $actor = $actor->name;
                 //inserting actor content into people table, storing name, date of birth and city
                 $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
+                $prof_pic = $tv_credits->cast[$index]->profile_path;
                 if(!isset($query[0])){
                     DB::table('people')->insert([
                         'name' => $actor,
                         'dob' => date('Y-m-d'),
                         'city' => 'random',
-                        'profile_pic' => $profile_url . $actor_img
+                        'profile_pic' => $profile_url . $prof_pic
                         ]);
 
                 }
