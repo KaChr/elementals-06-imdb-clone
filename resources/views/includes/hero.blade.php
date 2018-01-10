@@ -1,5 +1,5 @@
 <a href="/movies/{{ $featured[0]->item_id }}">
-  <section class="hero is-light featured" style="background-image: url(http://image.tmdb.org/t/p/w1920{{$featured[0]->movieBackdrop}})">
+  <section class="hero is-light featured" style="background-image: url({{$featured[0]->movieBackdrop}})">
     <div class="hero-body is-flex">
         <div class="featured__content--bottom is-flex">
           <div class="featured__info">

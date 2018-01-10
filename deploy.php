@@ -47,7 +47,7 @@ host('www.lanayru.me')
 
 host('develop.lanayru.me')
     ->stage('develop')
-    ->set('branch', 'develop')
+    ->set('branch', 'feature/landingpage')
     ->set('deploy_path', '/var/www/develop.lanayru.me')
     ->user('elem')
     ->IdentityFile('~/.ssh/id_digitalocean')
@@ -72,6 +72,12 @@ task('build', function () {
 desc('Restart PHP-FPM service');
 task('php-fpm:restart', function () {
     run('sudo service php7.0-fpm reload');
+});
+
+//Seed database
+desc('Seed database from api & seeders');
+task('db:seed', function () {
+    run('php artisan api:movies && php artisan db:seed');
 });
 
 after('deploy:symlink', 'php-fpm:restart');
@@ -102,6 +108,7 @@ after('npm:install', 'npm-production');
 // after('npm:install', 'npm-dev');
 
 before('deploy:symlink', 'artisan:migrate:fresh');
+after('artisan:migrate:fresh', 'db:seed');
 
 
 

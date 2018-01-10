@@ -1,6 +1,6 @@
 <section class="columns is-gapless">
   <div class="column hide-overflow">
-      <section class="hero takeover" style="background-image: url('http://image.tmdb.org/t/p/w1920{{$featured[1]->movieBackdrop}}')">
+      <section class="hero takeover" style="background-image: url('{{$featured[1]->movieBackdrop}}')">
         <div class="hero-body is-flex">
             <div class="takeover__content--bottom is-flex">
               <div class="takeover__info">
@@ -20,7 +20,7 @@
       </section>
   </div>
   <div class="column hide-overflow">
-    <section class="hero takeover" style="background-image: url('http://image.tmdb.org/t/p/w1920{{$featured[2]->movieBackdrop}}')">
+    <section class="hero takeover" style="background-image: url('{{$featured[2]->movieBackdrop}}')">
       <div class="hero-body is-flex">
           <div class="takeover__content--bottom is-flex">
             <div class="takeover__info">
