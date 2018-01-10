@@ -1,5 +1,5 @@
-#top-250 {
-    margin: 15px 0 15px 15px;
+.charts-titles {
+    margin: 0px 0 15px 15px;
 }
 
 div.grid--chart {
@@ -25,7 +25,7 @@ div.grid--chart {
     div.grid--chart {
         grid-gap: 4px;
         margin: 0 4px;
-        h4 {
+        b, p {
             display: none;
         }
     }
