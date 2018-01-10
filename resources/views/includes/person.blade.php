@@ -7,7 +7,7 @@
 </div>
 <section class="columns">
     <!-- TODO: Figure out how to continue looping after two -->
-    @foreach($item->actors->take(2) as $actor)    
+    @forelse($actors->slice(0, 2) as $actor)    
     <div class="column is-half-desktop">
         <div class="columns is-mobile">
             <div class="column is-narrow">
@@ -18,10 +18,12 @@
             <div class="column">
                 <div>
                     <h4 class="person__name">{{$actor->name}}</h4>
-                    <p class="p__fig">as {{$actor->role}}</p>
+                    <p class="p__fig">as {-- TODO: {$actor->role --}}</p>
                 </div>
             </div>
         </div>
     </div>
-    @endforeach  
+    @empty
+        <p>No actors</p>
+    @endforelse
 </section>

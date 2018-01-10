@@ -51,7 +51,7 @@
     </section>
     <section class="reviews">
         <div class="container">
-            @include('includes.reviews', ['reviews' => $item->reviews()])
+            @include('includes.reviews', ['reviews' => $reviews, 'poster' => $movie->poster])
         </div>
     </section>
 </div>

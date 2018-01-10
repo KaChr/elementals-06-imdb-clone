@@ -5,56 +5,36 @@
     </div>
     <span class="divider__line"></span>
 </div>
-{{dd($reviews)}}
 <section class="columns">
+@forelse ($reviews->slice(0, 2) as $review)
     <div class="column">
         <div class="columns is-mobile">
             <div class="column is-two-fifths-mobile">
                 <div class="review__poster">
-                    <span class="review__rating">7.7</span>
-                    <img src="https://image.tmdb.org/t/p/original/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg" alt="">
+                    <span class="review__rating">{{$review->rating}}</span>
+                    <img src="{{$poster}}" alt="">
                 </div>
             </div>
             <div class="column">
                 <div class="review__info is-flex">
                     <span class="review__avatar">
-                        <img src="https://avatars1.githubusercontent.com/u/24225542?s=460&v=4" alt="avatar">
+                        <!-- TODO FIX THIS <img src="{{-- $review->author->avatar --}}" alt="avatar"> -->
+                        <img src="{{Auth::user()->avatar}}" alt="avatar">
                     </span>
                     <div>
-                        <h4 class="review__title">This is the title</h4>
-                        <p class="review__author">by Joakim Unge</p>
+                        <h4 class="review__title">{{$review->title}}</h4>
+                        <!-- TODO: FIX THIS <p class="review__author">by {{-- $review->author->name --}}</p> -->
+                        <p class="review__author">by {{Auth::user()->name}}</p>
                     </div>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Vestibulum in maximus turpis.
+                <p>
+                    {{$review->body}}
                 </p>
                 <button class="button button--small button--solid-yellow">READ MORE</button>
             </div>  
         </div>
     </div>
-    <div class="column">
-        <div class="columns is-mobile">
-            <div class="column is-two-fifths-mobile">
-                <div class="review__poster">
-                    <span class="review__rating">8.2</span>
-                    <img src="https://image.tmdb.org/t/p/original/xGWVjewoXnJhvxKW619cMzppJDQ.jpg" alt="">
-                </div>
-            </div>
-            <div class="column">
-                <div class="review__info is-flex">
-                    <span class="review__avatar">
-                        <img src="https://avatars1.githubusercontent.com/u/24225542?s=460&v=4" alt="avatar">
-                    </span>
-                    <div>
-                        <h4 class="review__title">This is the title</h4>
-                        <p class="review__author">by Joakim Unge</p>
-                    </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Vestibulum in maximus turpis.
-                </p>
-                <button class="button button--small button--solid-yellow">READ MORE</button>
-            </div>  
-        </div>
-    </div>
+@empty
+    <p>No reviews</p>
+@endforelse
 </section>
