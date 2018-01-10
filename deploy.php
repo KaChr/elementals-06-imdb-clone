@@ -74,10 +74,17 @@ task('php-fpm:restart', function () {
     run('sudo service php7.0-fpm reload');
 });
 
-//Seed database
-desc('Seed database from api & seeders');
-task('db:seed', function () {
-    run('php artisan api:movies && php artisan db:seed');
+//Seed database from api
+desc('Seed database from api');
+task('api:movies', function () {
+    run('{{bin/php}} {{release_path}}/artisan api:movies');
+});
+
+//Dump Autoload
+desc('Dump autoload before seed');
+task('dump-autoload', function () {
+    $output = run('cd {{release_path}} && composer dump-autoload');
+    writeln('<info>' . $output . '</info>');
 });
 
 after('deploy:symlink', 'php-fpm:restart');
@@ -95,12 +102,12 @@ task('artisan:migrate:fresh', function () {
 // Migrate database before symlink new release.
 desc('Build production');
 task('npm-production', function () {
-    run("cd {{release_path}} && sudo {{bin/npm}} run production");
+    run("cd {{release_path}} && {{bin/npm}} run production");
 });
 
 desc('Build dev');
 task('npm-dev', function () {
-    run("cd {{release_path}} && sudo {{bin/npm}} run dev");
+    run("cd {{release_path}} && {{bin/npm}} run dev");
 });
 
 after('deploy:update_code', 'npm:install');
@@ -108,7 +115,9 @@ after('npm:install', 'npm-production');
 // after('npm:install', 'npm-dev');
 
 before('deploy:symlink', 'artisan:migrate:fresh');
-after('artisan:migrate:fresh', 'db:seed');
+after('artisan:migrate:fresh', 'api:movies');
+after('api:movies', 'dump-autoload');
+after('dump-autoload', 'artisan:db:seed');
 
 
 
