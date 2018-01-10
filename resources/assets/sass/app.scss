@@ -167,6 +167,11 @@ p.p__fig {
     }
 }
 
+.button--outline-blue {
+    @extend .button--border-blue;
+    color: $sky-blue;
+}
+
 .button--solid-blue {
     background-color: $sky-blue;
     color: #FFF;
@@ -415,4 +420,4 @@ footer.footer__logo {
     font-size: 70px;
 } 
 
-@import '/itemPage.scss';
+@import '/item-page.scss';

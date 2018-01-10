@@ -30,7 +30,7 @@
             <article class="plot__text">
                 <h4>PLOT SUMMARY</h4>
                 <p>Ex-hitman John Wick comes out of retirement to track down the gangsters that took everything from him.</p>
-                <button class="button button--small button--border-blue" type="button">READ MORE</button>
+                <button class="button button--small button--outline-blue" type="button">READ MORE</button>
             </article>
         </div>
     </section>
