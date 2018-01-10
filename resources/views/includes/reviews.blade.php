@@ -5,6 +5,7 @@
     </div>
     <span class="divider__line"></span>
 </div>
+{{dd($reviews)}}
 <section class="columns">
     <div class="column">
         <div class="columns is-mobile">
