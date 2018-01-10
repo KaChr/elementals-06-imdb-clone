@@ -87,6 +87,11 @@ task('dump-autoload', function () {
     writeln('<info>' . $output . '</info>');
 });
 
+task('composer:install', function () {
+    $output = run('cd {{release_path}} && composer install');
+    writeln('<info>' . $output . '</info>');
+});
+
 after('deploy:symlink', 'php-fpm:restart');
 
 // [Optional] if deploy fails automatically unlock.
@@ -112,12 +117,13 @@ task('npm-dev', function () {
 
 after('deploy:update_code', 'npm:install');
 after('npm:install', 'npm-production');
+after('npm-production', 'composer:install');
 // after('npm:install', 'npm-dev');
 
 before('deploy:symlink', 'artisan:migrate:fresh');
 after('artisan:migrate:fresh', 'api:movies');
 after('api:movies', 'dump-autoload');
-after('dump-autoload', 'artisan:db:seed');
+// after('dump-autoload', 'artisan:db:seed');
 
 
 
