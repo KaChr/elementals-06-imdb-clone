@@ -11,10 +11,15 @@ div.column.is-5 {
 }
 
 div.columns.is-marginless.is-centered {
-    background-image:url("https://image.tmdb.org/t/p/original/pafm4gX43byVURznhB4TMlEfymr.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://image.tmdb.org/t/p/original/pafm4gX43byVURznhB4TMlEfymr.jpg");
     background-size:cover;
     background-repeat: no-repeat;
     background-position: top center;
     height:60vh;
-    border:none;
 }
+
+.checkbox:hover {
+    color: white;
+} 
+
+

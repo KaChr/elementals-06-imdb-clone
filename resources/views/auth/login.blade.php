@@ -5,10 +5,6 @@
     <div class="columns is-marginless is-centered">
         <div class="column is-5">
             <div class="card">
-                
-                    <p>Login</p>
-                
-
                 <div class="card-content">
                     <form class="login-form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
