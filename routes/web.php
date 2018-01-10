@@ -41,7 +41,7 @@ Route::get('/profilepage', function () {
 });
 
 Route::get('/item', function () {
-    return view('ItemPage');   
+    return view('item-page');   
 });
            
 // Route::get('/home', function () {

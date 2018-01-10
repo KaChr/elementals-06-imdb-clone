@@ -1,78 +1,34 @@
 .item {
+  .featured {
     align-items: center;
     text-align: center;
-    min-height: 600px !important;
-}
-
-.chart {
-    position: relative;
-    color: #fff;
-    // background-color: #000;
-    background-color: transparent !important;
-}
-  
-.rating {
-    color: #fff;
-    position: absolute;
-    left: 50px;
-    top: 25px;
-    z-index: 1;
-}
-
-.year {
-    font-style: italic;
-    color: #fff;
-}
-
-.button--ul {
-    display: flex;
-    justify-content: center;
-}
-
-.button--ul>li {
-    justify-content: space-between;
-    margin: 0.5em;
-}
-
-.button--border-blue{
-border: 1px solid #6eadff;
-background: none;
-color: #FFF;
-}
-
-.button--read-more {
-    border: 1px solid #6eadff !important;
-    background: none;
-    color: #6eadff;
-    margin-top: 1em;
-}
-
-.icon {
-    padding-right: 1em;
-}
-
-.plot {
-    // margin-top: 2em;
+    &__info {
+      &__actions {
+        display: flex;
+        justify-content: center;
+        > li {
+          justify-content: space-between;
+          margin: 0.5em;
+        }
+      }
+    }
+  }
+  .plot {
     margin-left: 1em;
     margin-right: 1em;
-}
-
-.poster-img {
-    float: left;
-    width: 182px;
-    height: 268px;
-    margin: 0em 1em 2em 1em;
-}
-
-.plot-text {
-    margin-top: 2em;
-    padding: 0em 1em 0em 1em;
-}
-
-.cast-crew {
+    &__poster-img {
+        float: left;
+        width: 182px;
+        height: 268px;
+        margin: 0em 1em 2em 1em;
+    }
+    &__text {
+        margin-top: 2em;
+        padding: 0em 1em 0em 1em;
+    }
+  }
+  .cast-crew,
+  .review {
     margin: 1em;
-}
-
-.review{
-    margin: 1em;
+  }
 }
