@@ -38,10 +38,10 @@
         <div class="grid--chart">
             @foreach($movies->slice(0, 20) as $movie) 
                 <div> 
-                    <img src="{{$movie->poster}}"><br> 
-                    <b><a href="/movies/{{$movie->item_id}}">{{$movie->title}}</a></b>
-                    <img src="{{ asset('images/star.png') }}" height="22px" width="21px">
-                    <p>Rating: {{$movie->rating}}</p> 
+                    <img class="posters" src="{{$movie->poster}}"><br> 
+                    <h5><a href="/movies/{{$movie->item_id}}">{{$movie->title}}</a></h5>
+                    <img class="stars" src="{{ asset('images/star.png') }}" height="22px" width="21px">
+                    <b>{{$movie->rating}}</b> 
                 </div> 
             @endforeach 
 

@@ -7,17 +7,36 @@ div.grid--chart {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-gap: 15px;
+    img.stars {
+        float: left;
+        margin-right: 3px;
+    }
 }
 
 @media only screen and (max-width: 768px) {
     div.grid--chart {
         grid-template-columns: repeat(6, 1fr);
+        img.posters {
+            height: 180px;
+        }
     }
 }
 
 @media only screen and (max-width: 425px) {
     div.grid--chart {
         grid-template-columns: repeat(4, 1fr);
+        h5 {
+            display: none;
+        }
+        img.posters {
+            height: 130px;
+        }
+    }
+}
+
+@media only screen and (nax-width: 375px) {
+    div.grid--chart img.posters {
+        height: 50px;
     }
 }
 
@@ -25,8 +44,8 @@ div.grid--chart {
     div.grid--chart {
         grid-gap: 4px;
         margin: 0 4px;
-        b, p {
-            display: none;
+        img.posters {
+            height: 130px;
         }
     }
 }
