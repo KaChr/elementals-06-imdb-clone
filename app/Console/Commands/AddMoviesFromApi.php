@@ -15,7 +15,7 @@ class AddMoviesFromApi extends Command
      *
      * @var string
      */
-    protected $signature = 'api:movies';
+    protected $signature = 'api:movie';
 
     /**
      * The console command description.
