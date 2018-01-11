@@ -19,6 +19,7 @@ class CreatePeopleTable extends Migration
             $table->date('dob')->nullable();
             $table->string('city')->nullable();
             $table->string('profile_pic')->nullable();
+            $table->string('actor_character')->nullable();
             $table->timestamps();
         });
     }
