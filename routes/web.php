@@ -32,15 +32,10 @@ return view('tvshowz');
 Route::get('/components', function () {
 
     return view('components');
-    
 });
 
 Route::get('/profilepage', function () {
     return view('profile-page');   
-});
-           
-Route::get('/home', function () {
-    return view('home');
 });
 
 Auth::routes();
