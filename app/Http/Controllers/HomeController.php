@@ -33,6 +33,15 @@ class HomeController extends Controller
         foreach($featured as $feature) {
             $item[] = Item::find($feature->item_id);
         }
+
+        // $spotlightTv = Tvshow::orderBy('created_at', 'desc')->limit(5)->get();     
+        $spotlightMovies = Movie::orderBy('created_at', 'desc')->limit(5)->get();
+        $spotlightRated = Movie::orderBy('rating', 'desc')->limit(5)->get();  
+        
+        $spotlights = [
+            'movies' => $spotlightMovies,
+            'rated' => $spotlightRated
+        ];
         
         // Get latest reviews
         
@@ -45,11 +54,12 @@ class HomeController extends Controller
         $reviews = Review::orderBy('reviews.created_at', 'desc')
             ->join('users', 'author_id', '=', 'users.id')
             ->join('movies', 'reviews.item_id', '=', 'movies.item_id')
-            ->limit(2)->get(['reviews.*', 'users.name', 'movies.poster', 'reviews.rating AS review_rating']);
+            ->limit(8)->get(['reviews.*', 'users.name', 'movies.poster', 'reviews.rating AS review_rating']);
 
         return view('home', [
             'featured' => $featured, 
             'item' => $item, 
-            'reviews' => $reviews]);
+            'reviews' => $reviews,
+            'spotlights' => $spotlights]);
     }
 }
