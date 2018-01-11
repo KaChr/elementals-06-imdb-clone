@@ -76,12 +76,12 @@
                             <div class="field-label"></div>
 
                             <div class="field-body">
-                                <div class="field is-grouped">
-                                    <div class="control">
-                                        <button type="submit" class="button is-primary">Login</button>
+                                <div class="field">
+                                    <div class="control feature__login">
+                                        <button type="submit" class="button__login button--big button--solid-turquoise">Login</button>
                                     </div>
 
-                                    <div class="control">
+                                    <div class="control feature__login login__remember">
                                         <a href="{{ route('password.request') }}">
                                             Forgot Your Password?
                                         </a>

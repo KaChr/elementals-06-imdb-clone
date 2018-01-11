@@ -148,6 +148,20 @@ p.p__fig {
     min-height: 40px;
 }
 
+.feature__login {
+    display: flex !important;
+    justify-content: center !important;
+    margin: auto;
+
+}
+.button__login {
+    margin-top: 3rem;
+}
+
+.login__remember {
+    margin-top: 1rem;
+}
+
 .button--border-blue {
     border: 1px solid $sky-blue;
     background: none;
