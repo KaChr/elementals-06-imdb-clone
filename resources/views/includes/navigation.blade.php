@@ -15,8 +15,8 @@
         <a class="navbar-item" href="#">
             Home
         </a>
-        <a class="navbar-item" href="#">
-            Top 250
+        <a class="navbar-item" href="/movies">
+            Charts
         </a>
         <a class="navbar-item" href="#">
             Categories

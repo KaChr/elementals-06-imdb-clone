@@ -1,42 +1,48 @@
-.charts-titles {
-    margin: 0px 0 15px 15px;
+/* Charts Styling using grid. */
+.charts__titles {
+    padding-left: 15px;
 }
 
 div.grid--chart {
-    margin: 0 15px;
+    margin: 0 10px;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-gap: 15px;
+    grid-gap: 10px;
+    img.posters {
+        height: 220px;
+    }
     img.stars {
         float: left;
         margin-right: 3px;
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
     div.grid--chart {
-        grid-template-columns: repeat(6, 1fr);
         img.posters {
             height: 180px;
         }
     }
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 768px) {
     div.grid--chart {
-        grid-template-columns: repeat(4, 1fr);
-        h5 {
-            display: none;
-        }
-        img.posters {
-            height: 130px;
-        }
+        grid-template-columns: repeat(6, 1fr);
     }
 }
 
-@media only screen and (nax-width: 375px) {
-    div.grid--chart img.posters {
-        height: 50px;
+@media only screen and (max-width: 425px) {
+    div.grid--chart {
+        margin: 0;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    div.grid--chart {
+        img.posters {
+            height: 160px;
+        }
     }
 }
 

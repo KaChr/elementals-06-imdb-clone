@@ -40,8 +40,8 @@ Route::get('/profilepage', function () {
     return view('profile-page');   
 });
 
-Route::get('/charts', function () {
-    return view('charts');   
+Route::get('/movies', function () {
+    return view('movies');   
 });
            
 // Route::get('/home', function () {
