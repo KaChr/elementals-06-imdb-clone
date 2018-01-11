@@ -24,7 +24,7 @@
     </p>
     <h2>Actors</h2>
     @foreach($item->actors as $actor)
-    <p>{{$actor->name}}</p>
+    <p>{{$actor->name}} as {{$actor->actor_character}}</p>
     <img src="{{$actor->profile_pic}}">
     @endforeach
     <h2>Directors</h2>

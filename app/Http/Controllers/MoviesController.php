@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Movie;
 use App\Item;
+use App\Review;
 use Illuminate\Http\Request;
 
 class MoviesController extends Controller
@@ -54,8 +55,9 @@ class MoviesController extends Controller
         //$movie = Movie::where('id', $movie->id)->first();
         $id = $movie->item_id;
         $movie = Movie::find($id);
-
         $item = Item::find($id);
+
+        //$reviews = Review::where('item_id','=',$id)->get();
         return view('movies.show', ['movie'=>$movie, 'item'=>$item]);
     }
 
