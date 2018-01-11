@@ -7,7 +7,7 @@
         <h5 class="charts__titles">Top 20 as rated by IMDb Users</h5>
 
         <hr>
-        <div class="grid--chart">
+        <div class="grid-chart">
             @foreach($movies as $movie) 
                 <div> 
                     <a href="/movies/{{$movie->item_id}}"><img class="posters" src="{{$movie->poster}}"></a><br> 
