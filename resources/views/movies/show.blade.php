@@ -32,5 +32,8 @@
     <p>{{$director->name}}</p>
     <img src="{{$director->profile_pic}}">
     @endforeach 
+    @foreach($reviews as $review)
+    <p>{{$review->body}}</p>
+    @endforeach
 </body>
 </html>

@@ -114,6 +114,7 @@ $curl = curl_init();
                             'movieBackdrop'=>$backdrop_url . $movieBackdrop->backdrop_path
                             ]);
                         }
+                        //$query = DB::table('movies')->orderBy('rating', 'DESC')->get();
                     //getting the genres of the film, exploiting it and storing in databse
                     $genres = explode(", ", $obj->Genre);
                     //storing the content of movie into database

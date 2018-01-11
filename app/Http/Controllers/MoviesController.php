@@ -17,9 +17,12 @@ class MoviesController extends Controller
     public function index()
     {
         //
-        $movies = Movie::all();
+        //$movies = Movie::all();
+        $reviews = Review::all();
+        //return view('movies.index', ['reviews'=>$reviews]);
 
-        return view('movies.index', ['movies'=>$movies]);
+        $movies = Movie::latest('rating')->get();
+        return view('movies.index', ['movies'=>$movies, 'reviews'=>$reviews]);
     }
 
     /**
@@ -57,8 +60,9 @@ class MoviesController extends Controller
         $movie = Movie::find($id);
         $item = Item::find($id);
 
+        $reviews = Review::where('item_id','=',$id)->get();
         //$reviews = Review::where('item_id','=',$id)->get();
-        return view('movies.show', ['movie'=>$movie, 'item'=>$item]);
+        return view('movies.show', ['movie'=>$movie, 'item'=>$item, 'reviews'=>$reviews]);
     }
 
     /**
