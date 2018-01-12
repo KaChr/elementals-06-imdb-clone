@@ -26,6 +26,9 @@
           <!-- Users -->
           <li><a href="{{  backpack_url('user') }}"><i class="fa fa-users"></i> <span>Users</span></a></li>
 
+          <!-- Comments -->
+          <li><a href="{{  backpack_url('comment') }}"><i class="fa fa-keyboard-o"></i> <span>Comments</span></a></li>
+
           <!-- Reviews -->
           <li><a href="{{  backpack_url('review') }}"><i class="fa fa-pencil"></i> <span>Reviews</span></a></li>
 
