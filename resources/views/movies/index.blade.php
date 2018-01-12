@@ -7,17 +7,20 @@
         <h5 class="charts__titles">Top 20 as rated by IMDb Users</h5>
 
         <hr>
-        <div class="grid-chart">
             @foreach($movies as $movie) 
-                <div> 
-                    <a href="/movies/{{$movie->item_id}}"><img class="posters" src="{{$movie->poster}}"></a><br> 
-                    <h5><a href="/movies/{{$movie->item_id}}">{{$movie->title}}</a></h5>
-                    <img class="stars" src="{{ asset('images/star.png') }}" height="22px" width="21px">
-                    <b>{{$movie->rating}}</b> 
+                <div class="grid-chart">
+                    <div class="charts--poster">
+                        <a href="/movies/{{$movie->item_id}}"><img class="posters" src="{{$movie->poster}}"></a>
+                    </div>
+                    <div class="charts--title">
+                        <h5><a href="/movies/{{$movie->item_id}}">{{$movie->title}}</a></h5>
+                    </div>
+                    <div class="charts--rating">
+                        <i class="fa fa-star"></i>
+                        <span class="charts__rating">{{$movie->rating}}</span>
+                    </div>
                 </div> 
             @endforeach 
-
-        </div>
         @include('includes/footer')
     </body>
 </html>

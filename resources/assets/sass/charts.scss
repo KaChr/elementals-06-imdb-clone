@@ -4,54 +4,61 @@
 }
 
 div.grid-chart {
-    margin: 0 5px 10px 5px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-gap: 7px;
+    grid-gap: 10px;
+    grid-template-columns: 45px repeat(2, 1fr);
+    width: 60%;
+    border: rgb(228, 228, 228) solid 1px;
     img.posters {
-        height: 220px;
+        height: 75px;
+        width: 45px;
     }
-    img.stars {
-        float: left;
-        margin-right: 3px;
+    h5 {
+        padding-top: 7%;
+        font-weight: 500;
+        font-size: 1.3em;
+    }
+    .charts--rating {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i, span.charts__rating {
+            align-self: center;
+            justify-self: center;
+        }
     }
 }
 
 @media only screen and (max-width: 1024px) {
     div.grid-chart {
-        img.posters {
-            height: 180px;
-        }
+        width: 65%;
     }
 }
 
 @media only screen and (max-width: 768px) {
     div.grid-chart {
-        grid-template-columns: repeat(6, 1fr);
+        width: 85%;
     }
 }
 
 @media only screen and (max-width: 425px) {
     div.grid-chart {
-        margin: 0;
-        grid-template-columns: repeat(3, 1fr);
+        width: 85%;
+        h5 {
+            font-size: 1em;
+        }
     }
 }
 
 @media only screen and (max-width: 375px) {
     div.grid-chart {
-        img.posters {
-            height: 160px;
-        }
+        width: 90%;
     }
 }
 
 @media only screen and (max-width: 340px) {
     div.grid-chart {
-        grid-gap: 4px;
-        margin: 0 4px;
-        img.posters {
-            height: 130px;
-        }
+        width: 95%;
     }
 }
