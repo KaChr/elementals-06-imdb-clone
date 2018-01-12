@@ -10,3 +10,6 @@ CRUD::resource('user', 'UserCrudController');
 CRUD::resource('item', 'ItemCrudController');
 
 CRUD::resource('review', 'ReviewCrudController');
+
+CRUD::resource('genre', 'GenreCrudController');
+
