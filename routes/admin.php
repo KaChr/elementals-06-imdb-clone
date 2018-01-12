@@ -15,3 +15,7 @@ CRUD::resource('genre', 'GenreCrudController');
 
 CRUD::resource('comment', 'CommentCrudController');
 
+CRUD::resource('season', 'SeasonCrudController');
+
+CRUD::resource('episode', 'EpisodeCrudController');
+
