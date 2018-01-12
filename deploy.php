@@ -47,7 +47,7 @@ host('www.lanayru.me')
 
 host('develop.lanayru.me')
     ->stage('develop')
-    ->set('branch', 'feature/landingpage')
+    ->set('branch', 'develop')
     ->set('deploy_path', '/var/www/develop.lanayru.me')
     ->user('elem')
     ->IdentityFile('~/.ssh/id_digitalocean')
