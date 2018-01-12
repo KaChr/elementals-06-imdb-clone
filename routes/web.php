@@ -12,8 +12,7 @@
 */
 
 Route::get('/', function () {
-
-    return view('welcome');
+    return view('splash');
 });
 
 Route::get('/movie-api', function () {
@@ -33,15 +32,14 @@ return view('tvshowz');
 Route::get('/components', function () {
 
     return view('components');
-    
 });
 
 Route::get('/profilepage', function () {
     return view('profile-page');   
 });
-           
-Route::get('/splash', function () {
-    return view('splash');
+
+Route::get('/item', function () {
+    return view('item-page');   
 });
 
 Auth::routes();
@@ -54,5 +52,4 @@ Route::resource('genres', 'GenresController');
 
 Route::resource('tvshows', 'TvshowsController');
 Route::resource('reviews', 'ReviewsController');
-
 
