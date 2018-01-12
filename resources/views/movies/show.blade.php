@@ -23,22 +23,19 @@
     @endforeach
     </p>
     <h2>Actors</h2>
+    @foreach($item->actors as $actor)
     @foreach($item->characters as $character)
        @foreach($character->actor as $actor)
-            <h1>{{$character->character}}</h1>
-       @endforeach
-    @endforeach
-    @foreach($item->actors as $actor)
-    <p>{{$actor->name}}</p>
+    <p>{{$actor->name}} as {{$character->character}} </p>
     <img src="{{$actor->profile_pic}}">
+    @endforeach
+    @endforeach
+    @break
     @endforeach
     <h2>Directors</h2>
     @foreach($item->directors as $director)
     <p>{{$director->name}}</p>
     <img src="{{$director->profile_pic}}">
     @endforeach 
-    <!--@foreach($reviews as $review)
-    <p>{{$review->body}}</p>
-    @endforeach-->
 </body>
 </html>
