@@ -19,6 +19,9 @@
 
           <!-- Series -->
           <li><a href="{{  backpack_url('tvshow') }}"><i class="fa fa-television"></i> <span>Tv shows</span></a></li>
+
+          <!-- Genres -->
+          <li><a href="{{  backpack_url('genre') }}"><i class="fa fa-map-signs"></i> <span>Genres</span></a></li>
           
           <!-- Users -->
           <li><a href="{{  backpack_url('user') }}"><i class="fa fa-users"></i> <span>Users</span></a></li>
