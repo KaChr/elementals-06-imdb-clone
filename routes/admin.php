@@ -6,3 +6,7 @@ CRUD::resource('movie', 'MovieCrudController');
 CRUD::resource('tvshow', 'TvShowCrudController');
 
 CRUD::resource('user', 'UserCrudController');
+
+CRUD::resource('item', 'ItemCrudController');
+
+CRUD::resource('review', 'ReviewCrudController');
