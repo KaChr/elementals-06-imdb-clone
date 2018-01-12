@@ -19,7 +19,7 @@ $curl = curl_init();
                  'fifty+shades+darker',
                  'movie+43',
                  'the+lost+empire',
-                 'the+girl+next+door',
+                 'the+matrix',
                  'the+disaster+artist',
                  'the+room',
              ];
@@ -145,12 +145,13 @@ $curl = curl_init();
                         
                    $profile_url = "http://image.tmdb.org/t/p/w185";
                    $cast_i = 0;
-                    foreach($movie_credits->cast as $index => $actor) {
+                    foreach($movie_credits->cast as $index => $actors) {
                         $cast_i ++;
                             if($cast_i >= 7){
                                 break;
                             }
-                        $actor = $actor->name;
+                        $actor = $actors->name;
+                        $character = $actors->character;
                         //inserting actor content into people table, storing name, date of birth and city
                         $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
                         if(!isset($query[0])){
@@ -164,19 +165,28 @@ $curl = curl_init();
                                 ]);
         
                         }
+                        $query_character = DB::table('characters')->select('character')->where('character', '=', $character)->get();
+                            DB::table('characters')->insert([
+                                'character' => $character
+                            ]);
+                        $query_character = DB::table('characters')->select('id')->latest('id')->get();
+                        
                         //inserting movie id and person id(actor) in our pivot table
                         $query = DB::table('people')->select('id')->where('name', '=', $actor)->get();
                         if(isset($query[0])){
-                            $queryPivot = DB::table('actor_item')->select('person_id')->where('item_id', '=', $i)->
-                            where('person_id', '=', $query[0]->id)->get();
+                            $queryPivot = DB::table('actor_character_item')->select('person_id')->where('item_id', '=', $i)->
+                            where('person_id', '=', $query[0]->id)->where('character_id', '=', $query[0]->id)->get();
                         }
+
                         if(!isset($queryPivot[0])){
-                            DB::table('actor_item')->insert([
+                            DB::table('actor_character_item')->insert([
                                 'item_id' => $i,
-                                'person_id' => $query[0]->id
+                                'person_id' => $query[0]->id,   
+                                'character_id' => $query_character[0]->id
                                 ]);
         
                         }
+                        
                     } 
         
                     //$directors = explode(", ", $obj->Director);
