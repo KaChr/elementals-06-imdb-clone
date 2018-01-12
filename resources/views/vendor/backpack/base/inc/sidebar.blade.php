@@ -20,6 +20,12 @@
           <!-- Series -->
           <li><a href="{{  backpack_url('tvshow') }}"><i class="fa fa-television"></i> <span>Tv shows</span></a></li>
 
+          <!-- Seasons -->
+          <li><a href="{{  backpack_url('season') }}"><i class="fa fa-cloud"></i> <span>Seasons</span></a></li>
+
+          <!-- Episodes -->
+          <li><a href="{{  backpack_url('episode') }}"><i class="fa fa-road"></i> <span>Episodes</span></a></li>
+
           <!-- Genres -->
           <li><a href="{{  backpack_url('genre') }}"><i class="fa fa-map-signs"></i> <span>Genres</span></a></li>
           
@@ -27,10 +33,10 @@
           <li><a href="{{  backpack_url('user') }}"><i class="fa fa-users"></i> <span>Users</span></a></li>
 
           <!-- Comments -->
-          <li><a href="{{  backpack_url('comment') }}"><i class="fa fa-keyboard-o"></i> <span>Comments</span></a></li>
+          <li><a href="{{  backpack_url('comment') }}"><i class="fa fa-comments"></i> <span>Comments</span></a></li>
 
           <!-- Reviews -->
-          <li><a href="{{  backpack_url('review') }}"><i class="fa fa-pencil"></i> <span>Reviews</span></a></li>
+          <li><a href="{{  backpack_url('review') }}"><i class="fa fa-keyboard-o"></i> <span>Reviews</span></a></li>
 
           <!-- Items -->
           <li><a href="{{  backpack_url('item') }}"><i class="fa fa-tag"></i> <span>Items</span></a></li>
