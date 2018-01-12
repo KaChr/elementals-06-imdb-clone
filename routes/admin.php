@@ -13,3 +13,5 @@ CRUD::resource('review', 'ReviewCrudController');
 
 CRUD::resource('genre', 'GenreCrudController');
 
+CRUD::resource('comment', 'CommentCrudController');
+
