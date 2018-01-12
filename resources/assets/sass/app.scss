@@ -451,6 +451,8 @@ footer.footer__logo {
     opacity:0;
     text-align: center;
     overflow:hidden;
+    bottom:25%;
+    transform: translateY(25%);
 }
 
 .spotlight__poster {
@@ -469,6 +471,8 @@ footer.footer__logo {
     &:hover {
 
         .spotlight__info {
+            bottom:50%;
+            transform: translateY(50%);
             opacity: 1;
         }
 
