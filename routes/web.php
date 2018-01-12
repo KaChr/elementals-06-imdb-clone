@@ -12,7 +12,6 @@
 */
 
 Route::get('/', function () {
-
     return view('splash');
 });
 
@@ -33,7 +32,6 @@ return view('tvshowz');
 Route::get('/components', function () {
 
     return view('components');
-    
 });
 
 Route::get('/profilepage', function () {
@@ -43,10 +41,6 @@ Route::get('/profilepage', function () {
 Route::get('/item', function () {
     return view('item-page');   
 });
-           
-// Route::get('/home', function () {
-//     return view('home');
-// });
 
 Auth::routes();
 

@@ -4,37 +4,39 @@
         <a href="#">VIEW ALL</a>
     </div>
     <span class="divider__line"></span>
-</div>
-<section class="columns">
-@forelse ($reviews->slice(0, 2) as $review)
-    <div class="column">
-        <div class="columns is-mobile">
-            <div class="column is-two-fifths-mobile">
-                <div class="review__poster">
-                    <span class="review__rating">{{$review->rating}}</span>
-                    <img src="{{$poster}}" alt="">
+</div>e
+@foreach($reviews as $index => $review)
+    @if($index % 2 === 0)
+    <section class="columns">
+    @endif
+        <div class="column">
+            <div class="columns is-mobile">
+                <div class="column is-two-fifths-mobile is-3-desktop">
+                    <a href="">  
+                        <div class="review__poster">
+                            <span class="review__rating">{{ $review->review_rating }}</span>
+                            <img src="{{ $review->poster }}" alt="">
+                        </div>
+                    </a>
                 </div>
-            </div>
-            <div class="column">
-                <div class="review__info is-flex">
-                    <span class="review__avatar">
-                        <!-- TODO FIX THIS <img src="{{-- $review->author->avatar --}}" alt="avatar"> -->
-                        <img src="{{Auth::user()->avatar}}" alt="avatar">
-                    </span>
-                    <div>
-                        <h4 class="review__title">{{$review->title}}</h4>
-                        <!-- TODO: FIX THIS <p class="review__author">by {{-- $review->author->name --}}</p> -->
-                        <p class="review__author">by {{Auth::user()->name}}</p>
+                <div class="column">
+                    <div class="review__info is-flex">
+                        <span class="review__avatar">
+                            <img src="https://avatars1.githubusercontent.com/u/24225542?s=460&v=4" alt="avatar">
+                        </span>
+                        <div>
+                            <h4 class="review__title">{{ $review->title }}</h4>
+                            <p class="review__author">{{ $review->name }}</p>
+                        </div>
                     </div>
-                </div>
-                <p>
-                    {{$review->body}}
-                </p>
-                <button class="button button--small button--solid-yellow">READ MORE</button>
-            </div>  
+                    <p class="review__body">
+                        {{ $review->body }}
+                    </p>
+                    <button class="button button--small button--solid-yellow">READ MORE</button>
+                </div>  
+            </div>
         </div>
-    </div>
-@empty
-    <p>No reviews</p>
-@endforelse
-</section>
+    @if($index % 2 !== 0)
+    </section>
+    @endif
+@endforeach
