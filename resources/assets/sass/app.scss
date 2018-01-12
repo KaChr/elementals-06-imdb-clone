@@ -442,19 +442,23 @@ footer.footer__logo {
 }
 
 .spotlight__info {
-    z-index: 1;
+    z-index: 3;
     position:absolute;
-    align-self:flex-end;
+    align-self:center;
     max-width: 160px;
     $infoWidth: 100%;
     transition: all 0.3s ease;
     opacity:0;
+    text-align: center;
+    overflow:hidden;
 }
 
 .spotlight__poster {
     display:flex;
     justify-content: center;
     overflow:hidden;
+    position:relative;
+    cursor: pointer;
     
     img {
         max-height: 356px !important; 
@@ -463,9 +467,17 @@ footer.footer__logo {
     }
 
     &:hover {
+
         .spotlight__info {
             opacity: 1;
         }
+
+        .spotlight__image {
+            max-height: 356px !important; 
+            position:relative;
+            @include color-overlay(#000, 0.5)
+        }
+ 
     }
 
 }

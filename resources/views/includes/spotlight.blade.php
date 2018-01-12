@@ -7,7 +7,9 @@
                 <h4>{{ $spotlight->title }}</h4>
             </div>
             <a href="/movies/{{ $spotlight->item_id }}">
-                <img src="{{ $spotlight->poster }}" alt="{{ $spotlight->title }}">
+                <div class="spotlight__image">
+                    <img src="{{ $spotlight->poster }}" alt="{{ $spotlight->title }}">
+                </div>
             </a>
         </div>
         @endforeach
