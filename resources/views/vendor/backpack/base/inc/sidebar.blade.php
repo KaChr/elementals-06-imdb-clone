@@ -23,6 +23,12 @@
           <!-- Users -->
           <li><a href="{{  backpack_url('user') }}"><i class="fa fa-users"></i> <span>Users</span></a></li>
 
+          <!-- Reviews -->
+          <li><a href="{{  backpack_url('review') }}"><i class="fa fa-pencil"></i> <span>Reviews</span></a></li>
+
+          <!-- Items -->
+          <li><a href="{{  backpack_url('item') }}"><i class="fa fa-tag"></i> <span>Items</span></a></li>
+
           <!-- File manager -->
           <li><a href="{{  backpack_url('elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
 
