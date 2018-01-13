@@ -1,15 +1,13 @@
 @extends('layouts.app')
 @section('content')
-
 <div class="item">
-    <section class="hero featured" style="background-image: url('{{$movie->movieBackdrop}}')">
+    <section class="hero featured" style="background-image: url('https://image.tmdb.org/t/p/original/mFb0ygcue4ITixDkdr7wm1Tdarx.jpg')">
         <div class="hero-body is-flex">
             <div class="featured__content--bottom is-flex">
                 <div class="featured__info">
-                    @include('includes.rating', ['rating' => $movie->rating])       
+                    @include('includes.rating')       
                     <p class="featured__info-year">2014</p>
-                    <p class="featured__info-runtime">{{$movie->runtime}}</p>
-                    <h1 class="featured__info-title">{{$movie->title}}</h1>
+                    <h1 class="featured__info-title">JOHN WICK</h1>
                     <ul class="featured__info__actions">
                         <li>
                             <button class="button button--small button--border-blue" type="button">
@@ -21,37 +19,29 @@
                         </li>
                         <li><button class="button button--small button--border-blue" type="button">TRAILER</button></li>
                     </ul>
-                    <span class="featured__info-genre">
-                        @foreach($item->genres as $genre)
-                            {{ $loop->first ? '' : ', '}}
-                            {{$genre->genre_title}}
-                        @endforeach
-                    </span>
+                    <span class="featured__info-genre">ACTION, THRILLER</span>
                 </div>
             </div>
         </div> 
     </section>
     <section class="plot">
         <div class="container">
-            <img class="plot__poster-img" src="{{$movie->poster}}" alt="Movie poster">
+            <img class="plot__poster-img" src="//www.impawards.com/2014/posters/john_wick_xlg.jpg" alt="Movie poster">
             <article class="plot__text">
                 <h4>PLOT SUMMARY</h4>
-                <p>{{$movie->summary}}</p>
+                <p>Ex-hitman John Wick comes out of retirement to track down the gangsters that took everything from him.</p>
                 <button class="button button--small button--outline-blue" type="button">READ MORE</button>
             </article>
         </div>
     </section>
     <section class="cast-crew">
         <div class="container">
-            @include('includes.person', [
-                'actors' => $item->actors, 
-                'directors' => $item->directors
-            ])
+            @include('includes.person')
         </div>
     </section>
     <section class="reviews">
         <div class="container">
-            @include('includes.reviews', ['reviews' => $reviews, 'poster' => $movie->poster])
+            @include('includes.reviews')
         </div>
     </section>
 </div>

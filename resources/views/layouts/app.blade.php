@@ -2,10 +2,8 @@
 <html lang="{{ app()->getLocale() }}">
     @include('includes.head')
     <body>
-        <div id="app">
-            @include('includes.navigation')
-            @yield('content')
-            @include('includes/footer')
-        </div>
+        @include('includes.navigation')
+        @yield('content')
+        @include('includes/footer')
     </body>
 </html>

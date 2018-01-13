@@ -12,7 +12,6 @@
 */
 
 Route::get('/', function () {
-
     return view('splash');
 });
 
@@ -33,7 +32,6 @@ return view('testing');
 Route::get('/components', function () {
 
     return view('components');
-    
 });
 
 Route::get('/profilepage', function () {
@@ -47,6 +45,9 @@ Route::get('/movies', function () {
 // Route::get('/home', function () {
 //     return view('home');
 // });
+Route::get('/item', function () {
+    return view('item-page');   
+});
 
 Auth::routes();
 

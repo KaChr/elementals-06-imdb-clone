@@ -43,34 +43,20 @@ class MoviesController extends Controller
        //
    }
 
-   /**
-    * Display the specified resource.
-    *
-    * @param  \App\Movie  $movie
-    * @return \Illuminate\Http\Response
-    */
-   public function show(Movie $movie)
-   {
-       //
-       //$movie = Movie::where('id', $movie->id)->first();
-       $id = $movie->item_id;
-       $movie = Movie::find($id);
-       $item = Item::find($id);
-
-       //$reviews = Review::where('item_id','=',$id)->get();
-       return view('movies.show', ['movie'=>$movie, 'item'=>$item]);
-   }
-
-   /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\Movie  $movie
-    * @return \Illuminate\Http\Response
-    */
-   public function edit(Movie $movie)
-   {
-       //
-   }
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Movie  $movie
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Movie $movie)
+    {
+        $id = $movie->item_id;
+        $movie = Movie::find($id);
+        $item = Item::find($id);
+        $reviews = Review::orderBy('created_at', 'desc')->where('item_id', $id)->limit(4)->get();
+        return view('movies.show', ['movie'=>$movie, 'item'=>$item, 'reviews'=>$reviews]);
+    }
 
    /**
     * Update the specified resource in storage.
