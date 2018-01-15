@@ -195,11 +195,11 @@
                 //inserting movie id and person id(actor) in our pivot table
                 $query = DB::table('people')->select('id')->where('name', '=', $actor)->get();
                 if(isset($query[0])){
-                    $queryPivot = DB::table('actor_item')->select('person_id')->where('item_id', '=', $i)->
+                    $queryPivot = DB::table('actor_character_item')->select('person_id')->where('item_id', '=', $i)->
                     where('person_id', '=', $query[0]->id)->get();
                 }
                 if(!isset($queryPivot[0])){
-                    DB::table('actor_item')->insert([
+                    DB::table('actor_character_item')->insert([
                         'item_id' => $i,
                         'person_id' => $query[0]->id
                         ]);
