@@ -1,14 +1,22 @@
 /* Charts Styling using grid. */
 .charts__titles {
     padding-left: 15px;
+    width: 100%;
+    margin: 0 auto;
+}
+div#chart-buttons {
+    width: 60%;
+    margin: 8px auto;
+    a {
+        padding: auto 3px;
+    }
+    h6 {
+        margin-bottom: 6px;
+    }
 }
 
-#chart-buttons {
-    width: 60%;
-    margin: 12px auto;
-}
 div.grid-chart {
-    margin: 0 auto;
+    margin: 4px auto;
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 60px repeat(2, 1fr);
@@ -44,19 +52,28 @@ div.grid-chart {
 }
 
 @media only screen and (max-width: 1024px) {
-    div.grid-chart && #chart-buttons {
+    div#chart-buttons {
+        width: 65%;
+    }
+    div.grid-chart {
         width: 65%;
     }
 }
 
 @media only screen and (max-width: 768px) {
-    div.grid-chart && #chart-buttons {
+    div#chart-buttons {
+        width: 85%;
+    }
+    div.grid-chart {
         width: 85%;
     }
 }
 
 @media only screen and (max-width: 425px) {
-    div.grid-chart && #chart-buttons {
+    div#chart-buttons {
+        width: 85%;
+    }
+    div.grid-chart {
         width: 85%;
         h5 {
             font-size: 1em;
@@ -65,13 +82,19 @@ div.grid-chart {
 }
 
 @media only screen and (max-width: 375px) {
-    div.grid-chart && #chart-buttons {
+    div#chart-buttons {
+        width: 90%;
+    }
+    div.grid-chart {
         width: 90%;
     }
 }
 
 @media only screen and (max-width: 340px) {
-    div.grid-chart && #chart-buttons {
+    div#chart-buttons {
+        width: 95%;
+    }
+    div.grid-chart {
         width: 95%;
     }
 }
