@@ -49,7 +49,7 @@
             ])
         </div>
     </section>
-    <section class="reviews">
+    <section class="section reviews">
         <div class="container">
             @include('includes.reviews', ['reviews' => $reviews, 'poster' => $movie->poster])
         </div>

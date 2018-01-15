@@ -4,7 +4,7 @@
         <a href="#">VIEW ALL</a>
     </div>
     <span class="divider__line"></span>
-</div>e
+</div>
 @foreach($reviews as $index => $review)
     @if($index % 2 === 0)
     <section class="columns">
