@@ -1,7 +1,7 @@
 <html lang="{{ app()->getLocale() }}">
     @include('includes.head')
     <body>
-        @include('includes/navigation')
+        @include('includes.navigation')
         <h3 class="charts__titles">IMDb Charts</h3>
         <h3 class="charts__titles">Top Rated Movies</h3>
         <h5 class="charts__titles">Top 20 as rated by IMDb Users</h5>
@@ -21,6 +21,6 @@
                     </div>
                 </div> 
             @endforeach 
-        @include('includes/footer')
+        @include('includes.footer')
     </body>
 </html>

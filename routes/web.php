@@ -24,10 +24,7 @@ Route::get('/omdb', function () {
         
     return view('omdb');
 });
-Route::get('/testing', function () {
-    
-return view('testing');
-});
+
 
 Route::get('/components', function () {
 

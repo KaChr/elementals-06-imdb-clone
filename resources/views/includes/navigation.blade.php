@@ -15,7 +15,7 @@
             <a class="navbar-item" href="#">
                 Home
             </a>
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="/movies">
                 Top 250
             </a>
             <a class="navbar-item" href="#">
