@@ -24,12 +24,18 @@
     </p>
     <h2>Actors</h2>
     @foreach($item->actors as $actor)
-    <p>{{$actor->name}}</p>
+    @foreach($item->characters as $character)
+       @foreach($character->actor as $actor)
+    <p>{{$actor->name}} as {{$character->character}}</p>
     <img src="{{$actor->profile_pic}}">
+    @endforeach
+    @endforeach
+    @break
     @endforeach
     <h2>Directors</h2>
     @foreach($item->directors as $director)
     <p>{{$director->name}}</p>
+    <img src="{{$director->profile_pic}}">
     @endforeach 
 </body>
 </html>

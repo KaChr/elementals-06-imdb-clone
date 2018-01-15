@@ -174,16 +174,18 @@
            $profile_url = "http://image.tmdb.org/t/p/w185";
 
             $cast_i = 0;
-            foreach($tv_credits->cast as $index => $actor){
+            foreach($tv_credits->cast as $index => $actors) {
                 $cast_i ++;
-                        if($cast_i >= 7){
-                            break;
-                        }
-                $actor = $actor->name;
+                    if($cast_i >= 7){
+                        break;
+                    }
+                $actor = $actors->name;
+                $character = $actors->character;
                 //inserting actor content into people table, storing name, date of birth and city
                 $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
-                $prof_pic = $tv_credits->cast[$index]->profile_path;
                 if(!isset($query[0])){
+                    $prof_pic = $tv_credits->cast[$index]->profile_path;
+                    //echo "<img src='http://image.tmdb.org/t/p/w185{$prof_pic}'>";
                     DB::table('people')->insert([
                         'name' => $actor,
                         'dob' => date('Y-m-d'),
@@ -192,54 +194,72 @@
                         ]);
 
                 }
+                $query_character = DB::table('characters')->select('character')->where('character', '=', $character)->get();
+                    DB::table('characters')->insert([
+                        'character' => $character
+                    ]);
+                $query_character = DB::table('characters')->select('id')->latest('id')->get();
+
+
                 //inserting movie id and person id(actor) in our pivot table
                 $query = DB::table('people')->select('id')->where('name', '=', $actor)->get();
                 if(isset($query[0])){
                     $queryPivot = DB::table('actor_character_item')->select('person_id')->where('item_id', '=', $i)->
-                    where('person_id', '=', $query[0]->id)->get();
+                    where('person_id', '=', $query[0]->id)->where('character_id', '=', $query[0]->id)->get();
                 }
                 if(!isset($queryPivot[0])){
                     DB::table('actor_character_item')->insert([
                         'item_id' => $i,
-                        'person_id' => $query[0]->id
+                        'person_id' => $query[0]->id,
+                        'character_id' => $query_character[0]->id
                         ]);
 
                 }
-            } 
+            }  
 
-            $directors = explode(", ", $obj->Writer);
-            foreach($directors as $director){
-                /*inserting content of people in database. name, date of birth, city(maybe will regret from getting
-                 cause of lack of info in APIs)*/
-                $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
-                //if we have the data in table rows then it will not store it anymore(no duplicates)
-                if(!isset($query[0])){
-                    DB::table('people')->insert([
-                        'name' => $director,
-                        'dob' => date('Y-m-d'),
-                        'city' => 'random'
-                        ]);
+            $cast_i = 0;
+                    foreach($tv_credits->crew as $index => $director){
+                        $cast_i ++;
+                            if($cast_i >= 2){
+                                break;
+                            }
+                            $director = $director->name;
+                        /*inserting content of people in database. name, date of birth, city(maybe will regret from getting
+                         cause of lack of info in APIs)*/
+                        $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
+                        //if we have the data in table rows then it will not store it anymore(no duplicates)
+                        if(!isset($query[0])){
+                            $director_pic = $tv_credits->crew[$index]->profile_path;
+                            DB::table('people')->insert([
+                                'name' => $director,
+                                'dob' => date('Y-m-d'),
+                                'city' => 'random',
+                                'profile_pic' => $profile_url . $director_pic
+                                ]);
+        
+                        }
+                        //inserting the id of movie and the id of person(in this case director) into Database
+                        $query = DB::table('people')->select('id')->where('name', '=', $director)->get();
+                        if(isset($query[0])){
+                            $queryPivot = DB::table('director_item')->select('person_id')->where('item_id', '=', $i)->
+                            where('person_id', '=', $query[0]->id)->get();
+                        }
+                        //if we have the data in table rows then it will not store it anymore(no duplicates)
+                        if(!isset($queryPivot[0])){
+                            DB::table('director_item')->insert([
+                                'item_id' => $i,
+                                'person_id' => $query[0]->id
+                                ]);
+        
+                        }
+                    }
+           
+                    $i++;
+        
+                }
 
-                }
-                //inserting the id of movie and the id of person(in this case director) into Database
-                $query = DB::table('people')->select('id')->where('name', '=', $director)->get();
-                if(isset($query[0])){
-                    $queryPivot = DB::table('director_item')->select('person_id')->where('item_id', '=', $i)->
-                    where('person_id', '=', $query[0]->id)->get();
-                }
-                //if we have the data in table rows then it will not store it anymore(no duplicates)
-                if(!isset($queryPivot[0])){
-                    DB::table('director_item')->insert([
-                        'item_id' => $i,
-                        'person_id' => $query[0]->id
-                        ]);
-
-                }
             }
-            $i++;
+    
         }
-
-        }
-    }
     }
     curl_close($curl);

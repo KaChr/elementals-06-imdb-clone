@@ -189,40 +189,49 @@ class MoviesFromApi extends Command
                         
                    $profile_url = "http://image.tmdb.org/t/p/w185";
                    $cast_i = 0;
-                    foreach($movie_credits->cast as $index => $actor) {
-                        $cast_i ++;
-                            if($cast_i >= 7){
-                                break;
-                            }
-                        $actor = $actor->name;
-                        //inserting actor content into people table, storing name, date of birth and city
-                        $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
-                        if(!isset($query[0])){
-                            $prof_pic = $movie_credits->cast[$index]->profile_path;
-                            //echo "<img src='http://image.tmdb.org/t/p/w185{$prof_pic}'>";
-                            DB::table('people')->insert([
-                                'name' => $actor,
-                                'dob' => date('Y-m-d'),
-                                'city' => 'random',
-                                'profile_pic' => $profile_url . $prof_pic
-                                ]);
-        
+                   foreach($movie_credits->cast as $index => $actors) {
+                    $cast_i ++;
+                        if($cast_i >= 7){
+                            break;
                         }
-                        //inserting movie id and person id(actor) in our pivot table
-                        $query = DB::table('people')->select('id')->where('name', '=', $actor)->get();
-                        if(isset($query[0])){
-                            $queryPivot = DB::table('actor_character_item')->select('person_id')->where('item_id', '=', $i)->
-                            where('person_id', '=', $query[0]->id)->get();
-                        }
-                        if(!isset($queryPivot[0])){
-                            DB::table('actor_character_item')->insert([
-                                'item_id' => $i,
-                                'person_id' => $query[0]->id
-                                ]);
-        
-                        }
-                    } 
-        
+                    $actor = $actors->name;
+                    $character = $actors->character;
+                    //inserting actor content into people table, storing name, date of birth and city
+                    $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
+                    if(!isset($query[0])){
+                        $prof_pic = $movie_credits->cast[$index]->profile_path;
+                        //echo "<img src='http://image.tmdb.org/t/p/w185{$prof_pic}'>";
+                        DB::table('people')->insert([
+                            'name' => $actor,
+                            'dob' => date('Y-m-d'),
+                            'city' => 'random',
+                            'profile_pic' => $profile_url . $prof_pic
+                            ]);
+    
+                    }
+                    $query_character = DB::table('characters')->select('character')->where('character', '=', $character)->get();
+                        DB::table('characters')->insert([
+                            'character' => $character
+                        ]);
+                    $query_character = DB::table('characters')->select('id')->latest('id')->get();
+
+
+                    //inserting movie id and person id(actor) in our pivot table
+                    $query = DB::table('people')->select('id')->where('name', '=', $actor)->get();
+                    if(isset($query[0])){
+                        $queryPivot = DB::table('actor_character_item')->select('person_id')->where('item_id', '=', $i)->
+                        where('person_id', '=', $query[0]->id)->where('character_id', '=', $query[0]->id)->get();
+                    }
+                    if(!isset($queryPivot[0])){
+                        DB::table('actor_character_item')->insert([
+                            'item_id' => $i,
+                            'person_id' => $query[0]->id,
+                            'character_id' => $query_character[0]->id
+                            ]);
+    
+                    }
+                } 
+                
                     //$directors = explode(", ", $obj->Director);
                     $cast_i = 0;
                     foreach($movie_credits->crew as $index => $director){
