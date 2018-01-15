@@ -36,7 +36,7 @@ Route::get('/profilepage', function () {
 });
 
 Route::get('/movies', function () {
-    return view('movies');   
+    return view('/');   
 });
            
 // Route::get('/home', function () {

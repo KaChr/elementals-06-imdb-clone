@@ -3,6 +3,10 @@
     padding-left: 15px;
 }
 
+#chart-buttons {
+    width: 60%;
+    margin: 12px auto;
+}
 div.grid-chart {
     margin: 0 auto;
     display: grid;
@@ -14,10 +18,11 @@ div.grid-chart {
         color: $pale-silver;
     }
     img.posters {
-        height: 75px;
+        height: 95px;
+        width: 60px;
     }
     h5 {
-        padding-top: 5%;
+        padding-top: 8%;
         font-weight: 500;
         font-size: 1.3em;
     }
@@ -39,19 +44,19 @@ div.grid-chart {
 }
 
 @media only screen and (max-width: 1024px) {
-    div.grid-chart {
+    div.grid-chart && #chart-buttons {
         width: 65%;
     }
 }
 
 @media only screen and (max-width: 768px) {
-    div.grid-chart {
+    div.grid-chart && #chart-buttons {
         width: 85%;
     }
 }
 
 @media only screen and (max-width: 425px) {
-    div.grid-chart {
+    div.grid-chart && #chart-buttons {
         width: 85%;
         h5 {
             font-size: 1em;
@@ -60,13 +65,13 @@ div.grid-chart {
 }
 
 @media only screen and (max-width: 375px) {
-    div.grid-chart {
+    div.grid-chart && #chart-buttons {
         width: 90%;
     }
 }
 
 @media only screen and (max-width: 340px) {
-    div.grid-chart {
+    div.grid-chart && #chart-buttons {
         width: 95%;
     }
 }
