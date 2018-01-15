@@ -53,8 +53,19 @@ class MoviesController extends Controller
     {
         $id = $movie->item_id;
         $movie = Movie::find($id);
-        $item = Item::find($id);
         $reviews = Review::orderBy('created_at', 'desc')->where('item_id', $id)->limit(4)->get();
+        
+        // item -> actors -> characters
+        // $item->actors as $actor
+        // $actor->character
+
+        $item = Item::find($id)
+                ->leftJoin('actor_character_item', 'id', '=', 'actor_character_item.item_id')
+                ->leftJoin('characters as character', 'character.id', '=', 'actor_character_item.character_id')
+                ->leftJoin('people as actor', 'actor.id', '=', 'actor_character_item.person_id')
+                ->where('item_id', $id)
+                ->get();
+
         return view('movies.show', ['movie'=>$movie, 'item'=>$item, 'reviews'=>$reviews]);
     }
 

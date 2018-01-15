@@ -22,7 +22,7 @@
                         <li><button class="button button--small button--border-blue" type="button">TRAILER</button></li>
                     </ul>
                     <span class="featured__info-genre">
-                        @foreach($item->genres as $genre)
+                        @foreach($item[0]->genres as $genre)
                             {{ $loop->first ? '' : ', '}}
                             {{$genre->genre_title}}
                         @endforeach
@@ -44,8 +44,8 @@
     <section class="cast-crew">
         <div class="container">
             @include('includes.person', [
-                'actors' => $item->actors, 
-                'directors' => $item->directors
+                'actors' => $item[0]->actors, 
+                'directors' => $item[0]->directors
             ])
         </div>
     </section>

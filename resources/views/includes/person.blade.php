@@ -7,8 +7,8 @@
 </div>
 <section class="columns">
     <!-- TODO: Figure out how to continue looping after two -->
-    @forelse($actors->slice(0, 2) as $actor)    
-    <div class="column is-half-desktop">
+    @forelse($item as $actor)    
+    <div class="column">
         <div class="columns is-mobile">
             <div class="column is-narrow">
                 <div class="person__avatar">
@@ -17,8 +17,8 @@
             </div>
             <div class="column">
                 <div>
-                    <h4 class="person__name">{{$actor->name}}</h4>
-                    <p class="p__fig">as {-- TODO: {$actor->role --}}</p>
+                    <h4 class="person__name">{{$actor->name }}</h4>
+                    <p class="p__fig">as {{ $actor->character }}</p>
                 </div>
             </div>
         </div>
