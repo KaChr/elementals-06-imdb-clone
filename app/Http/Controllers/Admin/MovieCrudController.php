@@ -7,6 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\MovieRequest as StoreRequest;
 use App\Http\Requests\MovieRequest as UpdateRequest;
+use DB;
 
 class MovieCrudController extends CrudController
 {
@@ -102,10 +103,29 @@ class MovieCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        $redirect_location = parent::storeCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
+
+        DB::table('items')->insert([
+            'type' => 'movie'
+        ]);
+
+        $id = DB::getPdo()->lastInsertId();
+        DB::table('movies')->insert([
+            'item_id' => $id,
+            'title' => $request->title,
+            'summary' => $request->summary,
+            'release_date' => date('Y-m-d', strtotime($request->release_date)),
+            'runtime' => $request->runtime,
+            'rating' => $request->rating,
+            'poster' => $request->poster
+        ]);
+
+        return redirect('/admin/movie');
+
+        //return Redirect::back(); // ish
+        // $redirect_location = parent::storeCrud($request);
+        // // your additional operations after save here
+        // // use $this->data['entry'] or $this->crud->entry
+        // return $redirect_location;
     }
 
     public function update(UpdateRequest $request)
