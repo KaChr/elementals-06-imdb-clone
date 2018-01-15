@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Movie;
 use App\Item;
 use App\Review;
-
 use Illuminate\Http\Request;
 
 class MoviesController extends Controller
@@ -17,9 +16,9 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        //
-        $movies = Movie::all();
-
+        //$movies = Movie::all();
+        
+        $movies = Movie::latest('rating')->get();
         return view('movies.index', ['movies'=>$movies]);
     }
 
