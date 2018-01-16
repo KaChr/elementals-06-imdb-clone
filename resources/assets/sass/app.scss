@@ -437,7 +437,7 @@ footer.footer__logo {
     z-index: 0;
     background-size:cover;
     
-    @include color-overlay(#000, 0.8);
+    @include color-overlay(#000, 0.8, -1);
 }
 
 .user__info {
@@ -510,7 +510,7 @@ footer.footer__logo {
         .spotlight__image {
             max-height: 356px !important; 
             position:relative;
-            @include color-overlay(#000, 0.5)
+            @include color-overlay(#000, 0.5, 1)
         }
  
     }
