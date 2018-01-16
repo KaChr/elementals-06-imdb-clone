@@ -14,7 +14,7 @@ class Person extends Model
 
     public function itemsActor()
     {
-        return $this->belongsToMany('App\Item', 'actor_item');
+        return $this->belongsToMany('App\Item', 'actor_character_item');
     }
 
     public function itemsDirector()
@@ -25,5 +25,10 @@ class Person extends Model
     public function roles()
     {
         return $this->hasOne('App\Role');
+    }
+
+    public function characters()
+    {
+        return $this->belongsToMany('App\Character', 'actor_character_item');
     }
 }

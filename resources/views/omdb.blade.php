@@ -1,50 +1,5 @@
 <?php
-
-namespace App\Console\Commands;
-
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
-use App\Movie;
-use App\Item;
-
-class MoviesFromApi extends Command
-{
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'api:movies';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Connects to themoviedb API and fetches movies and feeds the data into your database';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    { 
-
-        $curl = curl_init();
+$curl = curl_init();
              //array of movies
              $movies = [
                  'it',
@@ -159,6 +114,7 @@ class MoviesFromApi extends Command
                             'movieBackdrop'=>$backdrop_url . $movieBackdrop->backdrop_path
                             ]);
                         }
+                        //$query = DB::table('movies')->orderBy('rating', 'DESC')->get();
                     //getting the genres of the film, exploiting it and storing in databse
                     $genres = explode(", ", $obj->Genre);
                     //storing the content of movie into database
@@ -214,22 +170,23 @@ class MoviesFromApi extends Command
                                 'character' => $character
                             ]);
                         $query_character = DB::table('characters')->select('id')->latest('id')->get();
-
-
+                        
                         //inserting movie id and person id(actor) in our pivot table
                         $query = DB::table('people')->select('id')->where('name', '=', $actor)->get();
                         if(isset($query[0])){
                             $queryPivot = DB::table('actor_character_item')->select('person_id')->where('item_id', '=', $i)->
                             where('person_id', '=', $query[0]->id)->where('character_id', '=', $query[0]->id)->get();
                         }
+
                         if(!isset($queryPivot[0])){
                             DB::table('actor_character_item')->insert([
                                 'item_id' => $i,
-                                'person_id' => $query[0]->id,
+                                'person_id' => $query[0]->id,   
                                 'character_id' => $query_character[0]->id
                                 ]);
         
                         }
+                        
                     } 
         
                     //$directors = explode(", ", $obj->Director);
@@ -277,14 +234,3 @@ class MoviesFromApi extends Command
                 }
             }
             curl_close($curl);
-            
- echo (PHP_EOL);
- echo '##############################';
- echo (PHP_EOL); 
- echo 'movies added successfully!';
- echo (PHP_EOL); 
- echo '##############################';
- echo (PHP_EOL);
-}
- //Echo success
-}
