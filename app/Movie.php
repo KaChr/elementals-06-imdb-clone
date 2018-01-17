@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Movie extends Model
 {
+    use Sortable;
     //
     protected $fillable = [
         'item_id',
@@ -17,6 +19,7 @@ class Movie extends Model
         'poster'
     ];
 
+    public $sortable = ['title', 'rating', 'release_date'];
     protected $primaryKey = 'item_id';
     
     public $incrementing = [false];

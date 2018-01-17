@@ -18,7 +18,7 @@ class MoviesController extends Controller
    {
        //
        //$movies = Movie::all();
-       $movies = Movie::latest('rating')->get();
+       $movies = Movie::sortable()->paginate(100);
        return view('movies.index', ['movies'=>$movies]);
    }
 

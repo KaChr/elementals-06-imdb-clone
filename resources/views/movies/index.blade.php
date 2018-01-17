@@ -6,10 +6,10 @@
         <hr>
         <div id="chart-buttons">
             <h6>Sort By</h6>
-            <a class="small-button-green">Name</a>
-            <a class="small-button-green">Rating</a>
-            <a class="small-button-green">Release Date</a>
-            <a class="small-button-green">Genre</a>
+            <span>@sortablelink('title')</span>
+            <span>@sortablelink('rating')</span>
+            <span>@sortablelink('release_date')</span>
+
         </div>
             @foreach($movies->slice(0, 100) as $movie)
                     <div class="grid-chart">
