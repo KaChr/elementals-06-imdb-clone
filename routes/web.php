@@ -42,8 +42,8 @@ Route::get('/item', function () {
     return view('item-page');   
 });
 
-Route::get('/login', function () {
-    return view('login');
+Route::get('/watchlist', function () {
+    return view('watchlist');   
 });
 
 Auth::routes();
