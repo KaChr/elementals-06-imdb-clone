@@ -27,7 +27,7 @@ class UserCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-
+        $this->crud->denyAccess(['standard']);
         $this->crud->setFromDb();
 
         // ------ CRUD FIELDS

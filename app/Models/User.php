@@ -15,6 +15,11 @@ class User extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function isAdmin()
+{
+    return $this->admin; // this looks for an admin column in your users table
+}
+
     //protected $table = 'users';
     //protected $primaryKey = 'id';
     // public $timestamps = false;

@@ -53,3 +53,15 @@ Route::resource('genres', 'GenresController');
 Route::resource('tvshows', 'TvshowsController');
 Route::resource('reviews', 'ReviewsController');
 
+// Route::group(['prefix' => config('backpack.base.route_prefix', 'admin'), 'middleware' => ['admin'], 'namespace' => 'Admin'], function () {
+//     Route::get('dashboard', '\Backpack\Base\app\Http\Controllers\MovieCrudController@dashboard');
+// });
+// Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
+//     // this page requires that you be logged in AND be an Admin
+//     return view('/admin/dashboard');
+// }]);
+
+// get('protected', ['middleware' => ['auth'], function() {
+//     // this page requires that you be logged inbut you don't need to be an admin
+//     return view( ... );
+// }]);

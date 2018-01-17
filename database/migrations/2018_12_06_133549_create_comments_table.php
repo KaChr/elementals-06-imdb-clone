@@ -21,10 +21,10 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('comments', function (Blueprint $table) {
-            $table->foreign('review_id')->references('id')->on('reviews');
-            $table->foreign('author_id')->references('id')->on('users');
-        });
+        //Schema::table('comments', function (Blueprint $table) {
+        //    $table->foreign('review_id')->references('id')->on('reviews');
+        //    $table->foreign('author_id')->references('id')->on('users');
+        //});
     }
 
     /**
