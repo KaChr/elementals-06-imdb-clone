@@ -47,10 +47,18 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $movie)
     {
-        //
         
+        $review = new Review;
+        $review->title = $request->title;
+        $review->body = $request->body;
+        $review->item_id = $movie;
+        $review->author_id = Auth::user()->id;
+        $review->rating = $request->rating;
+        
+        $review->save();
+
     }
 
     /**
