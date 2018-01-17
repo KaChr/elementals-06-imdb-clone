@@ -12,18 +12,24 @@
                     <h1 class="featured__info-title">{{$movie->title}}</h1>
                     <ul class="featured__info__actions">
                         <li>
-                            <button class="button button--small button--border-blue" type="button">
-                                <span class="icon">
-                                    <i class="fa fa-plus" area-hidden="true"></i>
-                                </span>
-                                WATCHLIST
-                            </button>
+                            <a href="#">
+                                <button class="button button--small button--border-blue" type="button">
+                                    <span class="icon">
+                                        <i class="fa fa-plus" area-hidden="true"></i>
+                                    </span>
+                                    WATCHLIST
+                                </button>
+                            </a>
                         </li>
                         <li>
-                            <button class="button button--small button--border-blue" type="button">TRAILER</button>
+                            <a href="#">
+                                <button class="button button--small button--border-blue" type="button">TRAILER</button>
+                            </a>
                         </li>
                         <li>
-                            <a href="{{ route('movies.reviews.create', $movie)}}"><button class="button button--small button--border-blue" type="button">WRITE REVIEW</button></a>
+                            <a href="{{ route('movies.reviews.create', $movie)}}">
+                                <button class="button button--small button--border-blue" type="button">WRITE REVIEW</button>
+                            </a>
                         </li>
                     </ul>
                     <span class="featured__info-genre">
