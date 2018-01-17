@@ -12,7 +12,7 @@
         <div class="column">
             <div class="columns is-mobile">
                 <div class="column is-two-fifths-mobile is-3-desktop">
-                    <a href="">  
+                    <a href="/movies/{{$review->item_id}}/reviews/{{$review->id}}">  
                         <div class="review__poster">
                             <span class="review__rating">{{ $review->review_rating }}</span>
                             <img src="{{ $review->poster }}" alt="">
