@@ -24,7 +24,7 @@ class ReviewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('reviews.create')
     }
 
     /**
