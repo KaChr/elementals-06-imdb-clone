@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Review;
+use App\Movie;
+use App\Item;
 use Illuminate\Http\Request;
 
 class ReviewsController extends Controller
@@ -22,9 +24,13 @@ class ReviewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('reviews.create')
+        $movie = Movie::find($id);
+        $item = Item::find($id);
+        // dd($item);
+        // $movie = Movie::
+        return view('reviews.create', ['movie' => $movie, 'item' => $item]);
     }
 
     /**
