@@ -33,9 +33,17 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($review, Request $request)
     {
-        //
+        dd($review);
+        $comment = new Comment;
+        $comment->author_id = Auth::user()->id;
+        $comment->review_id = $review; 
+        $comment->body = $request->body;
+
+        $comment->save();
+
+        return back();
     }
 
     /**
