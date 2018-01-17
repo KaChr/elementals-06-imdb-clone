@@ -56,7 +56,7 @@ class ReviewsController extends Controller
         $review->item_id = $movie;
         $review->author_id = Auth::user()->id;
         $review->rating = $request->rating;
-        
+
         $review->save();
 
     }
@@ -67,9 +67,17 @@ class ReviewsController extends Controller
      * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function show(Review $review)
+    public function show($movie, Review $review)
     {
-        //
+        $review = Review::find($review->id);
+        $movie = Movie::find($movie);
+        $item = Item::find($movie->item_id);
+
+        return view('reviews.show', [
+            'review' => $review,
+            'movie' => $movie,
+            'item' => $item
+        ]);
     }
 
     /**
