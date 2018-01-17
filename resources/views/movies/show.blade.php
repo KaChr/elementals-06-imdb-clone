@@ -19,7 +19,12 @@
                                 WATCHLIST
                             </button>
                         </li>
-                        <li><button class="button button--small button--border-blue" type="button">TRAILER</button></li>
+                        <li>
+                            <button class="button button--small button--border-blue" type="button">TRAILER</button>
+                        </li>
+                        <li>
+                            <a href="{{ route('movies.reviews.create', $movie)}}"><button class="button button--small button--border-blue" type="button">WRITE REVIEW</button></a>
+                        </li>
                     </ul>
                     <span class="featured__info-genre">
                         @foreach($item[0]->genres as $genre)
