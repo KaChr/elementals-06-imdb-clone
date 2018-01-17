@@ -26,13 +26,15 @@
                         </span>
                         <div>
                             <h4 class="review__title">{{ $review->title }}</h4>
-                            <p class="review__author">{{ $review->name }}</p>
+                            <a href="#"></a><p class="review__author">{{ $review->name }}</p>
                         </div>
                     </div>
                     <p class="review__body">
                         {{ $review->body }}
                     </p>
-                    <button class="button button--small button--solid-yellow">READ MORE</button>
+                    <a href="/movies/{{$review->item_id}}/reviews/{{$review->id}}">
+                        <button class="button button--small button--solid-yellow">READ MORE</button>
+                    </a>
                 </div>  
             </div>
         </div>
