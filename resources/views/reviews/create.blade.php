@@ -26,8 +26,8 @@
                     <img src="{{ $movie->poster}}" alt="">
                 </div>
                 <div class="column is-6-desktop">
-                {!! Form::open(['route'=>['movies.reviews.store', $user->id]]) !!}
-                 @include('reviews.form', ['submitText' => 'Post review'])
+                {!! Form::open(['route'=>['movies.reviews.store', $movie]]) !!}
+                    @include('reviews.form', ['submitText' => 'Post review'])
                 {!! Form::close() !!}
                 </div>
             </div>
