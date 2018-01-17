@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use App\Review;
 use App\Movie;
 use App\Item;
+use Auth;
 use Illuminate\Http\Request;
 
 class ReviewsController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,9 +35,10 @@ class ReviewsController extends Controller
     {
         $movie = Movie::find($id);
         $item = Item::find($id);
-        // dd($item);
-        // $movie = Movie::
-        return view('reviews.create', ['movie' => $movie, 'item' => $item]);
+        $user = Auth::user();
+
+
+        return view('reviews.create', ['movie' => $movie, 'item' => $item, 'user' => $user]);
     }
 
     /**
@@ -42,6 +50,7 @@ class ReviewsController extends Controller
     public function store(Request $request)
     {
         //
+        
     }
 
     /**
