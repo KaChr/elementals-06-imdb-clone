@@ -21,6 +21,16 @@
     </section>
     <div class="container">      
         <section class="section">
+            <div class="columns is-centered">
+                <div class="column is-narrow">
+                    <img src="{{ $movie->poster}}" alt="">
+                </div>
+                <div class="column is-6-desktop">
+                {!! Form::open(['route'=>['movies.reviews.store', $user->id]]) !!}
+                 @include('reviews.form', ['submitText' => 'Post review'])
+                {!! Form::close() !!}
+                </div>
+            </div>
         </section>
     </div>
 @endsection
