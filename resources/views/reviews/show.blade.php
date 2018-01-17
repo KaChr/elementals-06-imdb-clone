@@ -30,5 +30,21 @@
                 </div>
             </div>
         </section>
+        <section class="section">
+            @include('includes.divider', ['title' => 'COMMENTS'])
+            <div class="comments">
+                @if(isset($comments))
+                @foreach($comments as $comment)
+                    <div class="comment">
+                        <p>
+                            {{ $comment->body }}
+                        </p>
+                    </div>
+                @endforeach
+                @endif
+
+            </div>
+        </section>
     </div>
+
 @endsection
