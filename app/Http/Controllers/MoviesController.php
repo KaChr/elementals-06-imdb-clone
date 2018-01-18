@@ -6,6 +6,7 @@ use App\Movie;
 use App\Item;
 use App\Review;
 use Illuminate\Http\Request;
+use App\Genre;
 
 class MoviesController extends Controller
 {
