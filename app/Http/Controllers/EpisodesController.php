@@ -14,7 +14,9 @@ class EpisodesController extends Controller
      */
     public function index()
     {
-        //
+        $episodes = Episode::all();
+        
+        return view('episodes.index', ['episodes'=>$episodes]);
     }
 
     /**
@@ -44,9 +46,12 @@ class EpisodesController extends Controller
      * @param  \App\Episode  $episode
      * @return \Illuminate\Http\Response
      */
-    public function show(Episode $episode)
+    public function show($season_id, $episode_nr)
     {
-        //
+        /*$season = Season::find($season_id);
+        $season = Season::where('tvshow_id', '=', $item_id)->where('season_nr', '=', $season_nr)->first();
+        $episodes = Episode::where('season_id', '=', $season->item_id)->get();
+        $season_item = Item::find($season->item_id);*/
     }
 
     /**

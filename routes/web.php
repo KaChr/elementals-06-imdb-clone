@@ -54,5 +54,6 @@ Route::resource('genres', 'GenresController');
 
 Route::resource('tvshows', 'TvshowsController');
 Route::resource('reviews', 'ReviewsController');
+Route::get('tvshows/{item_id}/seasons/{season_nr}', 'SeasonsController@show');
 
 

@@ -69,7 +69,6 @@ class MoviesFromApi extends Command
                  'the+room',
              ];
 
-             $i = 1;  
             foreach($movies as $movie) {
                  //request to API using cURL¨
                 curl_setopt_array($curl, array(
@@ -146,8 +145,9 @@ class MoviesFromApi extends Command
                         DB::table('items')->insert([
                             'type' => 'movie'
                         ]);
+                        $query_movie = DB::table('items')->select('id')->latest('id')->get();
                         DB::table('movies')->insert([
-                            'item_id' => $i,
+                            'item_id' => $query_movie[0]->id,
                             'title'=>$obj->Title,
                             'summary'=>$obj->Plot,
                             'release_date'=>date('Y-m-d', strtotime($obj->Released)),
@@ -175,13 +175,13 @@ class MoviesFromApi extends Command
                         $query = DB::table('genres')->select('id')->where('genre_title', '=', $genre)->get();
                         // print_r($query[0]->id);
                         if(isset($query[0])){
-                            $queryPivot = DB::table('genre_item')->select('item_id')->where('item_id', '=', $i)->
+                            $queryPivot = DB::table('genre_item')->select('item_id')->where('item_id', '=', $query_movie[0]->id)->
                             where('genre_id', '=', $query[0]->id)->get();
                         }
         
                         if(!isset($queryPivot[0])){
                             DB::table('genre_item')->insert([
-                                'item_id' => $i,
+                                'item_id' => $query_movie[0]->id,
                                 'genre_id' => $query[0]->id
                                 ]);
                         }
@@ -219,12 +219,12 @@ class MoviesFromApi extends Command
                     //inserting movie id and person id(actor) in our pivot table
                     $query = DB::table('people')->select('id')->where('name', '=', $actor)->get();
                     if(isset($query[0])){
-                        $queryPivot = DB::table('actor_character_item')->select('person_id')->where('item_id', '=', $i)->
+                        $queryPivot = DB::table('actor_character_item')->select('person_id')->where('item_id', '=', $query_movie[0]->id)->
                         where('person_id', '=', $query[0]->id)->where('character_id', '=', $query[0]->id)->get();
                     }
                     if(!isset($queryPivot[0])){
                         DB::table('actor_character_item')->insert([
-                            'item_id' => $i,
+                            'item_id' => $query_movie[0]->id,
                             'person_id' => $query[0]->id,
                             'character_id' => $query_character[0]->id
                             ]);
@@ -257,19 +257,18 @@ class MoviesFromApi extends Command
                         //inserting the id of movie and the id of person(in this case director) into Database
                         $query = DB::table('people')->select('id')->where('name', '=', $director)->get();
                         if(isset($query[0])){
-                            $queryPivot = DB::table('director_item')->select('person_id')->where('item_id', '=', $i)->
+                            $queryPivot = DB::table('director_item')->select('person_id')->where('item_id', '=', $query_movie[0]->id)->
                             where('person_id', '=', $query[0]->id)->get();
                         }
                         //if we have the data in table rows then it will not store it anymore(no duplicates)
                         if(!isset($queryPivot[0])){
                             DB::table('director_item')->insert([
-                                'item_id' => $i,
+                                'item_id' => $query_movie[0]->id,
                                 'person_id' => $query[0]->id
                                 ]);
         
                         }
                     }
-                    $i++;
                 
                         }
                     }
