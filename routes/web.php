@@ -41,10 +41,6 @@ Route::get('/item', function () {
     return view('item-page');   
 });
 
-Route::get('/watchlist', function () {
-    return view('watchlist');   
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -71,3 +67,5 @@ Route::get('watchlist', 'WatchlistsController@show')->middleware('auth');
 Route::post('/watchlist', 'WatchlistsController@store');
 
 Route::delete('/watchlist/delete', 'WatchlistsController@destroy');
+Route::get('watchlist', 'WatchlistsController@show')->middleware('auth');
+
