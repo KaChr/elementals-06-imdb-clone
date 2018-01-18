@@ -21,7 +21,7 @@
             <a class="navbar-item" href="#">
                 Categories
             </a>
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="/watchlist">
                 My Watchlist
             </a>
         </div>
