@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Movie;
 use App\Person;
+use App\TvShow; 
 
 class SearchController extends Controller
 {
@@ -17,12 +18,19 @@ class SearchController extends Controller
             ->orderBy('rating')
             ->paginate(20);
         
-        // $people = Person::where('name', 'like', '%' . $search . '%')
-        //     ->paginate(20); 
+        $people = Person::where('name', 'like', '%' . $search . '%')
+            ->paginate(20); 
+
+        $shows = TvShow::where('title', 'like', '%' . $search . '%')
+            ->paginate(20);
 
         return view('search-results', [
-            'query' => $search, 
-            'movies' => $movies
+            'query' => $search,
+            'results' => [
+                'movies' => $movies,
+                'people' => $people,
+                'shows' => $shows
+            ]
         ]);
     }
 }
