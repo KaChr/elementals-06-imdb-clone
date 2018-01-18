@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Review;
 use App\Movie;
 use App\Item;
+use App\Comment;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -72,11 +73,13 @@ class ReviewsController extends Controller
         $review = Review::find($review->id);
         $movie = Movie::find($movie);
         $item = Item::find($movie->item_id);
+        $comments = Comment::all()->where('review_id', $review->id);
 
         return view('reviews.show', [
             'review' => $review,
             'movie' => $movie,
-            'item' => $item
+            'item' => $item,
+            'comments' => $comments
         ]);
     }
 
