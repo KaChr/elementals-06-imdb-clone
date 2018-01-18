@@ -48,5 +48,5 @@ Route::resource('people', 'PeopleController');
 Route::resource('genres', 'GenresController');
 Route::resource('tvshows', 'TvshowsController');
 Route::resource('movies.reviews', 'ReviewsController');
-Route::resource('reviews.comments', 'CommentsController');
+Route::resource('movies.reviews.comments', 'CommentsController');
 
