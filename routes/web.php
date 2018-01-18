@@ -41,10 +41,6 @@ Route::get('/item', function () {
     return view('item-page');   
 });
 
-Route::get('/watchlist', function () {
-    return view('watchlist');   
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -65,3 +61,6 @@ Route::resource('movies.reviews.comments', 'CommentsController');
 
 Route::resource('tvshows.reviews', 'ReviewsController');
 Route::resource('tvshows.reviews.comments', 'CommentsController');
+
+Route::get('watchlist', 'WatchlistsController@show')->middleware('auth');
+
