@@ -53,3 +53,5 @@ Route::resource('genres', 'GenresController');
 Route::resource('tvshows', 'TvshowsController');
 Route::resource('reviews', 'ReviewsController');
 
+Route::get('/search', 'SearchController@index');
+
