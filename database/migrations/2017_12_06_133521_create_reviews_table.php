@@ -23,10 +23,10 @@ class CreateReviewsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->foreign('author_id')->references('id')->on('users');
-            $table->foreign('item_id')->references('id')->on('items');
-        });
+        //Schema::table('reviews', function (Blueprint $table) {
+        //    $table->foreign('author_id')->references('id')->on('users');
+        //    $table->foreign('item_id')->references('id')->on('items');
+        //});
     }
 
     /**
