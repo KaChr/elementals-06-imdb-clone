@@ -4,19 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Watchlist;
 
+<<<<<<< HEAD
 use App\User;
 
 use Illuminate\Support\Facades\Auth;
 
+=======
+>>>>>>> Create migration, model and controller for watchlist
 use Illuminate\Http\Request;
 
 class WatchlistsController extends Controller
 {
+<<<<<<< HEAD
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['show']]);
     }
 
+=======
+>>>>>>> Create migration, model and controller for watchlist
     /*
     public function index()
 
@@ -29,6 +35,7 @@ class WatchlistsController extends Controller
     public function show(Watchlist $watchlist)
 
     {
+<<<<<<< HEAD
 
         $watchlists = Watchlist::with('movies')
         //->with('tvshows')
@@ -94,3 +101,9 @@ class WatchlistsController extends Controller
 }
 
 
+=======
+        //
+        return view ('watchlists.show', compact('watchlist'));
+    }
+}
+>>>>>>> Create migration, model and controller for watchlist
