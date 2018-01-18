@@ -60,6 +60,11 @@ class ReviewsController extends Controller
 
         $review->save();
 
+        return redirect()->route('movies.reviews', [
+            'movie' => $movie, 
+            'review' => $review
+        ]);
+
     }
 
     /**
@@ -73,7 +78,9 @@ class ReviewsController extends Controller
         $review = Review::find($review->id);
         $movie = Movie::find($movie);
         $item = Item::find($movie->item_id);
-        $comments = Comment::all()->where('review_id', $review->id);
+        $comments = Comment::where('review_id', $review->id)
+        ->join('users', 'author_id', '=', 'users.id')
+        ->get();
 
         return view('reviews.show', [
             'review' => $review,
