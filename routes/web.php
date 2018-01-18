@@ -56,5 +56,3 @@ Route::resource('genres', 'GenresController');
 
 Route::get('tvshows', 'TvshowsController@index');
 
-Route::get('movies', 'MoviesController@index');
-
