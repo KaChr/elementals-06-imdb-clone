@@ -31,26 +31,31 @@
             </div>
         </section>
         <section class="section">
-            @include('includes.divider', ['title' => 'COMMENTS'])
+            @include('includes.divider', ['title' => 'COMMENTS', 'link' => false])
             <div class="comments">
                 @if(isset($comments))
                     @foreach($comments as $comment)
                         <div class="comment">
-                            <div class="comment__avatar">
+                            <div class="review__avatar">
                                 <img src="{{ $comment->avatar }}" alt="">
                             </div>
-                            <p>
-                                {{ $comment->body }}
-                            </p>
-                            <p>
-                                {{ $comment->created_at }}
-                            </p>
+                            <div class="comment__content">
+                                <h5> {{ $comment->name }}</h5>
+                                <p>
+                                    {{ $comment->body }}
+                                </p>
+                                <p class="p__fig p__fig-small">
+                                    {{ $comment->created_at }}
+                                </p>
+                            </div>
                         </div>
                     @endforeach
                 @endif
-                {!! Form::open(['route'=>['movies.reviews.comments.store', $movie, $review]]) !!}
-                    @include('reviews.comment', ['submitText' => 'Add comment'])
-                {!! Form::close() !!}
+                @if(!Auth::guest())
+                    {!! Form::open(['route'=>['movies.reviews.comments.store', $movie, $review]]) !!}
+                        @include('reviews.comment', ['submitText' => 'Add comment'])
+                    {!! Form::close() !!}
+                @endif
             </div>
         </section>
     </div>
