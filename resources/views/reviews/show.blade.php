@@ -34,13 +34,19 @@
             @include('includes.divider', ['title' => 'COMMENTS'])
             <div class="comments">
                 @if(isset($comments))
-                @foreach($comments as $comment)
-                    <div class="comment">
-                        <p>
-                            {{ $comment->body }}
-                        </p>
-                    </div>
-                @endforeach
+                    @foreach($comments as $comment)
+                        <div class="comment">
+                            <div class="comment__avatar">
+                                <img src="{{ $comment->avatar }}" alt="">
+                            </div>
+                            <p>
+                                {{ $comment->body }}
+                            </p>
+                            <p>
+                                {{ $comment->created_at }}
+                            </p>
+                        </div>
+                    @endforeach
                 @endif
                 {!! Form::open(['route'=>['movies.reviews.comments.store', $movie, $review]]) !!}
                     @include('reviews.comment', ['submitText' => 'Add comment'])
