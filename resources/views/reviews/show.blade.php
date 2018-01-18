@@ -36,11 +36,13 @@
                 @if(isset($comments))
                     @foreach($comments as $comment)
                         <div class="comment">
-                            <div class="review__avatar">
-                                <img src="{{ $comment->avatar }}" alt="">
-                            </div>
+                            <a href="/users/{{ $comment->author_id }}">
+                                <div class="review__avatar">
+                                    <img src="{{ $comment->avatar }}" alt="">
+                                </div>
+                            </a>
                             <div class="comment__content">
-                                <h5> {{ $comment->name }}</h5>
+                                <a href="/users/{{ $comment->author_id }}"><h5> {{ $comment->name }}</h5></a>
                                 <p>
                                     {{ $comment->body }}
                                 </p>

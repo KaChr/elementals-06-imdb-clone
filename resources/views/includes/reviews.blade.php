@@ -26,7 +26,7 @@
                         </span>
                         <div>
                             <h4 class="review__title">{{ $review->title }}</h4>
-                            <a href="#"></a><p class="review__author">{{ $review->name }}</p>
+                            <a href="/users/{{ $review->author_id }}"><p class="review__author">{{ $review->name }}</p></a>
                         </div>
                     </div>
                     <p class="review__body">
