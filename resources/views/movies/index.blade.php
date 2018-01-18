@@ -11,6 +11,13 @@
             <a class="small-button-green">Release Date</a>
             <a class="small-button-green">Genre</a>
         </div>
+        <div class="select">
+        <select>
+        @foreach($genres as $genre)
+            <option value="{{ $genre->id }}">{{ $genre->genre_title }}</option>
+        @endforeach
+        </select>
+        </div>
             @foreach($movies->slice(0, 100) as $movie)
                     <div class="grid-chart">
                         <div class="charts--poster">

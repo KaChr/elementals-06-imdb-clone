@@ -6,6 +6,7 @@ use App\Movie;
 use App\Item;
 use App\Review;
 use Illuminate\Http\Request;
+use App\Genre;
 
 class MoviesController extends Controller
 {
@@ -19,7 +20,8 @@ class MoviesController extends Controller
        //
        //$movies = Movie::all();
        $movies = Movie::latest('rating')->get();
-       return view('movies.index', ['movies'=>$movies]);
+       $genres = Genre::all();
+       return view('movies.index', ['movies'=>$movies,'genres'=>$genres]);
    }
 
    /**
