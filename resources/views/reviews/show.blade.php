@@ -42,7 +42,9 @@
                     </div>
                 @endforeach
                 @endif
-
+                {!! Form::open(['route'=>['movies.reviews.comments.store', $movie, $review]]) !!}
+                    @include('reviews.comment', ['submitText' => 'Add comment'])
+                {!! Form::close() !!}
             </div>
         </section>
     </div>
