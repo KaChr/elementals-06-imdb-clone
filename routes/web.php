@@ -15,19 +15,9 @@ Route::get('/', function () {
     return view('splash');
 });
 
-Route::get('/movie-api', function () {
-    
-    return view('movie-api');
-});
+Route::get('/components', function () {
 
-Route::get('/omdb', function () {
-        
-    return view('omdb');
-});
-
-Route::get('/tvshowz', function () {
-    
-return view('tvshowz');
+    return view('components');
 });
 
 Route::get('/profilepage', function () {
@@ -47,10 +37,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('users', 'UsersController');
+  
 Route::resource('movies', 'MoviesController');
 Route::resource('people', 'PeopleController');
 Route::resource('genres', 'GenresController');
 Route::resource('tvshows', 'TvshowsController');
+Route::resource('reviews', 'ReviewsController');
+  
+Route::get('tvshows/{item_id}/seasons/{season_nr}', 'SeasonsController@show');
+Route::get('tvshows/{item_id}/seasons/{season_nr}/episodes/{episode_nr}', 'EpisodesController@show');
+
 Route::resource('movies.reviews', 'ReviewsController');
 Route::resource('movies.reviews.comments', 'CommentsController');
-

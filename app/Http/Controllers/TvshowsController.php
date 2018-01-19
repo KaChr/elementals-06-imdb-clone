@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tvshow;
 use App\Item;
+use App\Season;
 use Illuminate\Http\Request;
 
 class TvshowsController extends Controller
@@ -52,8 +53,10 @@ class TvshowsController extends Controller
         $id = $tvshow->item_id;
         $tvshow = Tvshow::find($id);
 
+        $seasons = Season::where('tvshow_id', '=', $id)->get();
+
         $item = Item::find($id);
-        return view('tvshows.show', ['tvshow'=>$tvshow, 'item'=>$item]);
+        return view('tvshows.show', ['tvshow'=>$tvshow, 'item'=>$item, 'seasons'=>$seasons]);
     }
 
     /**
