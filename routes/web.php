@@ -16,11 +16,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tvshowz', function () {
-    
-return view('tvshowz');
-});
-
 Route::get('/components', function () {
 
     return view('components');
