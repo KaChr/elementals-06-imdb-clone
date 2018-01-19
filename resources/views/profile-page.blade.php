@@ -3,7 +3,7 @@
     @include('includes.head')
 
 <body>
-    @include('includes.headertemp')
+    @include('includes.navigation')
 
     <!-- Users profile -->
     <section class="user">

@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
     @include('includes.head')
     <body>
-        @include('includes.headertemp')
+        @include('includes.navigation')
         <div id="app">
                 <section class="hero is-dark">
                     <div class="hero-body">
@@ -30,12 +30,15 @@
 
                 <section class="section">
                     <h3>Review block</h3>
-                    @include('includes.reviews')
+                    @include('includes.reviews', ['reviews' => []])
                 </section>
 
                 <section class="section">
                     <h3>Person block</h3>
-                    @include('includes.person')
+                    @include('includes.person', [
+                        'actors' => [], 
+                        'directors' => []
+                    ])
                 </section>
 
                 <section class="section">
@@ -45,7 +48,7 @@
 
                 <section class="section">
                     <h3>Rating diagram</h3>
-                    @include('includes.rating')
+                    @include('includes.rating', ['rating' => ''])
                 </section>
             </div>
             @include('includes.footer')

@@ -64,7 +64,7 @@ class MoviesFromApi extends Command
                  'fifty+shades+darker',
                  'movie+43',
                  'the+lost+empire',
-                 'the+girl+next+door',
+                 'the+matrix',
                  'the+disaster+artist',
                  'the+room',
              ];
@@ -245,7 +245,6 @@ class MoviesFromApi extends Command
     
                     }
                 } 
-                
                     //$directors = explode(", ", $obj->Director);
                     $cast_i = 0;
                     foreach($movie_credits->crew as $index => $director){
