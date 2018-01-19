@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Movie;
 use App\Item;
 use App\Review;
+use \Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -52,5 +53,14 @@ class HomeController extends Controller
             'item' => $item, 
             'reviews' => $reviews,
             'spotlights' => $spotlights]);
+    }
+
+    public function splash() 
+    {
+        if(null !== Auth::user()) {
+            return $this->index();
+        }
+
+        return view('splash');
     }
 }
