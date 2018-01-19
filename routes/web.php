@@ -19,16 +19,6 @@ Route::get('/movie-api', function () {
     return view('movie-api');
 });
 
-Route::get('/omdb', function () {
-        
-    return view('omdb');
-});
-
-Route::get('/components', function () {
-
-    return view('components');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

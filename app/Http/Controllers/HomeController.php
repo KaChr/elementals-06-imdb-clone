@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Movie;
 use App\Item;
 use App\Review;
+<<<<<<< f72f4b7d864d8c415f1d46f10f2062aa12618ee8
 use App\Tvshow;
+=======
+>>>>>>> Add login check to splash page
 use \Auth;
 use Illuminate\Http\Request;
 
