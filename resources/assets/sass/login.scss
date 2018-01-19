@@ -15,7 +15,14 @@ div.columns.is-marginless.is-centered {
     background-size:cover;
     background-repeat: no-repeat;
     background-position: top center;
-    height:60vh;
+    height:100vh;
+    min-height: 600px;
+}
+
+.card__logo {
+    display:flex;
+    justify-content: center;
+    margin-bottom: 4em;
 }
 
 .checkbox:hover {
