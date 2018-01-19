@@ -10,7 +10,7 @@
     <h1>{{$tvshow->title}}</h1>
     <h2>Season - {{$season->season_nr}}</h2>
     @foreach($episodes as $episode)
-        {{$episode->episode_nr}} {{$episode->title}}</p>
+        <a href='{{$season->season_nr}}/episodes/{{$episode->episode_nr}}'>{{$episode->episode_nr}} {{$episode->title}}</a><br>
     @endforeach
 </body>
 </html>

@@ -16,15 +16,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/movie-api', function () {
-    
-    return view('movie-api');
-});
-
-Route::get('/omdb', function () {
-        
-    return view('omdb');
-});
 Route::get('/tvshowz', function () {
     
 return view('tvshowz');
@@ -55,5 +46,6 @@ Route::resource('genres', 'GenresController');
 Route::resource('tvshows', 'TvshowsController');
 Route::resource('reviews', 'ReviewsController');
 Route::get('tvshows/{item_id}/seasons/{season_nr}', 'SeasonsController@show');
+Route::get('tvshows/{item_id}/seasons/{season_nr}/episodes/{episode_nr}', 'EpisodesController@show');
 
 

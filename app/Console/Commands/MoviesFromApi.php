@@ -143,7 +143,9 @@ class MoviesFromApi extends Command
                     $query = DB::table('movies')->select('title')->where('title', '=', $obj->Title)->get();
                     if(!isset($query[0])){
                         DB::table('items')->insert([
-                            'type' => 'movie'
+                            'type' => 'movie',
+                            'created_at' => date('Y-m-d H:i:s'),
+                            'updated_at' =>  date('Y-m-d H:i:s')
                         ]);
                         $query_movie = DB::table('items')->select('id')->latest('id')->get();
                         DB::table('movies')->insert([
@@ -156,7 +158,9 @@ class MoviesFromApi extends Command
                             'poster'=>$obj->Poster,
                             'countries'=>$obj->Country,
                             'imdbID'=>$obj->imdbID,
-                            'movieBackdrop'=>$backdrop_url . $movieBackdrop->backdrop_path
+                            'movieBackdrop'=>$backdrop_url . $movieBackdrop->backdrop_path,
+                            'created_at' => date('Y-m-d H:i:s'),
+                            'updated_at' =>  date('Y-m-d H:i:s')
                             ]);
                         }
                     //getting the genres of the film, exploiting it and storing in databse
@@ -167,7 +171,9 @@ class MoviesFromApi extends Command
                         $query = DB::table('genres')->select('genre_title')->where('genre_title', '=', $genre)->get();
                         if(!isset($query[0])) {
                             DB::table('genres')->insert([
-                                'genre_title' => $genre
+                                'genre_title' => $genre,
+                                'created_at' => date('Y-m-d H:i:s'),
+                                'updated_at' =>  date('Y-m-d H:i:s')
                                 ]);
         
                         }
@@ -182,7 +188,9 @@ class MoviesFromApi extends Command
                         if(!isset($queryPivot[0])){
                             DB::table('genre_item')->insert([
                                 'item_id' => $query_movie[0]->id,
-                                'genre_id' => $query[0]->id
+                                'genre_id' => $query[0]->id,
+                                'created_at' => date('Y-m-d H:i:s'),
+                                'updated_at' =>  date('Y-m-d H:i:s')
                                 ]);
                         }
                     }
@@ -205,13 +213,17 @@ class MoviesFromApi extends Command
                             'name' => $actor,
                             'dob' => date('Y-m-d'),
                             'city' => 'random',
-                            'profile_pic' => $profile_url . $prof_pic
+                            'profile_pic' => $profile_url . $prof_pic,
+                            'created_at' => date('Y-m-d H:i:s'),
+                            'updated_at' =>  date('Y-m-d H:i:s')
                             ]);
     
                     }
                     $query_character = DB::table('characters')->select('character')->where('character', '=', $character)->get();
                         DB::table('characters')->insert([
-                            'character' => $character
+                            'character' => $character,
+                            'created_at' => date('Y-m-d H:i:s'),
+                            'updated_at' =>  date('Y-m-d H:i:s')
                         ]);
                     $query_character = DB::table('characters')->select('id')->latest('id')->get();
 
@@ -226,7 +238,9 @@ class MoviesFromApi extends Command
                         DB::table('actor_character_item')->insert([
                             'item_id' => $query_movie[0]->id,
                             'person_id' => $query[0]->id,
-                            'character_id' => $query_character[0]->id
+                            'character_id' => $query_character[0]->id,
+                            'created_at' => date('Y-m-d H:i:s'),
+                            'updated_at' =>  date('Y-m-d H:i:s')
                             ]);
     
                     }
@@ -250,7 +264,9 @@ class MoviesFromApi extends Command
                                 'name' => $director,
                                 'dob' => date('Y-m-d'),
                                 'city' => 'random',
-                                'profile_pic' => $profile_url . $director_pic
+                                'profile_pic' => $profile_url . $director_pic,
+                                'created_at' => date('Y-m-d H:i:s'),
+                                'updated_at' =>  date('Y-m-d H:i:s')
                                 ]);
         
                         }
@@ -264,7 +280,9 @@ class MoviesFromApi extends Command
                         if(!isset($queryPivot[0])){
                             DB::table('director_item')->insert([
                                 'item_id' => $query_movie[0]->id,
-                                'person_id' => $query[0]->id
+                                'person_id' => $query[0]->id,
+                                'created_at' => date('Y-m-d H:i:s'),
+                                'updated_at' =>  date('Y-m-d H:i:s')
                                 ]);
         
                         }
