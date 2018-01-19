@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('splash');
-});
+
+Route::get('/', 'HomeController@splash')->name('splash');
 
 Route::get('/movie-api', function () {
     
@@ -28,18 +27,6 @@ Route::get('/omdb', function () {
 Route::get('/tvshowz', function () {
     
 return view('tvshowz');
-});
-
-Route::get('/profilepage', function () {
-    return view('profile-page');   
-});
-
-Route::get('/item', function () {
-    return view('item-page');   
-});
-
-Route::get('/login', function () {
-    return view('login');
 });
 
 Auth::routes();
