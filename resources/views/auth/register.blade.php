@@ -7,35 +7,17 @@
 
 <!-- SIGN UP FORM -->
 
-<section class="section">
-    <div class="columns">
+<section class="section splash full">
+    <div class="columns is-centered">
         <div class="column is-4">
             <form class="register-form" method="POST" action="{{ route('register') }}">
 
                 {{ csrf_field() }}
 
                     <!-- Placeholder for user profile picture -->
-                    <div class="upload__photo">
-                        <div class="user__avatar">
-                            <img src="https://image.tmdb.org/t/p/w1280/bOlYWhVuOiU6azC4Bw6zlXZ5QTC.jpg" alt="useravatar">
-                        </div>
-                        <!-- Add upload picture if there is time 
-                            Upload picture 
-                        <div class="file is-medium is-centered">
-                          <label class="file-label">
-                            <input class="file-input" type="file" name="picture">
-                            <span class="file-cta">
-                              <span class="file-icon">
-                                <i class="fa fa-upload"></i>
-                              </span>
-                              <span class="file-label">
-                                Upload picture
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-                    </div> -->
-
+                    <div class="card__logo">
+                        <img src="{{ asset('images/emdb_logo@1x.png') }}">
+                    </div>
                     <!-- Name -->
                     <div class="field">
                         <p class="control">
@@ -90,9 +72,8 @@
                     </div>
 
                     <!-- Sign up/Cancel buttons -->
-                    <div class="container has-text-centered">
-                        <button class="button button--big button--solid-yellow">CANCEL</button>
-                        <button class="button button--big button--solid-turquoise" type="submit">SIGN UP</button>
+                    <div class="has-text-centered">
+                        <button class="button button--big button--solid-blue" type="submit">SIGN UP</button>
                     </div>
             </form>
         </div>
