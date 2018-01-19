@@ -11,24 +11,22 @@
             <span>@sortablelink('release_date')</span>
 
         </div>
+            <ol>
             @foreach($movies->slice(0, 100) as $movie)
                     <div class="grid-chart">
                         <div class="charts--poster">
                             <a href="/movies/{{$movie->item_id}}"><img class="posters" src="{{$movie->poster}}"></a>
-                            <!-- Display the categories of the movie/s. Commented for now until a solution of why it doesn't load is found. -->
-                            {{--
-                            @foreach($item->genres as $genre)
-                                {{$loop->first ? '' : ', '}}
-                                {{$genre->genre_title}}
-                            @endforeach --}}
                         </div>
                         <div class="charts--title">
-                            <h5><a href="/movies/{{$movie->item_id}}">{{$movie->title}}</a></h5>
+                            <li><h6><a href="/movies/{{$movie->item_id}}">{{$movie->title}}</a></h6>
+                            ({{ date('Y', strtotime($movie->release_date))}})</li>
                         </div>
                         <div class="charts--rating">
                             <i class="fa fa-star"></i>
                             <span class="charts__rating">{{$movie->rating}}</span>
                         </div>
                     </div>
-            @endforeach 
+            @endforeach
+            </ol>
+
 @endsection

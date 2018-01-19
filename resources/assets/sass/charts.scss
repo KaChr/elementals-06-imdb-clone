@@ -8,15 +8,13 @@
 
 div#chart-buttons {
     width: 60%;
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
     a {
-        color: #7af9ba;
+        color: $turquoise;;
         border-radius: 3px;
-        padding: 0px 3px;
-        transition: 0.2s ease-in;
+        transition: all 0.2s ease-in;
         &:hover {
-            color: #f6f6f6;
-            transition: 0.2s ease-in;
+            color: $pale-silver;
         }
     }
     h6 {
@@ -37,11 +35,16 @@ div.grid-chart {
         height: 95px;
         width: 60px;
     }
-    h5 {
-        padding-left: 9px;
+    li {
+        margin-left: 30px;
+        padding: 0;
+    }
+
+    h6 {
         padding-top: 8%;
-        font-weight: 500;
-        font-size: 1.3em;
+        a {
+            color: $turquoise;
+        }
     }
     .charts--rating {
         display: flex;
