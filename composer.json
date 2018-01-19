@@ -10,7 +10,8 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel-frontend-presets/bulma": "^1.6",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "laravelcollective/html": "^5.4.0"
     },
     "require-dev": {
         "deployer/deployer": "^6.0",

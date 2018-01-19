@@ -33,8 +33,7 @@ class HomeController extends Controller
         foreach($featured as $feature) {
             $item[] = Item::find($feature->item_id);
         }
-
-        // $spotlightTv = Tvshow::orderBy('created_at', 'desc')->limit(5)->get();     
+  
         $spotlightMovies = Movie::orderBy('created_at', 'desc')->limit(5)->get();
         $spotlightRated = Movie::orderBy('rating', 'desc')->limit(5)->get();  
         
@@ -42,14 +41,6 @@ class HomeController extends Controller
             'movies' => $spotlightMovies,
             'rated' => $spotlightRated
         ];
-        
-        // Get latest reviews
-        
-        // $reviews = Review::orderBy('reviews.created_at', 'desc')
-        //     ->join('users', 'author_id', '=', 'users.id')
-        //     ->join('movies', 'reviews.item_id', '=', 'movies.item_id')
-        //     ->select('reviews.*', 'movies.poster', 'reviews.item_id')
-        //     ->limit(4)->get();
 
         $reviews = Review::orderBy('reviews.created_at', 'desc')
             ->join('users', 'author_id', '=', 'users.id')

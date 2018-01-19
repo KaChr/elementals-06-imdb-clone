@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Review;
+use App\Movie;
+use App\Item;
+use App\Comment;
+use Auth;
 use Illuminate\Http\Request;
 
 class ReviewsController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +32,14 @@ class ReviewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $movie = Movie::find($id);
+        $item = Item::find($id);
+        $user = Auth::user();
+
+
+        return view('reviews.create', ['movie' => $movie, 'item' => $item, 'user' => $user]);
     }
 
     /**
@@ -33,9 +48,23 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $movie)
     {
-        //
+        
+        $review = new Review;
+        $review->title = $request->title;
+        $review->body = $request->body;
+        $review->item_id = $movie;
+        $review->author_id = Auth::user()->id;
+        $review->rating = $request->rating;
+
+        $review->save();
+
+        return redirect()->route('movies.reviews', [
+            'movie' => $movie, 
+            'review' => $review
+        ]);
+
     }
 
     /**
@@ -44,9 +73,21 @@ class ReviewsController extends Controller
      * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function show(Review $review)
+    public function show($movie, Review $review)
     {
-        //
+        $review = Review::find($review->id);
+        $movie = Movie::find($movie);
+        $item = Item::find($movie->item_id);
+        $comments = Comment::where('review_id', $review->id)
+        ->join('users', 'author_id', '=', 'users.id')
+        ->get();
+
+        return view('reviews.show', [
+            'review' => $review,
+            'movie' => $movie,
+            'item' => $item,
+            'comments' => $comments
+        ]);
     }
 
     /**
