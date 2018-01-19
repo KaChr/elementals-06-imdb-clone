@@ -9,9 +9,20 @@
             <span>@sortablelink('rating')</span>
             <span>@sortablelink('release_date')</span>
 
+        <form method='post' action='/movies/genre'>
+            {{ csrf_field() }}
+            <div class="select">
+                <select name='genre'>
+                    @foreach($genres as $genre)
+                        <option value="{{ $genre->id }}">{{ $genre->genre_title }}</option>
+                    @endforeach
+                </select>
+                <input type="submit" value="CHOOSE">
+            </div>
+        </form>
         </div>
             <ol>
-            @foreach($movies->slice(0, 100) as $movie)
+            @foreach($movies as $movie)
                     <div class="grid-chart">
                         <div class="charts--poster">
                             <a href="/movies/{{$movie->item_id}}"><img class="posters" src="{{$movie->poster}}"></a>

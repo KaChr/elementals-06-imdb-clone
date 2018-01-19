@@ -6,6 +6,7 @@ use App\Movie;
 use App\Item;
 use App\Review;
 use Illuminate\Http\Request;
+use App\Genre;
 
 class MoviesController extends Controller
 {
@@ -14,12 +15,39 @@ class MoviesController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-   public function index()
+   public function index(Request $request)
    {
        //
        //$movies = Movie::all();
-       $movies = Movie::sortable()->paginate(100);
-       return view('movies.index', ['movies'=>$movies]);
+        $movies = Movie::sortable()->paginate();
+        $genres = Genre::all();     
+
+        return view('movies.index', ['movies'=>$movies, 'genres'=>$genres]);
+   }
+
+   public function genreSelect(Request $request)
+   {
+
+    $id = $request->genre;
+        
+       if ($request->input('genre')) {
+            $genres = Genre::all();  
+
+            // hämta 
+            $items = Item::whereHas('genres', function($query) use ($id) {
+                $query->where('genre_id', '=', $id );
+            })->get();
+            
+            $movies = [];
+
+            foreach($items as $item){
+                array_push($movies, Movie::find($item->id));
+            }
+
+            return view('movies.index', ['movies'=> $movies, 'items'=> $items, 'genres'=> $genres]);
+       }
+
+       // redirect to @index
    }
 
    /**
