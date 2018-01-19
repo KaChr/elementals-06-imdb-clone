@@ -12,7 +12,6 @@
 */
 
 Route::get('/', function () {
-
     return view('splash');
 });
 
@@ -25,24 +24,19 @@ Route::get('/omdb', function () {
         
     return view('omdb');
 });
+
 Route::get('/tvshowz', function () {
     
 return view('tvshowz');
 });
 
-Route::get('/components', function () {
-
-    return view('components');
-    
-});
-
 Route::get('/profilepage', function () {
     return view('profile-page');   
 });
-           
-// Route::get('/home', function () {
-//     return view('home');
-// });
+
+Route::get('/item', function () {
+    return view('item-page');   
+});
 
 Route::get('/login', function () {
     return view('login');
@@ -52,9 +46,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('users', 'UsersController');
 Route::resource('movies', 'MoviesController');
 Route::resource('people', 'PeopleController');
 Route::resource('genres', 'GenresController');
-
-Route::get('tvshows', 'TvshowsController@index');
+Route::resource('tvshows', 'TvshowsController');
+Route::resource('movies.reviews', 'ReviewsController');
+Route::resource('movies.reviews.comments', 'CommentsController');
 

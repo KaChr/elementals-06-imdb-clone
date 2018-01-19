@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Movie;
 use App\Item;
+use App\Review;
 use Illuminate\Http\Request;
 
 class MoviesController extends Controller
@@ -15,9 +16,9 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        //
-        $movies = Movie::all();
-
+        //$movies = Movie::all();
+        
+        $movies = Movie::latest('rating')->get();
         return view('movies.index', ['movies'=>$movies]);
     }
 
@@ -50,13 +51,22 @@ class MoviesController extends Controller
      */
     public function show(Movie $movie)
     {
-        //
-        //$movie = Movie::where('id', $movie->id)->first();
         $id = $movie->item_id;
         $movie = Movie::find($id);
-
-        $item = Item::find($id);
-        return view('movies.show', ['movie'=>$movie, 'item'=>$item]);
+        $reviews = Review::orderBy('reviews.created_at', 'desc')
+            ->where('reviews.item_id', $id)
+            ->join('users', 'author_id', '=', 'users.id')
+            ->join('movies', 'reviews.item_id', '=', 'movies.item_id')
+            ->limit(2)->get(['reviews.*', 'users.name', 'movies.poster', 'reviews.rating AS review_rating']);
+        
+        $item = Item::find($id)
+                ->leftJoin('actor_character_item', 'id', '=', 'actor_character_item.item_id')
+                ->leftJoin('characters as character', 'character.id', '=', 'actor_character_item.character_id')
+                ->leftJoin('people as actor', 'actor.id', '=', 'actor_character_item.person_id')
+                ->where('item_id', $id)
+                ->get();
+        
+        return view('movies.show', ['movie'=>$movie, 'item'=>$item, 'reviews'=>$reviews]);
     }
 
     /**

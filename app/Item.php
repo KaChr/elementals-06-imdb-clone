@@ -34,7 +34,7 @@ class Item extends Model
 
     public function actors()
     {
-        return $this->belongsToMany('App\Person', 'actor_item');
+        return $this->belongsToMany('App\Person', 'actor_character_item');
     }
 
     public function directors()
@@ -50,5 +50,10 @@ class Item extends Model
     public function reviews()
     {
         return $this->hasMany('App\Review', 'reviews');
+    }
+
+    public function characters()
+    {
+        return $this->belongsToMany('App\Character', 'actor_character_item');
     }
 }

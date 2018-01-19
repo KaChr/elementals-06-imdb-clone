@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Review;
-use App\Movie;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class CharacterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +13,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+    
     }
 
     /**
@@ -43,32 +40,21 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        $id = $user->id;
-        $reviews = Review::orderBy('reviews.created_at', 'desc')
-            ->where('reviews.author_id', $id)
-            ->join('users', 'author_id', '=', 'users.id')
-            ->join('movies', 'reviews.item_id', '=', 'movies.item_id')
-            ->limit(2)->get(['reviews.*', 'users.name', 'movies.poster', 'reviews.rating AS review_rating']);
-        
-        $spotlight = Movie::orderBy('rating', 'desc')->limit(5)->get();
-        $backdrop = Movie::orderBy('rating', 'desc')->select('movieBackdrop')->limit(1)->get();  
-        
-        
-        return view('users.show', ['reviews' => $reviews, 'user' => $user, 'spotlight' => $spotlight, 'backdrop' => $backdrop]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
         //
     }
@@ -77,10 +63,10 @@ class UsersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -88,10 +74,10 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
         //
     }

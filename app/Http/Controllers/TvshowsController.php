@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tvshow;
+use App\Item;
 use Illuminate\Http\Request;
 
 class TvshowsController extends Controller

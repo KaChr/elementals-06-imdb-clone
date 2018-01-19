@@ -5,7 +5,7 @@
         <div class="app">
             <section class="hero is-fullheight splash">
                 <div class="hero-head is-ontop is-flex is-flex-end">
-                    <h5><a class="light" href="/home">BROWSE AS GUEST</a></h5>
+                    <h5><a class="light" href="{{ route('home') }}">BROWSE AS GUEST</a></h5>
                 </div>
                 <div class="hero-body is-ontop">
                     <div class="container has-text-centered">
