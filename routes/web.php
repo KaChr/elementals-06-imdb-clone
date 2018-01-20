@@ -69,3 +69,4 @@ Route::post('/watchlist', 'WatchlistsController@store');
 Route::delete('/watchlist/delete', 'WatchlistsController@destroy');
 Route::get('watchlist', 'WatchlistsController@show')->middleware('auth');
 
+Route::post('/watchlist', 'WatchlistsController@store');
