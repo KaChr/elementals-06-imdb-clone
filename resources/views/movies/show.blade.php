@@ -12,12 +12,23 @@
                     <h1 class="featured__info-title">{{$movie->title}}</h1>
                     <ul class="featured__info__actions">
                         <li>
-                            <button class="button button--small button--border-blue" type="button">
+
+                        <form method="POST" action="/watchlist">
+                            {{ csrf_field() }}
+
+
+                            <input type="hidden" name="id" value="{{ $movie->item_id }}">
+
+                            <button class="button button--small button--border-blue" type="submit">
+
+                            
                                 <span class="icon">
                                     <i class="fa fa-plus" area-hidden="true"></i>
                                 </span>
                                 WATCHLIST
                             </button>
+                            </form>
+
                         </li>
                         <li><button class="button button--small button--border-blue" type="button">TRAILER</button></li>
                     </ul>
