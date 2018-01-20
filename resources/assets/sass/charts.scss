@@ -9,7 +9,7 @@
 div#chart-buttons {
     width: 60%;
     margin: 0 auto 10px auto;
-    a {
+    a { //Sortable links
         color: $turquoise;;
         border-radius: 3px;
         transition: all 0.2s ease-in;
@@ -25,15 +25,15 @@ div#chart-buttons {
 div.grid-chart {
     margin: 4px auto;
     display: grid;
-    grid-template-columns: 60px repeat(2, 1fr);
+    grid-template-columns: 70px repeat(2, 1fr);
     width: 60%;
     border-bottom: 1px solid rgb(50, 74, 90);
     a {
         color: $pale-silver;
     }
-    img.posters {
-        height: 95px;
-        width: 60px;
+    .charts__poster img {
+        height: 105px;
+        width: 70px;
     }
     li {
         margin-left: 30px;
@@ -46,11 +46,11 @@ div.grid-chart {
             color: $turquoise;
         }
     }
-    .charts--rating {
+    .charts__rating {
         display: flex;
         align-items: center;
         justify-content: center;
-        i, span.charts__rating {
+        i, span {
             align-self: center;
             justify-self: center;
             color: $pale-silver;
