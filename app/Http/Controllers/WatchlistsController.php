@@ -99,8 +99,8 @@ class WatchlistsController extends Controller
 
     {
 
-        //If a user wants to add item to watchlist
-        if (\Auth::user()){
+        //If a logged in user wants to add item to watchlist
+        // if (\Auth::user()){
 
         $watchlist = Watchlist::where('user_id', '=', Auth::user()->id)
         ->where('item_id', '=', $request->input('id'))->first();
@@ -114,7 +114,12 @@ class WatchlistsController extends Controller
             $watchlist->save();
             return back();
         }
-    }
+
+        else {
+            //ERROR MESSAGE: ALREADY EXISTS IN WATCHLIST
+        }
+
+    //}
         
         //Create a new watchlist using the request data
 
@@ -122,6 +127,7 @@ class WatchlistsController extends Controller
 
         //And redirect...
     }
+
 
 }
 
