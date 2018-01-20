@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Watchlist extends Model
 {
     //
-<<<<<<< HEAD
+
     protected $fillable = [
         'item_id',
         'user_id',
@@ -34,6 +34,5 @@ class Watchlist extends Model
     {
 
     }
-=======
->>>>>>> Create migration, model and controller for watchlist
+
 }
