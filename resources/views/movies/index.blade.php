@@ -8,7 +8,7 @@
             <h6>Sort By</h6>
             <span>@sortablelink('title')</span>
             <span>@sortablelink('rating')</span>
-            <span>@sortablelink('release_date')</span>
+            <span>@sortablelink('release_date', 'Release Date')</span>
 
         </div>
             <ol>
