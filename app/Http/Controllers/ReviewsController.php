@@ -86,18 +86,21 @@ class ReviewsController extends Controller
      * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function show($movie, Review $review)
+    public function show($id, Review $review)
     {
         $review = Review::find($review->id);
-        $movie = Movie::find($movie);
-        $item = Item::find($movie->item_id);
+        $title = Movie::find($id);
+        if($title === null) {
+            $title = Tvshow::find($id);
+        }
+        $item = Item::find($title->item_id);
         $comments = Comment::where('review_id', $review->id)
         ->join('users', 'author_id', '=', 'users.id')
         ->get();
 
         return view('reviews.show', [
             'review' => $review,
-            'movie' => $movie,
+            'title' => $title,
             'item' => $item,
             'comments' => $comments
         ]);
