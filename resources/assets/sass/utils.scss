@@ -9,6 +9,10 @@
     align-items: center;
 }
 
+.v-self-center {
+    align-self: center !important;
+}
+
 .full {
     height:100vh;
     min-height: 600px;
