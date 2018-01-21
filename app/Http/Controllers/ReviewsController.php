@@ -34,12 +34,15 @@ class ReviewsController extends Controller
      */
     public function create($id)
     {
-        $movie = Movie::find($id);
+        $title = Movie::find($id);
+        if($title === null) {
+            $title = Tvshow::find($id);
+        }
         $item = Item::find($id);
         $user = Auth::user();
 
 
-        return view('reviews.create', ['movie' => $movie, 'item' => $item, 'user' => $user]);
+        return view('reviews.create', ['title' => $title, 'item' => $item, 'user' => $user]);
     }
 
     /**
