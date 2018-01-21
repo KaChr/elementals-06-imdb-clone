@@ -74,6 +74,22 @@ class WatchlistsController extends Controller
         //And redirect...
     }
 
+    public function destroy(Request $request)
+
+    {
+        
+        // $watchlists = Watchlist::with('movies')
+        // //->with('tvshows')
+        // ->where('user_id', Auth::user()->id)
+        // ->get();
+
+        $watchlist = Watchlist::where('user_id', '=', Auth::user()->id)
+        ->where('item_id', '=', $request->input('id'))->first();
+
+        $watchlist->delete();
+        return back();
+    }
+
 
 }
 
