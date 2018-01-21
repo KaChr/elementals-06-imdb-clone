@@ -52,6 +52,11 @@
             </article>
         </div>
     </section>
+    <section class="section seasons">
+        <div class="container">
+            @include('tvshows.seasons', ['title' => $item ])
+        </div>
+    </section>
     <section class="cast-crew">
         <div class="container">
             @include('includes.person', [
@@ -65,13 +70,5 @@
             @include('includes.reviews', ['reviews' => $reviews, 'poster' => $tvshow->poster])
         </div>
     </section>
-
-    <section class="section">   
-        @foreach($seasons as $season)
-            <a href="{{$item[0]->item_id}}/seasons/{{$season->season_nr}}">Season {{$season->season_nr}}</a><br>
-        @endforeach
-    </section>
 </div>
-
-
 @endsection
