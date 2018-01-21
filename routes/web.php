@@ -57,3 +57,5 @@ Route::resource('reviews', 'ReviewsController');
 Route::get('watchlist', 'WatchlistsController@show')->middleware('auth');
 
 Route::post('/watchlist', 'WatchlistsController@store');
+
+Route::delete('/watchlist/delete', 'WatchlistsController@destroy');
