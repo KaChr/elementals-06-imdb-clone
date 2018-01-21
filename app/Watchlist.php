@@ -18,4 +18,19 @@ class Watchlist extends Model
     // public function item(){
     //     return $this->belongsTo('App\Item', 'items');
     // }
+
+    public function user() 
+    {
+
+    }
+
+    public function movies() 
+    {
+        return $this->hasMany('App\Movie', 'item_id', 'item_id');
+    }
+
+    public function tvshows() 
+    {
+
+    }
 }
