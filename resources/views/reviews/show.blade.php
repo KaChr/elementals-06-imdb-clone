@@ -61,7 +61,7 @@
                     {!! Form::open(['route'=>['movies.reviews.comments.store', $title, $review]]) !!}
                         @include('reviews.comment', ['submitText' => 'Add comment'])
                     {!! Form::close() !!}
-                @else 
+                @elseif(!Auth::guest())
                     {!! Form::open(['route'=>['tvshows.reviews.comments.store', $title, $review]]) !!}
                         @include('reviews.comment', ['submitText' => 'Add comment'])
                     {!! Form::close() !!}
