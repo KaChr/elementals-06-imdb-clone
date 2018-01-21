@@ -26,11 +26,6 @@ class WatchlistsController extends Controller
     public function show(Watchlist $watchlist)
 
     {
-
-<<<<<<< HEAD
-
-=======
->>>>>>> Logged in user can view all movies in watchlist and go direct to a movie
         $watchlists = Watchlist::with('movies')
         //->with('tvshows')
         ->where('user_id', Auth::user()->id)
@@ -40,7 +35,7 @@ class WatchlistsController extends Controller
 
         
         return view ('watchlists.show', compact('watchlists'));
-<<<<<<< HEAD
+
     }
 
     public function store(Request $request)
@@ -63,9 +58,9 @@ class WatchlistsController extends Controller
             return back();
         }
 
-        else {
-            //ERROR MESSAGE: ALREADY EXISTS IN WATCHLIST
-        }
+        // else {
+        //     //ERROR MESSAGE: ALREADY EXISTS IN WATCHLIST
+        // }
 
     //}
         
@@ -91,49 +86,15 @@ class WatchlistsController extends Controller
         $watchlist->delete();
         return back();
     }
+        
+    //     //Create a new watchlist using the request data
+
+    //     // Save it to the database
+
+    //     //And redirect...
+    // }
 
 
 }
 
-        //
-        return view ('watchlists.show', compact('watchlist'));
-=======
->>>>>>> Logged in user can view all movies in watchlist and go direct to a movie
-    }
-
-    public function store(Request $request)
-
-    {
-
-        //If a logged in user wants to add item to watchlist
-        // if (\Auth::user()){
-
-        $watchlist = Watchlist::where('user_id', '=', Auth::user()->id)
-        ->where('item_id', '=', $request->input('id'))->first();
-        
-        //If the user doesn't already have the item saved in watchlist: add it. 
-        if ($watchlist == null) {
-            $watchlist = Watchlist::create([
-                'user_id' => Auth::user()->id,
-                'item_id' => $request->input('id')
-            ]);
-            $watchlist->save();
-            return back();
-        }
-
-        else {
-            //ERROR MESSAGE: ALREADY EXISTS IN WATCHLIST
-        }
-
-    //}
-        
-        //Create a new watchlist using the request data
-
-        // Save it to the database
-
-        //And redirect...
-    }
-
-
-}
 

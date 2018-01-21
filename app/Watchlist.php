@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Watchlist extends Model
 {
     //
-
     protected $fillable = [
         'item_id',
         'user_id',
