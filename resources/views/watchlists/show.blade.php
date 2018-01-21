@@ -19,8 +19,7 @@
     margin: auto;
 }
 
-
-.watchlist__poster, .watchlist__info {
+.watchlist__poster {
     margin-top: 1rem;
 }
 
@@ -30,11 +29,16 @@
     margin-right: 0.5rem;
 }
 
+.watchlist__release, .wathclist__runtime, .watchlist__rating {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
 .watchlist__summary {
     margin: 2rem;
     margin-top: 1rem;
 }
-
 
 </style>
 
@@ -82,17 +86,12 @@
                 <h3> {{ $watchlist->movies->implode('title', ',') }} </h3>
         </a>
 
-        <h5> {{ $watchlist->movies->implode('release_date', ',') }} 
-          
-         {{ $watchlist->movies->implode('runtime', ',') }} 
-         {{ $watchlist->movies->implode('rating', ',') }}</h5>
-        <p> {{ $watchlist->movies->implode('summary', ',') }} </p>
-        
-    </div>
-        
-         
-        
-     
+        <h5 class="watchlist__release"> {{ $watchlist->movies->implode('release_date', ',') }} </h5>
+        <h5 class="wathclist__runtime"> {{ $watchlist->movies->implode('runtime', ',') }} </h5>
+        <h5 class="watchlist__rating"> {{ $watchlist->movies->implode('rating', ',') }} </h5>
+        <p class="watchlist__summary"> {{ $watchlist->movies->implode('summary', ',') }} </p>
+
+    </div>     
     
 
 @endforeach
