@@ -537,3 +537,17 @@ footer.footer__logo {
  
     }
 }
+
+.search {
+    flex-direction: column;
+    align-items: center;
+}
+
+.search__button {
+    max-width: 240px;
+    margin-top: 1em;
+}
+
+.search__title {
+    margin-bottom: 1em;
+}
