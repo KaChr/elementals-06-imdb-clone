@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Episode;
+use App\Season;
+use App\Item;
+use App\Tvshow;
 use Illuminate\Http\Request;
 
 class EpisodesController extends Controller
@@ -14,7 +17,9 @@ class EpisodesController extends Controller
      */
     public function index()
     {
-        //
+        $episodes = Episode::all();
+        
+        return view('episodes.index', ['episodes'=>$episodes]);
     }
 
     /**
@@ -44,9 +49,14 @@ class EpisodesController extends Controller
      * @param  \App\Episode  $episode
      * @return \Illuminate\Http\Response
      */
-    public function show(Episode $episode)
+    public function show($item_id, $season_nr, $episode_nr)
     {
-        //
+        $tvshow = Tvshow::find($item_id);
+        $season = Season::where('tvshow_id', '=', $item_id)->where('season_nr', '=', $season_nr)->first();
+        $episode = Episode::where('season_id', '=', $season->item_id)->where('episode_nr', '=', $episode_nr)->first();
+        $season_item = Item::find($season->item_id);
+
+        return view('tvshows/seasons/episodes.show', ['tvshow'=>$tvshow, 'season'=>$season, 'episode'=>$episode, 'season_item'=>$season_item]);
     }
 
     /**

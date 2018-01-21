@@ -21,6 +21,7 @@ class CreateEpisodesTable extends Migration
             $table->text('summary')->nullable();
             $table->float('rating')->nullable();
             $table->string('airdate')->nullable();
+            $table->text('backdrop')->nullable();
             $table->timestamps();
         });
 

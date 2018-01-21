@@ -2,15 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class ReviewsTableSeeder extends Seeder
+class CommentsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-     public function run()
+    public function run()
     {
-        factory(App\Review::class, 50)->create();
+        factory(App\Comment::class, 100)->create();
     }
 }
