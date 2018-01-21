@@ -44,9 +44,10 @@ class PeopleController extends Controller
      * @param  \App\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function show(Person $person)
+    public function show(People $person)
     {
-        return view('')
+        $id = $people->id;
+        $people = People::find($id);
     }
 
     /**
