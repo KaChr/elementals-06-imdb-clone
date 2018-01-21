@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="hero is-light featured" style="background-image: url({{$movie->movieBackdrop}})">
+    @if(get_class($title) == 'App\Movie')
+        <section class="hero is-light featured" style="background-image: url({{$title->movieBackdrop}})">
+    @else
+        <section class="hero is-light featured" style="background-image: url({{$title->tvBackdrop}})">
+    @endif 
         <div class="hero-body is-flex">
             <div class="featured__content--bottom is-flex">
                 <div class="featured__info">
@@ -11,10 +15,7 @@
                     {{$genre->genre_title}}
                 @endforeach
                 </span>
-                <h1 class="featured__info-title">Write a review for: {{ $movie->title }}</h1>
-                </div>
-                <div class="featured__rating is-flex">
-                <span>Rating: </span>
+                <h1 class="featured__info-title">Write a review for: {{ $title->title }}</h1>
                 </div>
             </div>
         </div>
@@ -23,12 +24,18 @@
         <section class="section">
             <div class="columns is-centered">
                 <div class="column is-narrow">
-                    <img src="{{ $movie->poster}}" alt="">
+                    <img src="{{ $title->poster}}" alt="">
                 </div>
                 <div class="column is-6-desktop">
-                {!! Form::open(['route'=>['movies.reviews.store', $movie]]) !!}
-                    @include('reviews.form', ['submitText' => 'Post review'])
-                {!! Form::close() !!}
+                @if(get_class($title) == 'App\Movie')                
+                    {!! Form::open(['route'=>['movies.reviews.store', $title]]) !!}
+                        @include('reviews.form', ['submitText' => 'Post review'])
+                    {!! Form::close() !!}
+                @else
+                    {!! Form::open(['route'=>['tvshows.reviews.store', $title]]) !!}
+                        @include('reviews.form', ['submitText' => 'Post review'])
+                    {!! Form::close() !!}
+                @endif
                 </div>
             </div>
         </section>
