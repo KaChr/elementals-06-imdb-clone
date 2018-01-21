@@ -11,26 +11,7 @@
                     <p class="featured__info-runtime">{{$movie->runtime}}</p>
                     <h1 class="featured__info-title">{{$movie->title}}</h1>
                     <ul class="featured__info__actions">
-                        <li>
-                            <a href="#">
-                                <button class="button button--small button--border-blue" type="button">
-                                    <span class="icon">
-                                        <i class="fa fa-plus" area-hidden="true"></i>
-                                    </span>
-                                    WATCHLIST
-                                </button>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <button class="button button--small button--border-blue" type="button">TRAILER</button>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('movies.reviews.create', $movie)}}">
-                                <button class="button button--small button--border-blue" type="button">WRITE REVIEW</button>
-                            </a>
-
+                    <li>
                         <form method="POST" action="/watchlist">
                             {{ csrf_field() }}
 
@@ -48,6 +29,16 @@
                             </form>
 
                         </li>
+                        
+                        <li>
+                            <a href="#">
+                                <button class="button button--small button--border-blue" type="button">TRAILER</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('movies.reviews.create', $movie)}}">
+                                <button class="button button--small button--border-blue" type="button">WRITE REVIEW</button>
+                            </a>
                     </ul>
                     <span class="featured__info-genre">
                         @foreach($item[0]->genres as $genre)
