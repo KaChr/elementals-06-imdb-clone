@@ -6,6 +6,7 @@ use App\Review;
 use App\Movie;
 use App\Item;
 use App\Comment;
+use App\Tvshow;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -51,20 +52,29 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $movie)
+    public function store(Request $request, $id)
     {
+
+        $item = Item::find($id);
         
         $review = new Review;
         $review->title = $request->title;
         $review->body = $request->body;
-        $review->item_id = $movie;
+        $review->item_id = $id;
         $review->author_id = Auth::user()->id;
-        $review->rating = $request->rating;
+        $review->rating = $request->rating; 
 
         $review->save();
 
-        return redirect()->route('movies.reviews', [
-            'movie' => $movie, 
+        if($item->type === 'movie') {
+            return redirect()->route('movies.reviews.show', [
+                'title' => $id, 
+                'review' => $review
+            ]);
+        }
+
+        return redirect()->route('tvshows.reviews.show', [
+            'id' => $id, 
             'review' => $review
         ]);
 
