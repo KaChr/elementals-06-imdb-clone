@@ -22,7 +22,7 @@ class MoviesController extends Controller
         $movies = Movie::sortable()->paginate();
         $genres = Genre::all();     
 
-        return view('movies.index', ['movies'=>$movies, 'genres'=>$genres]);
+        return view('categories', ['movies'=>$movies, 'genres'=>$genres]);
    }
 
    public function genreSelect(Request $request)
@@ -33,7 +33,7 @@ class MoviesController extends Controller
        if ($request->input('genre')) {
             $genres = Genre::all();  
 
-            // hämta 
+            // hämta
             $items = Item::whereHas('genres', function($query) use ($id) {
                 $query->where('genre_id', '=', $id );
             })->get();
@@ -44,7 +44,7 @@ class MoviesController extends Controller
                 array_push($movies, Movie::find($item->id));
             }
 
-            return view('movies.index', ['movies'=> $movies, 'items'=> $items, 'genres'=> $genres]);
+            return view('categories', ['movies'=> $movies, 'items'=> $items, 'genres'=> $genres]);
        }
 
        // redirect to @index

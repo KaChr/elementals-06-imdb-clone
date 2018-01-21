@@ -38,6 +38,9 @@ Route::get('/profilepage', function () {
 Route::get('/movies', function () {
     return view('/');   
 });
+
+Route::get('/categories', 'MoviesController@index');
+Route::post('categories', 'MoviesController@genreSelect');
            
 // Route::get('/home', function () {
 //     return view('home');
@@ -55,6 +58,4 @@ Route::resource('people', 'PeopleController');
 Route::resource('genres', 'GenresController');
 
 Route::get('tvshows', 'TvshowsController@index');
-
-Route::post('/movies/genre', 'MoviesController@genreSelect');
 
