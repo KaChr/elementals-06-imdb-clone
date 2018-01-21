@@ -3,7 +3,7 @@
 
 @import '/font/sourcesans.css';
 
-// Variables
+// Components
 @import "bulma";
 @import "mixins";
 @import "variables";
@@ -28,6 +28,11 @@ body {
 
 #app {
     flex:1;
+}
+
+a {
+    color: #FFF;
+    font-weight: bold;
 }
 
 //Typography
