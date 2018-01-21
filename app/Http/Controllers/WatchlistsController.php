@@ -27,7 +27,10 @@ class WatchlistsController extends Controller
 
     {
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Logged in user can view all movies in watchlist and go direct to a movie
         $watchlists = Watchlist::with('movies')
         //->with('tvshows')
         ->where('user_id', Auth::user()->id)
@@ -37,6 +40,7 @@ class WatchlistsController extends Controller
 
         
         return view ('watchlists.show', compact('watchlists'));
+<<<<<<< HEAD
     }
 
     public function store(Request $request)
@@ -93,6 +97,8 @@ class WatchlistsController extends Controller
 
         //
         return view ('watchlists.show', compact('watchlist'));
+=======
+>>>>>>> Logged in user can view all movies in watchlist and go direct to a movie
     }
 
     public function store(Request $request)
