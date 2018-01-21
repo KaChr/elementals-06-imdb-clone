@@ -2,6 +2,7 @@
 
 @section('content')
     @include('includes.hero')
+    @include('includes.search')
     @include('includes.takeover')
     <div class="container">
         @include('includes.spotlight', ['title' => 'TOP RATED MOVIES', 'spotlights' => $spotlights['rated']])

@@ -46,7 +46,8 @@ class GenresController extends Controller
      */
     public function show(Genre $genre)
     {
-        //
+        $id = $genre->id;
+        $genre = Genre::find($id);
     }
 
     /**
