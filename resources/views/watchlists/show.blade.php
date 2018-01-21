@@ -19,7 +19,8 @@
     margin: auto;
 }
 
-.watchlist__poster {
+
+.watchlist__poster, .watchlist__info {
     margin-top: 1rem;
 }
 
@@ -29,16 +30,11 @@
     margin-right: 0.5rem;
 }
 
-.watchlist__release, .wathclist__runtime, .watchlist__rating {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-}
-
 .watchlist__summary {
     margin: 2rem;
     margin-top: 1rem;
 }
+
 
 </style>
 
@@ -91,7 +87,28 @@
         <h5 class="watchlist__rating"> {{ $watchlist->movies->implode('rating', ',') }} </h5>
         <p class="watchlist__summary"> {{ $watchlist->movies->implode('summary', ',') }} </p>
 
+        <form method="post" action="/watchlist/delete">
+            {{ csrf_field() }}
+
+            <input type="hidden" name="id" value="{{$watchlist->movies->implode('item_id')}}">
+                <input name="_method" type="hidden" value="DELETE">
+                <button class="watchlist__delete--button button button--small button--border-turquoise" type="submit">DELETE</button>
+
+        </form>
+
+        <!-- <button class="watchlist__delete--button button button--small button--border-turquoise" type="submit">DELETE</button> -->
+
+
+
+        <div class="divider">
+            <div class="divider__info is-flex">
+            </div>
+            <span class="divider__line"></span>
+        </div>
+        
+
     </div>     
+
     
 
 @endforeach
