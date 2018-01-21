@@ -11,39 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('splash');
-});
+
+Route::get('/', 'HomeController@splash')->name('splash');
 
 Route::get('/movie-api', function () {
     
     return view('movie-api');
-});
-
-Route::get('/omdb', function () {
-        
-    return view('omdb');
-});
-
-Route::get('/components', function () {
-
-    return view('components');
-});
-
-Route::get('/profilepage', function () {
-    return view('profile-page');   
-});
-
-Route::get('/movies', function () {
-    return view('/');   
-});
-           
-Route::get('/item', function () {
-    return view('item-page');   
-});
-
-Route::get('/login', function () {
-    return view('login');
 });
 
 Auth::routes();
@@ -63,3 +36,6 @@ Route::get('tvshows/{item_id}/seasons/{season_nr}/episodes/{episode_nr}', 'Episo
 
 Route::resource('movies.reviews', 'ReviewsController');
 Route::resource('movies.reviews.comments', 'CommentsController');
+
+Route::resource('tvshows.reviews', 'ReviewsController');
+Route::resource('tvshows.reviews.comments', 'CommentsController');

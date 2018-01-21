@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Movie;
 use App\Item;
 use App\Review;
+use App\Tvshow;
+use \Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,12 +36,22 @@ class HomeController extends Controller
             $item[] = Item::find($feature->item_id);
         }
   
-        $spotlightMovies = Movie::orderBy('created_at', 'desc')->limit(5)->get();
-        $spotlightRated = Movie::orderBy('rating', 'desc')->limit(5)->get();  
+        $spotlightMovies = Movie::orderBy('movies.created_at', 'desc')
+        ->join('items', 'movies.item_id', '=', 'items.id')            
+        ->limit(5)->get();
+
+        $spotlightRated = Movie::orderBy('rating', 'desc')
+        ->join('items', 'movies.item_id', '=', 'items.id')            
+        ->limit(5)->get();
+
+        $spotlightTv = Tvshow::orderBy('rating', 'desc')
+        ->join('items', 'tvshows.item_id', '=', 'items.id')    
+        ->limit(5)->get();
         
         $spotlights = [
             'movies' => $spotlightMovies,
-            'rated' => $spotlightRated
+            'rated' => $spotlightRated,
+            'tvshows' => $spotlightTv
         ];
 
         $reviews = Review::orderBy('reviews.created_at', 'desc')
@@ -52,5 +64,14 @@ class HomeController extends Controller
             'item' => $item, 
             'reviews' => $reviews,
             'spotlights' => $spotlights]);
+    }
+
+    public function splash() 
+    {
+        if(null !== Auth::user()) {
+            return $this->index();
+        }
+
+        return view('splash');
     }
 }

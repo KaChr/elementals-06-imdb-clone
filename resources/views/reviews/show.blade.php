@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <section class="hero is-light featured" style="background-image: url({{$movie->movieBackdrop}})">
+    @if(get_class($title) == 'App\Movie')
+            <section class="hero is-light featured" style="background-image: url({{$title->movieBackdrop}})">
+        @else
+            <section class="hero is-light featured" style="background-image: url({{$title->tvBackdrop}})">
+        @endif 
         <div class="hero-body is-flex">
             <div class="featured__content--bottom is-flex">
                 <div class="featured__info">
@@ -10,7 +14,7 @@
                     {{$genre->genre_title}}
                 @endforeach
                 </span>
-                <h1 class="featured__info-title">{{ $movie->title }}</h1>
+                <h1 class="featured__info-title">{{ $title->title }}</h1>
                 </div>
                 <div class="featured__rating is-flex">
                 <span>Rating: {{ $review->rating }}</span>
@@ -22,7 +26,7 @@
         <section class="section">
             <div class="columns is-centered">
                 <div class="column is-narrow">
-                    <img src="{{ $movie->poster}}" alt="">
+                    <img src="{{ $title->poster}}" alt="">
                 </div>
                 <div class="column is-6-desktop">
                     <h2>{{ $review->title }}</h2>
@@ -53,8 +57,12 @@
                         </div>
                     @endforeach
                 @endif
-                @if(!Auth::guest())
-                    {!! Form::open(['route'=>['movies.reviews.comments.store', $movie, $review]]) !!}
+                @if(!Auth::guest() && get_class($title) == 'App\Movie')
+                    {!! Form::open(['route'=>['movies.reviews.comments.store', $title, $review]]) !!}
+                        @include('reviews.comment', ['submitText' => 'Add comment'])
+                    {!! Form::close() !!}
+                @elseif(!Auth::guest())
+                    {!! Form::open(['route'=>['tvshows.reviews.comments.store', $title, $review]]) !!}
                         @include('reviews.comment', ['submitText' => 'Add comment'])
                     {!! Form::close() !!}
                 @endif

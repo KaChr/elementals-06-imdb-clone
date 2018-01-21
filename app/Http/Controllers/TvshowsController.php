@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Tvshow;
 use App\Item;
 use App\Season;
+use App\Review;
 use Illuminate\Http\Request;
 
 class TvshowsController extends Controller
@@ -52,11 +53,23 @@ class TvshowsController extends Controller
     {
         $id = $tvshow->item_id;
         $tvshow = Tvshow::find($id);
-
         $seasons = Season::where('tvshow_id', '=', $id)->get();
 
-        $item = Item::find($id);
-        return view('tvshows.show', ['tvshow'=>$tvshow, 'item'=>$item, 'seasons'=>$seasons]);
+        $reviews = Review::orderBy('reviews.created_at', 'desc')
+            ->where('reviews.item_id', $id)
+            ->join('users', 'author_id', '=', 'users.id')
+            ->join('tvshows', 'reviews.item_id', '=', 'tvshows.item_id')
+            ->limit(2)->get(['reviews.*', 'users.name', 'tvshows.poster', 'reviews.rating AS review_rating']);
+        
+        $item = Item::find($id)
+                ->leftJoin('actor_character_item', 'id', '=', 'actor_character_item.item_id')
+                ->leftJoin('characters as character', 'character.id', '=', 'actor_character_item.character_id')
+                ->leftJoin('people as actor', 'actor.id', '=', 'actor_character_item.person_id')
+                ->where('item_id', $id)
+                ->get();
+
+        // dd($item);
+        return view('tvshows.show', ['tvshow' => $tvshow, 'item' => $item, 'seasons' => $seasons, 'reviews' => $reviews]);
     }
 
     /**
