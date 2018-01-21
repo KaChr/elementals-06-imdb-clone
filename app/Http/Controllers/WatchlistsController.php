@@ -10,30 +10,20 @@ use Illuminate\Http\Request;
 class WatchlistsController extends Controller
 {
     public function __construct()
+
     {
         $this->middleware('auth', ['except' => ['show']]);
     }
 
-    /*
-    public function index()
-
-    {
-        //
-        return view ('watchlist.index');
-    }
-    */
 
     public function show(Watchlist $watchlist)
 
     {
         $watchlists = Watchlist::with('movies')
-        //->with('tvshows')
+        ->with('tvshows')
         ->where('user_id', Auth::user()->id)
         ->get();
 
-
-
-        
         return view ('watchlists.show', compact('watchlists'));
 
     }
@@ -41,9 +31,6 @@ class WatchlistsController extends Controller
     public function store(Request $request)
 
     {
-
-        //If a logged in user wants to add item to watchlist
-        // if (\Auth::user()){
 
         $watchlist = Watchlist::where('user_id', '=', Auth::user()->id)
         ->where('item_id', '=', $request->input('id'))->first();
@@ -64,21 +51,11 @@ class WatchlistsController extends Controller
 
     //}
         
-        //Create a new watchlist using the request data
-
-        // Save it to the database
-
-        //And redirect...
     }
 
     public function destroy(Request $request)
 
     {
-        
-        // $watchlists = Watchlist::with('movies')
-        // //->with('tvshows')
-        // ->where('user_id', Auth::user()->id)
-        // ->get();
 
         $watchlist = Watchlist::where('user_id', '=', Auth::user()->id)
         ->where('item_id', '=', $request->input('id'))->first();

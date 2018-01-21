@@ -31,6 +31,6 @@ class Watchlist extends Model
 
     public function tvshows() 
     {
-
+        return $this->hasMany('App\Tvshow', 'item_id', 'item_id');
     }
 }
