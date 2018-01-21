@@ -12,17 +12,28 @@
                     <h1 class="featured__info-title">{{$movie->title}}</h1>
                     <ul class="featured__info__actions">
                         <li>
-                            <button class="button button--small button--border-blue" type="button">
-                                <span class="icon">
-                                    <i class="fa fa-plus" area-hidden="true"></i>
-                                </span>
-                                WATCHLIST
-                            </button>
+                            <a href="#">
+                                <button class="button button--small button--border-blue" type="button">
+                                    <span class="icon">
+                                        <i class="fa fa-plus" area-hidden="true"></i>
+                                    </span>
+                                    WATCHLIST
+                                </button>
+                            </a>
                         </li>
-                        <li><button class="button button--small button--border-blue" type="button">TRAILER</button></li>
+                        <li>
+                            <a href="#">
+                                <button class="button button--small button--border-blue" type="button">TRAILER</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('movies.reviews.create', $movie)}}">
+                                <button class="button button--small button--border-blue" type="button">WRITE REVIEW</button>
+                            </a>
+                        </li>
                     </ul>
                     <span class="featured__info-genre">
-                        @foreach($item->genres as $genre)
+                        @foreach($item[0]->genres as $genre)
                             {{ $loop->first ? '' : ', '}}
                             {{$genre->genre_title}}
                         @endforeach
@@ -44,12 +55,12 @@
     <section class="cast-crew">
         <div class="container">
             @include('includes.person', [
-                'actors' => $item->actors, 
-                'directors' => $item->directors
+                'actors' => $item[0]->actors, 
+                'directors' => $item[0]->directors
             ])
         </div>
     </section>
-    <section class="reviews">
+    <section class="section reviews">
         <div class="container">
             @include('includes.reviews', ['reviews' => $reviews, 'poster' => $movie->poster])
         </div>

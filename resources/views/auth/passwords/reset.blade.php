@@ -16,9 +16,6 @@
     <div class="columns is-marginless is-centered">
         <div class="column is-5">
             <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">Reset Password</p>
-                </header>
 
                 <div class="card-content">
                     @if (session('status'))

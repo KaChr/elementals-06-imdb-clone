@@ -4,7 +4,7 @@
         <a href="#">VIEW ALL</a>
     </div>
     <span class="divider__line"></span>
-</div>e
+</div>
 @foreach($reviews as $index => $review)
     @if($index % 2 === 0)
     <section class="columns">
@@ -12,7 +12,7 @@
         <div class="column">
             <div class="columns is-mobile">
                 <div class="column is-two-fifths-mobile is-3-desktop">
-                    <a href="">  
+                    <a href="/movies/{{$review->item_id}}/reviews/{{$review->id}}">  
                         <div class="review__poster">
                             <span class="review__rating">{{ $review->review_rating }}</span>
                             <img src="{{ $review->poster }}" alt="">
@@ -26,13 +26,15 @@
                         </span>
                         <div>
                             <h4 class="review__title">{{ $review->title }}</h4>
-                            <p class="review__author">{{ $review->name }}</p>
+                            <a href="/users/{{ $review->author_id }}"><p class="review__author">{{ $review->name }}</p></a>
                         </div>
                     </div>
                     <p class="review__body">
                         {{ $review->body }}
                     </p>
-                    <button class="button button--small button--solid-yellow">READ MORE</button>
+                    <a href="/movies/{{$review->item_id}}/reviews/{{$review->id}}">
+                        <button class="button button--small button--solid-yellow">READ MORE</button>
+                    </a>
                 </div>  
             </div>
         </div>
