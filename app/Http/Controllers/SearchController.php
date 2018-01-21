@@ -20,6 +20,10 @@ class SearchController extends Controller
         $movies = Movie::where('title', 'like', '%' . $search . '%')
             ->orderBy('rating')
             ->paginate(20);
+
+        $shows = TvShow::where('title', 'like', '%' . $search . '%')
+            ->orderBy('rating')
+            ->paginate(20);    
         
         $people = Person::where('name', 'like', '%' . $search . '%')
             ->paginate(20); 
@@ -32,6 +36,7 @@ class SearchController extends Controller
             'query' => $search,
             'results' => [
                 'movies' => $movies,
+                'shows' => $shows,    
                 'people' => $people,
                 'genres' => $items
             ]
