@@ -15,6 +15,16 @@ Route::get('/', function () {
     return view('splash');
 });
 
+Route::get('/movie-api', function () {
+    
+    return view('movie-api');
+});
+
+Route::get('/omdb', function () {
+        
+    return view('omdb');
+});
+
 Route::get('/components', function () {
 
     return view('components');
@@ -24,6 +34,10 @@ Route::get('/profilepage', function () {
     return view('profile-page');   
 });
 
+Route::get('/movies', function () {
+    return view('/');   
+});
+           
 Route::get('/item', function () {
     return view('item-page');   
 });
