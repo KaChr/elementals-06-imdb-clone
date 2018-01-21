@@ -37,7 +37,7 @@ class MoviesController extends Controller
         $movies = [];
 
         foreach ($items as $item) {
-            array_push($movies, Movie::sortable()->find($item->id));
+            array_push($movies, Movie::find($item->id));
         }
 
         return view('categories', ['movies'=> $movies, 'genres'=> $genres]);

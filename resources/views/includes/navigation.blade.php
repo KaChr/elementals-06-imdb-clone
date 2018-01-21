@@ -18,7 +18,7 @@
             <a class="navbar-item" href="/movies">
                 Top 100
             </a>
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="/categories">
                 Categories
             </a>
             <a class="navbar-item" href="#">
