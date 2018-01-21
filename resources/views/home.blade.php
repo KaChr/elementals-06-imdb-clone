@@ -5,8 +5,9 @@
     @include('includes.search')
     @include('includes.takeover')
     <div class="container">
-        @include('includes.spotlight', ['title' => 'TOP RATED THIS WEEK', 'spotlights' => $spotlights['rated'], 'type' => 'movies'])
-        @include('includes.spotlight', ['title' => 'RECENTLY ADDED', 'spotlights' => $spotlights['movies'], 'type' => 'movies'])        
+        @include('includes.spotlight', ['title' => 'TOP RATED MOVIES', 'spotlights' => $spotlights['rated']])
+        @include('includes.spotlight', ['title' => 'RECENTLY ADDED MOVIES', 'spotlights' => $spotlights['movies']])
+        @include('includes.spotlight', ['title' => 'RECENTLY ADDED TV SHOWS', 'spotlights' => $spotlights['tvshows']])                        
         <section class="section">
             @include('includes.reviews')
         </section>

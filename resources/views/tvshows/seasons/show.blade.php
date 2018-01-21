@@ -1,16 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>{{$tvshow->title}}</h1>
-    <h2>Season - {{$season->season_nr}}</h2>
-    @foreach($episodes as $episode)
-        <a href='{{$season->season_nr}}/episodes/{{$episode->episode_nr}}'>{{$episode->episode_nr}} {{$episode->title}}</a><br>
-    @endforeach
-</body>
-</html>
+@extends('layouts.app')
+@section('content')
+
+<div class="item">
+    <section class="hero featured" style="background-image: url('{{$episodes[0]->backdrop}}')">
+        <div class="hero-body is-flex">
+            <div class="featured__content--bottom is-flex v-self-center">
+                <div class="featured__info">       
+                    <h1>{{ $tvshow->title }}</h1>
+                    <h1 class="featured__info-title">Season {{$season->season_nr}}</h1>
+                </div>
+            </div>
+        </div> 
+    </section>
+    <section class="section episodes">
+        <div class="container">
+            <ol>
+            @foreach($episodes as $episode)
+                    <div class="grid-chart">
+                        <div class="charts__poster">
+                        <a href='{{$season->season_nr}}/episodes/{{$episode->episode_nr}}'><img src="{{$episode->backdrop}}"></a>
+                        </div>
+                        <div class="charts__title">
+                            <li>
+                            <a href='{{$season->season_nr}}/episodes/{{$episode->episode_nr}}'><h6>{{$episode->title}}</h6></a>
+                            </li>
+                        </div>
+                        <div class="charts__rating">
+                            <i class="fa fa-star"></i>
+                            <span>{{$episode->rating}}</span>
+                        </div>
+                    </div>
+            @endforeach
+            </ol>
+        </div>
+    </section>
+</div>
+@endsection

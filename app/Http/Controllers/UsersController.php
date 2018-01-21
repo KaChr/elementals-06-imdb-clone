@@ -55,7 +55,10 @@ class UsersController extends Controller
             ->join('movies', 'reviews.item_id', '=', 'movies.item_id')
             ->limit(2)->get(['reviews.*', 'users.name', 'movies.poster', 'reviews.rating AS review_rating']);
         
-        $spotlight = Movie::orderBy('rating', 'desc')->limit(5)->get();
+        $spotlight = Movie::orderBy('rating', 'desc')
+            ->join('items', 'movies.item_id', '=', 'items.id')            
+            ->limit(5)->get();
+
         $backdrop = Movie::orderBy('rating', 'desc')->select('movieBackdrop')->limit(1)->get();  
         
         

@@ -6,6 +6,7 @@ use App\Review;
 use App\Movie;
 use App\Item;
 use App\Comment;
+use App\Tvshow;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -34,12 +35,15 @@ class ReviewsController extends Controller
      */
     public function create($id)
     {
-        $movie = Movie::find($id);
+        $title = Movie::find($id);
+        if($title === null) {
+            $title = Tvshow::find($id);
+        }
         $item = Item::find($id);
         $user = Auth::user();
 
 
-        return view('reviews.create', ['movie' => $movie, 'item' => $item, 'user' => $user]);
+        return view('reviews.create', ['title' => $title, 'item' => $item, 'user' => $user]);
     }
 
     /**
@@ -48,20 +52,29 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $movie)
+    public function store(Request $request, $id)
     {
+
+        $item = Item::find($id);
         
         $review = new Review;
         $review->title = $request->title;
         $review->body = $request->body;
-        $review->item_id = $movie;
+        $review->item_id = $id;
         $review->author_id = Auth::user()->id;
-        $review->rating = $request->rating;
+        $review->rating = $request->rating; 
 
         $review->save();
 
-        return redirect()->route('movies.reviews', [
-            'movie' => $movie, 
+        if($item->type === 'movie') {
+            return redirect()->route('movies.reviews.show', [
+                'title' => $id, 
+                'review' => $review
+            ]);
+        }
+
+        return redirect()->route('tvshows.reviews.show', [
+            'id' => $id, 
             'review' => $review
         ]);
 
@@ -73,18 +86,21 @@ class ReviewsController extends Controller
      * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function show($movie, Review $review)
+    public function show($id, Review $review)
     {
         $review = Review::find($review->id);
-        $movie = Movie::find($movie);
-        $item = Item::find($movie->item_id);
+        $title = Movie::find($id);
+        if($title === null) {
+            $title = Tvshow::find($id);
+        }
+        $item = Item::find($title->item_id);
         $comments = Comment::where('review_id', $review->id)
         ->join('users', 'author_id', '=', 'users.id')
         ->get();
 
         return view('reviews.show', [
             'review' => $review,
-            'movie' => $movie,
+            'title' => $title,
             'item' => $item,
             'comments' => $comments
         ]);
