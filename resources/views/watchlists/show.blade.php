@@ -42,7 +42,9 @@
 
         <a class="watchlist__id" href ="/tvshows/ {{$watchlist->tvshows->implode('item_id')}}">
         <img class="watchlist__poster" src="{{ $watchlist->tvshows->implode('poster', ',') }}">
-        <h3 class="watchlist__title"> {{ $watchlist->tvshows->implode('title', ',') }} </h3>
+                <h3 class="watchlist__title"> {{ $watchlist->tvshows->implode('title', ',') }} </h3>
+</a>
+        
         <h5 class="watchlist__info"> {{ $watchlist->tvshows->implode('seasons', ',') }} | {{ $watchlist->tvshows->implode('runtime', ',') }} |
         {{ $watchlist->tvshows->implode('rating', ',') }} </h5>
         <p class="watchlist__summary"> {{ $watchlist->tvshows->implode('summary', ',') }} </p>
