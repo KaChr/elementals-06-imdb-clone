@@ -1,0 +1,30 @@
+.splash {
+    background: url('https://image.tmdb.org/t/p/original/pafm4gX43byVURznhB4TMlEfymr.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.splash__content {
+    flex-direction: column;
+    align-items: center;
+}
+
+.splash #splash__logo {
+    margin-bottom: 5em;
+}
+
+.splash__overlay {
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    z-index: 1;
+}
+
+.is-flex-end {
+    justify-content: flex-end;
+}
+

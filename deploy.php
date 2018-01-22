@@ -1,6 +1,7 @@
 <?php
 namespace Deployer;
 
+// require 'recipe/npm.php';
 require 'recipe/laravel.php';
 
 // Project name
@@ -20,8 +21,22 @@ add('shared_dirs', ['storage']);
 add('writable_dirs', ['storage']);
 set('allow_anonymous_stats', false);
 
-// Hosts
+// Npm
+set('bin/npm', function () {
+    return run('which npm');
+});
 
+desc('Install npm packages');
+task('npm:install', function () {
+    if (has('previous_release')) {
+        if (test('[ -d {{previous_release}}/node_modules ]')) {
+            run('cp -R {{previous_release}}/node_modules {{release_path}}');
+        }
+    }
+    run("cd {{release_path}} && {{bin/npm}} install");
+});
+
+// Hosts
 host('www.lanayru.me')
     ->stage('production')
     ->set('branch', 'master')
@@ -53,11 +68,28 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 
-
 //Restart Php-fpm
 desc('Restart PHP-FPM service');
 task('php-fpm:restart', function () {
     run('sudo service php7.0-fpm reload');
+});
+
+//Seed database from api
+desc('Seed database from api');
+task('api:movies', function () {
+    run('{{bin/php}} {{release_path}}/artisan api:movies');
+});
+
+//Dump Autoload
+desc('Dump autoload before seed');
+task('dump-autoload', function () {
+    $output = run('cd {{release_path}} && composer dump-autoload');
+    writeln('<info>' . $output . '</info>');
+});
+
+task('composer:install', function () {
+    $output = run('cd {{release_path}} && composer install');
+    writeln('<info>' . $output . '</info>');
 });
 
 after('deploy:symlink', 'php-fpm:restart');
@@ -67,8 +99,32 @@ after('deploy:failed', 'deploy:unlock');
 
 
 // Migrate database before symlink new release.
+desc('Execute artisan migrate:fresh');
+task('artisan:migrate:fresh', function () {
+    run('{{bin/php}} {{release_path}}/artisan migrate:fresh');
+});
 
-before('deploy:symlink', 'artisan:migrate');
+// Migrate database before symlink new release.
+desc('Build production');
+task('npm-production', function () {
+    run("cd {{release_path}} && {{bin/npm}} run production");
+});
+
+desc('Build dev');
+task('npm-dev', function () {
+    run("cd {{release_path}} && {{bin/npm}} run dev");
+});
+
+after('deploy:update_code', 'npm:install');
+after('npm:install', 'npm-production');
+after('npm-production', 'composer:install');
+// after('npm:install', 'npm-dev');
+
+before('deploy:symlink', 'artisan:migrate:fresh');
+after('artisan:migrate:fresh', 'api:movies');
+after('api:movies', 'dump-autoload');
+// after('dump-autoload', 'artisan:db:seed');
+
 
 
 

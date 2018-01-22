@@ -18,6 +18,7 @@ $factory->define(App\User::class, function (Faker $faker) {
 
     return [
         'name' => $faker->name,
+        'avatar' => 'https://randomuser.me/api/portraits/women/'. $faker->numberBetween($min = 0, $max = 99) .'.jpg',
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),

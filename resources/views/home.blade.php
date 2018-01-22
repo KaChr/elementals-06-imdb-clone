@@ -1,23 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+    @include('includes.hero')
+    @include('includes.takeover')
+    <div class="container">
+        @include('includes.search')
+        @include('includes.spotlight', ['title' => 'TOP RATED MOVIES', 'spotlights' => $spotlights['rated']])
+        @include('includes.spotlight', ['title' => 'RECENTLY ADDED MOVIES', 'spotlights' => $spotlights['movies']])
+        @include('includes.spotlight', ['title' => 'RECENTLY ADDED TV SHOWS', 'spotlights' => $spotlights['tvshows']])                        
+        <section class="section">
+            @include('includes.reviews')
+        </section>
     </div>
-</div>
 @endsection
