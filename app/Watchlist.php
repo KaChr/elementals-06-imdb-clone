@@ -33,4 +33,8 @@ class Watchlist extends Model
     {
         return $this->hasMany('App\Tvshow', 'item_id', 'item_id');
     }
+    public function items()
+    {
+        return $this->hasMany('App\Item', 'id', 'item_id');
+    }
 }
