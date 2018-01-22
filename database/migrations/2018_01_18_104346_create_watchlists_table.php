@@ -21,9 +21,9 @@ class CreateWatchlistsTable extends Migration
             $table->timestamps();
         });
 
-        //Schema::table('watchlists', function (Blueprint $table){
-        //    $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
-        //});
+        Schema::table('watchlists', function (Blueprint $table){
+           $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+        });
     }
 
     /**
