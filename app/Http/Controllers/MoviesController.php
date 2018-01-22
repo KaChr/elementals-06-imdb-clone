@@ -17,8 +17,6 @@ class MoviesController extends Controller
      */
     public function index(Request $request)
     {
-        //
-        //$movies = Movie::all();
         $movies = Movie::sortable()->paginate();
         
         return view('movies.index', ['movies'=>$movies]);
