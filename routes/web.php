@@ -56,6 +56,7 @@ Route::resource('reviews', 'ReviewsController');
 Route::get('tvshows/{item_id}/seasons/{season_nr}', 'SeasonsController@show');
 Route::get('tvshows/{item_id}/seasons/{season_nr}/episodes/{episode_nr}', 'EpisodesController@show');
 
+Route::get('/search', 'SearchController@index');
 Route::resource('movies.reviews', 'ReviewsController');
 Route::resource('movies.reviews.comments', 'CommentsController');
 
