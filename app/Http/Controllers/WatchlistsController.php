@@ -19,12 +19,12 @@ class WatchlistsController extends Controller
     public function show(Watchlist $watchlist)
 
     {
-        // $watchlists = Watchlist::with('movies', 'tvshows')
-        $watchlists = Watchlist::with('items')
+        $watchlists = Watchlist::with('movies', 'tvshows')
         ->where('user_id', Auth::user()->id)
+        ->join('items', 'items.id', '=', 'item_id')
         ->get();
 
-        return view ('watchlists.show', compact('watchlists'));
+        return view ('watchlists.show', ['watchlists' => $watchlists]);
 
     }
 
