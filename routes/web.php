@@ -19,6 +19,28 @@ Route::get('/movie-api', function () {
     return view('movie-api');
 });
 
+Route::get('/omdb', function () {
+        
+    return view('omdb');
+});
+Route::get('/tvshowz', function () {
+    
+return view('tvshowz');
+});
+
+Route::get('/components', function () {
+
+    return view('components');
+});
+
+Route::get('/profilepage', function () {
+    return view('profile-page');   
+});
+
+Route::get('/item', function () {
+    return view('item-page');   
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -40,3 +62,7 @@ Route::resource('movies.reviews.comments', 'CommentsController');
 
 Route::resource('tvshows.reviews', 'ReviewsController');
 Route::resource('tvshows.reviews.comments', 'CommentsController');
+
+Route::get('watchlist', 'WatchlistsController@show')->middleware('auth');
+Route::post('/watchlist', 'WatchlistsController@store');
+Route::delete('/watchlist/delete', 'WatchlistsController@destroy');

@@ -22,8 +22,8 @@ class CreateCommentsTable extends Migration
         });
 
         Schema::table('comments', function (Blueprint $table) {
-            $table->foreign('review_id')->references('id')->on('reviews');
-            $table->foreign('author_id')->references('id')->on('users');
+           $table->foreign('review_id')->references('id')->on('reviews');
+           $table->foreign('author_id')->references('id')->on('users');
         });
     }
 

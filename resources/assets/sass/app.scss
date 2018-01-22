@@ -536,6 +536,38 @@ footer.footer__logo {
         }
  
     }
+    
+}
+
+.watchlist, .watchlist__info {
+    text-align: center;
+}
+
+.watchlist__title {
+    color: #6EADFF;
+}
+
+.watchlist__poster, .watchlist__title, .watchlist__delete--button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.watchlist__poster, .watchlist__info {
+    margin-top: 1rem;
+}
+
+.watchlist__title {
+    text-align: center;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.watchlist__summary {
+    margin: 2rem;
+    margin-top: 1rem;
+
 }
 
 .search {
