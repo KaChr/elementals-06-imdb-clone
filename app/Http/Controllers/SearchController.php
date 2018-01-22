@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Movie;
 use App\Person;
-use App\TvShow; 
+use App\Tvshow; 
 use App\Genre;
 use App\Item;
 
