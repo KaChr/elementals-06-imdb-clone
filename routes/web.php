@@ -52,7 +52,9 @@ Route::resource('people', 'PeopleController');
 Route::resource('genres', 'GenresController');
 Route::resource('tvshows', 'TvshowsController');
 Route::resource('reviews', 'ReviewsController');
-  
+
+Route::get('categories', 'MoviesController@genreSelect');
+
 Route::get('tvshows/{item_id}/seasons/{season_nr}', 'SeasonsController@show');
 Route::get('tvshows/{item_id}/seasons/{season_nr}/episodes/{episode_nr}', 'EpisodesController@show');
 
