@@ -18,8 +18,8 @@ class MoviesController extends Controller
     public function index(Request $request)
     {
         $movies = Movie::sortable()->paginate();
-        
-        return view('movies.index', ['movies'=>$movies]);
+
+        return view('movies.index', ['movies' => $movies]);
     }
 
     public function genreSelect(Request $request)
@@ -30,15 +30,20 @@ class MoviesController extends Controller
 
         $items = Item::whereHas('genres', function ($query) use ($genreId) {
             $query->where('genre_id', '=', $genreId);
-        })->get();
-        
+        })
+        ->where('type', 'movie')
+        ->get();
+
         $movies = [];
 
         foreach ($items as $item) {
             array_push($movies, Movie::find($item->id));
         }
 
-        return view('categories', ['movies'=> $movies, 'genres'=> $genres]);
+        return view('categories', [
+            'movies' => $movies,
+            'genres' => $genres
+        ]);
     }
 
     /**
