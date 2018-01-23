@@ -4,6 +4,12 @@
 
 http://www.lanayru.me
 
+#### Admin login for Axel:
+
+E-mail: axel@emdb.com
+Password: elem
+
+
 ## Develop
 
 http://develop.lanayru.me (admin // elems)
