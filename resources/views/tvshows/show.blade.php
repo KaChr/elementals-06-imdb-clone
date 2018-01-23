@@ -12,14 +12,16 @@
                     <h1 class="featured__info-title">{{$tvshow->title}}</h1>
                     <ul class="featured__info__actions">
                         <li>
-                            <a href="#">
-                                <button class="button button--small button--border-blue" type="button">
-                                    <span class="icon">
-                                        <i class="fa fa-plus" area-hidden="true"></i>
-                                    </span>
-                                    WATCHLIST
-                                </button>
-                            </a>
+                            <form method="POST" action="/watchlist">
+                            {{ csrf_field() }}
+                                <input type="hidden" name="id" value="{{ $tvshow->item_id }}">
+                                    <button class="button button--small button--border-blue" type="submit">
+                                        <span class="icon">
+                                            <i class="fa fa-plus" area-hidden="true"></i>
+                                        </span>
+                                        WATCHLIST
+                                    </button>
+                            </form>
                         </li>
                         <li>
                             <a href="#">

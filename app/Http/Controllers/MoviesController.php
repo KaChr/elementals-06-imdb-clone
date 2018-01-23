@@ -6,42 +6,66 @@ use App\Movie;
 use App\Item;
 use App\Review;
 use Illuminate\Http\Request;
+use App\Genre;
 
 class MoviesController extends Controller
 {
-   /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function index()
-   {
-       //
-       //$movies = Movie::all();
-       $movies = Movie::sortable()->paginate(100);
-       return view('movies.index', ['movies'=>$movies]);
-   }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $movies = Movie::sortable()->paginate();
 
-   /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function create()
-   {
-       //
-   }
+        return view('movies.index', ['movies' => $movies]);
+    }
 
-   /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
-   public function store(Request $request)
-   {
-       //
-   }
+    public function genreSelect(Request $request)
+    {
+        $genreId = $request->input('genre') ? $request->input('genre') : 1;
+
+        $genres = Genre::all();
+
+        $items = Item::whereHas('genres', function ($query) use ($genreId) {
+            $query->where('genre_id', '=', $genreId);
+        })
+        ->where('type', 'movie')
+        ->get();
+
+        $movies = [];
+
+        foreach ($items as $item) {
+            array_push($movies, Movie::find($item->id));
+        }
+
+        return view('categories', [
+            'movies' => $movies,
+            'genres' => $genres
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
     /**
      * Display the specified resource.
@@ -65,30 +89,30 @@ class MoviesController extends Controller
                 ->leftJoin('people as actor', 'actor.id', '=', 'actor_character_item.person_id')
                 ->where('item_id', $id)
                 ->get();
-        
+                
         return view('movies.show', ['movie'=>$movie, 'item'=>$item, 'reviews'=>$reviews]);
     }
 
-   /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Movie  $movie
-    * @return \Illuminate\Http\Response
-    */
-   public function update(Request $request, Movie $movie)
-   {
-       //
-   }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Movie  $movie
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Movie $movie)
+    {
+        //
+    }
 
-   /**
-    * Remove the specified resource from storage.
-    *
-    * @param  \App\Movie  $movie
-    * @return \Illuminate\Http\Response
-    */
-   public function destroy(Movie $movie)
-   {
-       //
-   }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Movie  $movie
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Movie $movie)
+    {
+        //
+    }
 }

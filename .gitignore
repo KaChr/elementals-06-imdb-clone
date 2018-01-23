@@ -16,4 +16,7 @@ _design
 /public/js/app.js
 /public/css/app.css
 LOG
-/public/vendor/
+/public/vendor
+/public/packages
+/resources/views/vendor
+/resources/lang/vendor

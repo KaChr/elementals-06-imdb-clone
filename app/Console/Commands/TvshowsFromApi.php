@@ -48,22 +48,6 @@ class TvshowsFromApi extends Command
         'game+of+thrones',
         'scorpion',
         'the+100',
-        'suits',
-        'the+punisher',
-        'vikings',
-        'rick+and+morty',
-        'sherlock',
-        'top+gear',
-        'dexter',
-        'shameless',
-        'misfits',
-        'the+office',
-        'ash+vs+evil+dead',
-        'futurama',
-        'supernatural',
-        'prison+break',
-        'lucifer',
-        'the+walking+dead'
     ];
      
     foreach($tvshows as $tvshow) {
