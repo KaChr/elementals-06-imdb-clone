@@ -1,9 +1,9 @@
 
-// Fonts
+/* Fonts*/
 
 @import '/font/sourcesans.css';
 
-// Variables
+/* Components*/
 @import "bulma";
 @import "mixins";
 @import "variables";
@@ -12,6 +12,9 @@
 @import "component/avatar";
 @import "component/input";
 @import "splash";
+@import "charts";
+@import "login";
+@import "comments";
 @import '/item-page.scss';
 
 body {
@@ -19,15 +22,27 @@ body {
     background-color: $deep-blue;
     font-family: $font-stack;
     min-height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;  
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 #app {
-    flex:1;
+    -webkit-box-flex:1;
+        -ms-flex:1;
+            flex:1;
 }
 
-//Typography
+a {
+    color: #FFF;
+    font-weight: bold;
+}
+
+/*Typography*/
 h1,h2,h3,h4,h5 {
     font-weight: 900;
 }
@@ -60,7 +75,11 @@ p.p__fig {
     font-style: italic;
 }
 
-//Hero - Featured
+p.p__fig-small {
+    font-size: 12px;
+}
+
+/*Hero - Featured*/
 
 .hero-body {
     padding-bottom: 1em;
@@ -79,8 +98,11 @@ p.p__fig {
 
 .featured__content--bottom {
     width:100%;
-    align-self:flex-end;
-    justify-content: space-between;
+    -ms-flex-item-align:end;
+        align-self:flex-end;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 .featured__info-genre {
@@ -104,7 +126,9 @@ p.p__fig {
 }
 
 .featured__rating {
-    align-items: flex-end;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
 
     span {
         font-size:28px;
@@ -113,10 +137,10 @@ p.p__fig {
     }
 }
 
-//Hero - Takeover
+/*Hero - Takeover*/
 .hide-overflow {
-    // width:100%;
-    // height:100%;
+    /* width:100%;*/
+    /* height:100%;*/
     overflow:hidden;
 }
 
@@ -125,8 +149,9 @@ p.p__fig {
     background-size: cover;
     background-position: top center;
     min-height: 30vh;
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    z-index: 0;   
+    z-index: 0;
 
     &:hover {
         background-position: 0 -25px;
@@ -138,35 +163,47 @@ p.p__fig {
 
 .takeover__content--bottom {
     width:100%;
-    align-self:flex-end;
-    justify-content: space-between;
+    -ms-flex-item-align:end;
+        align-self:flex-end;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 .takeover__info {
+    display:-webkit-box;
+    display:-ms-flexbox;
     display:flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 .takeover__info-genre {
     font-size: 12px;
     font-weight: bold;
     color: #FFF;
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
 .takeover__info-title {
     font-size: 28px;
     color: #FFF;
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    
+
 }
 
 .takeover__cta {
-    align-items: flex-end;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
 
 }
 
-//Buttons
+/*Buttons*/
 
 .button {
     @include border-radius(2px);
@@ -189,13 +226,31 @@ p.p__fig {
     min-height: 40px;
 }
 
+.feature__login {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+            justify-content: center !important;
+    margin: auto;
+
+}
+.button__login {
+    margin-top: 3rem;
+}
+
+.login__remember {
+    margin-top: 1rem;
+}
+
 .button--border-blue {
     border: 1px solid $sky-blue;
     background: none;
     color: #FFF;
 
     &:hover {
-        border: 1px solid $sky-blue;    
+        border: 1px solid $sky-blue;
         background-color: $sky-blue;
         color: #FFF;
     }
@@ -212,7 +267,7 @@ p.p__fig {
 
     &:hover {
         color: #FFF;
-        background-color: $happy-blue; 
+        background-color: $happy-blue;
     }
 }
 
@@ -222,17 +277,17 @@ p.p__fig {
 
     &:hover {
         color: #FFF;
-        background-color: $piggelin; 
+        background-color: $piggelin;
     }
 }
 
 .button--solid-yellow {
     background-color: $warm-sun;
     color: $deep-blue;
-    
+
     &:hover {
         color: #FFF;
-        background-color: $warm-sun; 
+        background-color: $warm-sun;
     }
 }
 
@@ -242,7 +297,7 @@ p.p__fig {
     color: #FFF;
 
     &:hover {
-        border: 1px solid $warm-sun;    
+        border: 1px solid $warm-sun;
         background-color: $warm-sun;
         color: #FFF;
     }
@@ -254,17 +309,17 @@ p.p__fig {
     color: #FFF;
 
     &:hover {
-        border: 1px solid $turquoise;    
+        border: 1px solid $turquoise;
         background-color: $turquoise;
         color: #FFF;
     }
 }
 
-//Divider 
+/*Divider*/
 
 .divider {
     width: 100%;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 
     a {
         color: $sky-blue;
@@ -275,7 +330,9 @@ p.p__fig {
 
 .divider__info {
     width: 100%;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     color: #FFF;
 }
 
@@ -284,9 +341,10 @@ p.p__fig {
     height: 1px;
     background-color: $aluminium;
     display:block;
+    margin-top:0.5em;
 }
 
-//Review block
+/*Review block*/
 
 .review__poster {
     position: relative;
@@ -297,7 +355,8 @@ p.p__fig {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     color: $warm-sun;
     font-size: 38px;
     font-weight: 600;
@@ -305,7 +364,7 @@ p.p__fig {
 }
 
 .review__info {
-    // align-items: center;
+    /* align-items: center;*/
 }
 
 .review__avatar {
@@ -332,7 +391,7 @@ p.p__fig {
     margin-bottom:1em;
 }
 
-//Person
+/*Person*/
 
 .person__avatar {
     @include border-radius(50%);
@@ -349,7 +408,7 @@ p.p__fig {
     }
 }
 
-//Rating diagram
+/*Rating diagram*/
 
 .chart {
   position: relative;
@@ -365,7 +424,7 @@ p.p__fig {
   z-index: 1;
 }
 
-//Footer
+/*Footer*/
 
 footer.footer{
     background-color: $deep-blue;
@@ -386,7 +445,7 @@ footer.footer__logo {
     margin-bottom: 1em;
 }
 
-//Navigation
+/*Navigation*/
 
 .navbar.is-dark {
     background-color: $deep-blue;
@@ -394,7 +453,7 @@ footer.footer__logo {
     font-family: $font-stack;
 }
 
-//Signup
+/*Signup*/
 .user__avatar {
     @include border-radius(50%);
     width:200px !important;
@@ -406,7 +465,6 @@ footer.footer__logo {
     margin-left: auto;
     margin-right: auto;
     img {
-        margin: -25% auto 0 auto;
         display:inline;
         height:auto;
         width:100%;
@@ -423,18 +481,43 @@ footer.footer__logo {
     margin-top: 1.5rem;
 }
 
-// Profile page
+/* Profile page*/
 .user {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 1rem;
+    position:relative;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     margin-bottom: 0;
     padding-top: 0.8rem;
+    height:60vh;
+    min-height: 600px;
+    z-index: 0;
+    background-size:cover;
+
+    @include color-overlay(#000, 0.8, -1);
 }
 
-.image img {
-    border-radius: 50%;
+.user__info {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .user__edit {
@@ -462,27 +545,35 @@ footer.footer__logo {
 .spotlight__info {
     z-index: 3;
     position:absolute;
-    align-self:center;
+    -ms-flex-item-align:center;
+        -ms-grid-row-align:center;
+        align-self:center;
     max-width: 160px;
     $infoWidth: 100%;
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     opacity:0;
     text-align: center;
     overflow:hidden;
     bottom:25%;
-    transform: translateY(25%);
+    -webkit-transform: translateY(25%);
+            transform: translateY(25%);
 }
 
 .spotlight__poster {
+    display:-webkit-box;
+    display:-ms-flexbox;
     display:flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     overflow:hidden;
     position:relative;
     cursor: pointer;
-    
+
     img {
-        max-height: 356px !important; 
-        z-index: 0;   
+        max-height: 356px !important;
+        z-index: 0;
         position: relative;
     }
 
@@ -490,15 +581,73 @@ footer.footer__logo {
 
         .spotlight__info {
             bottom:50%;
-            transform: translateY(50%);
+            -webkit-transform: translateY(50%);
+                    transform: translateY(50%);
             opacity: 1;
         }
 
         .spotlight__image {
-            max-height: 356px !important; 
+            max-height: 356px !important;
             position:relative;
-            @include color-overlay(#000, 0.5)
+            @include color-overlay(#000, 0.5, 1)
         }
- 
+
     }
+
+}
+
+.watchlist, .watchlist__info {
+    text-align: center;
+}
+
+.watchlist__title {
+    color: #6EADFF;
+}
+
+.watchlist__poster, .watchlist__title, .watchlist__delete--button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: auto;
+}
+
+.watchlist__poster, .watchlist__info {
+    margin-top: 1rem;
+}
+
+.watchlist__title {
+    text-align: center;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.watchlist__summary {
+    margin: 2rem;
+    margin-top: 1rem;
+
+}
+
+.search {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.search__button {
+    max-width: 240px;
+    margin-top: 1em;
+}
+
+.search__title {
+    margin-bottom: 1em;
 }

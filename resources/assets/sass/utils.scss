@@ -4,6 +4,21 @@
     z-index: 999;
 }
 
+.v-center {
+    display:flex;
+    align-items: center;
+}
+
+.v-self-center {
+    align-self: center !important;
+}
+
+.full {
+    height:100vh;
+    min-height: 600px;
+    position:relative;
+}
+
 a.light {
     color: #FFF;
 }

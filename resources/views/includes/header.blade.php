@@ -34,7 +34,7 @@
         <span class="icon">
         <i class="fa fa-star"></i>
         </span>
-          Top 250
+          Charts
       </a>
       <a class="navbar-item" href="#">
         <span class="icon">

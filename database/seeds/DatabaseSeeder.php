@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
             ReviewsTableSeeder::class,
-            //PermissionSeeder::class
+            CommentsTableSeeder::class
         ]);
     }
 }

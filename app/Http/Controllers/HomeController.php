@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Movie;
 use App\Item;
 use App\Review;
+use App\Tvshow;
+use \Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -33,23 +35,24 @@ class HomeController extends Controller
         foreach($featured as $feature) {
             $item[] = Item::find($feature->item_id);
         }
+  
+        $spotlightMovies = Movie::orderBy('movies.created_at', 'desc')
+        ->join('items', 'movies.item_id', '=', 'items.id')            
+        ->limit(5)->get();
 
-        // $spotlightTv = Tvshow::orderBy('created_at', 'desc')->limit(5)->get();     
-        $spotlightMovies = Movie::orderBy('created_at', 'desc')->limit(5)->get();
-        $spotlightRated = Movie::orderBy('rating', 'desc')->limit(5)->get();  
+        $spotlightRated = Movie::orderBy('rating', 'desc')
+        ->join('items', 'movies.item_id', '=', 'items.id')            
+        ->limit(5)->get();
+
+        $spotlightTv = Tvshow::orderBy('rating', 'desc')
+        ->join('items', 'tvshows.item_id', '=', 'items.id')    
+        ->limit(5)->get();
         
         $spotlights = [
             'movies' => $spotlightMovies,
-            'rated' => $spotlightRated
+            'rated' => $spotlightRated,
+            'tvshows' => $spotlightTv
         ];
-        
-        // Get latest reviews
-        
-        // $reviews = Review::orderBy('reviews.created_at', 'desc')
-        //     ->join('users', 'author_id', '=', 'users.id')
-        //     ->join('movies', 'reviews.item_id', '=', 'movies.item_id')
-        //     ->select('reviews.*', 'movies.poster', 'reviews.item_id')
-        //     ->limit(4)->get();
 
         $reviews = Review::orderBy('reviews.created_at', 'desc')
             ->join('users', 'author_id', '=', 'users.id')
@@ -61,5 +64,14 @@ class HomeController extends Controller
             'item' => $item, 
             'reviews' => $reviews,
             'spotlights' => $spotlights]);
+    }
+
+    public function splash() 
+    {
+        if(null !== Auth::user()) {
+            return $this->index();
+        }
+
+        return view('splash');
     }
 }

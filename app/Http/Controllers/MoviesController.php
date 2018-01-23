@@ -6,6 +6,7 @@ use App\Movie;
 use App\Item;
 use App\Review;
 use Illuminate\Http\Request;
+use App\Genre;
 
 class MoviesController extends Controller
 {
@@ -14,12 +15,35 @@ class MoviesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //$movies = Movie::all();
-        
-        $movies = Movie::latest('rating')->get();
-        return view('movies.index', ['movies'=>$movies]);
+        $movies = Movie::sortable()->paginate();
+
+        return view('movies.index', ['movies' => $movies]);
+    }
+
+    public function genreSelect(Request $request)
+    {
+        $genreId = $request->input('genre') ? $request->input('genre') : 1;
+
+        $genres = Genre::all();
+
+        $items = Item::whereHas('genres', function ($query) use ($genreId) {
+            $query->where('genre_id', '=', $genreId);
+        })
+        ->where('type', 'movie')
+        ->get();
+
+        $movies = [];
+
+        foreach ($items as $item) {
+            array_push($movies, Movie::find($item->id));
+        }
+
+        return view('categories', [
+            'movies' => $movies,
+            'genres' => $genres
+        ]);
     }
 
     /**
@@ -65,19 +89,8 @@ class MoviesController extends Controller
                 ->leftJoin('people as actor', 'actor.id', '=', 'actor_character_item.person_id')
                 ->where('item_id', $id)
                 ->get();
-        
+                
         return view('movies.show', ['movie'=>$movie, 'item'=>$item, 'reviews'=>$reviews]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Movie  $movie
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Movie $movie)
-    {
-        //
     }
 
     /**

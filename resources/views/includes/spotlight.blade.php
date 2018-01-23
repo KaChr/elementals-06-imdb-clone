@@ -6,9 +6,9 @@
             <div class="spotlight__info">
                 <h4>{{ $spotlight->title }}</h4>
             </div>
-            <a href="/movies/{{ $spotlight->item_id }}">
+            <a href="/{{$spotlight->type}}s/{{ $spotlight->id or $spotlight->item_id }}">
                 <div class="spotlight__image">
-                    <img src="{{ $spotlight->poster }}" alt="{{ $spotlight->title }}">
+                    <img src="{{ $spotlight->profile_pic or $spotlight->poster }}" alt="{{ $spotlight->name or $spotlight->title }}">
                 </div>
             </a>
         </div>

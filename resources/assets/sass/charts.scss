@@ -1,0 +1,112 @@
+/* Charts Styling using grid. */
+.charts__titles {
+    padding-left: 15px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+div#chart-buttons {
+    width: 60%;
+    margin: 0 auto 10px auto;
+    a { //Sortable links
+        color: $turquoise;;
+        border-radius: 3px;
+        transition: all 0.2s ease-in;
+        &:hover {
+            color: $pale-silver;
+        }
+    }
+    h6 {
+        margin-bottom: 6px;
+    }
+}
+
+div.grid-chart {
+    margin: 4px auto;
+    display: grid;
+    grid-template-columns: 70px repeat(2, 1fr);
+    width: 60%;
+    border-bottom: 1px solid rgb(50, 74, 90);
+    a {
+        color: $pale-silver;
+    }
+    .charts__poster img {
+        height: 105px;
+        width: 70px;
+    }
+    li {
+        margin-left: 30px;
+        padding: 0;
+    }
+
+    h6 {
+        padding-top: 8%;
+        a {
+            color: $turquoise;
+        }
+    }
+    .charts__rating {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i, span {
+            align-self: center;
+            justify-self: center;
+            color: $pale-silver;
+            font-size: 1.1em;
+        }
+        i {
+            padding: 0 5px;
+            color: $warm-sun;
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    div#chart-buttons {
+        width: 65%;
+    }
+    div.grid-chart {
+        width: 65%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    div#chart-buttons {
+        width: 85%;
+    }
+    div.grid-chart {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    div#chart-buttons {
+        width: 85%;
+    }
+    div.grid-chart {
+        width: 85%;
+        h5 {
+            font-size: 1em;
+        }
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    div#chart-buttons {
+        width: 90%;
+    }
+    div.grid-chart {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 340px) {
+    div#chart-buttons {
+        width: 95%;
+    }
+    div.grid-chart {
+        width: 95%;
+    }
+}
