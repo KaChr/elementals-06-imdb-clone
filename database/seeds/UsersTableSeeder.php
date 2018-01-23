@@ -57,6 +57,13 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('elem'),
             'type' => 'admin'
             ));
+        
+        User::create(array(
+            'name' => 'Axel', 
+            'email' => 'axel@emdb.com',
+            'password' => bcrypt('elem'),
+            'type' => 'admin'
+            ));
 
 
 
