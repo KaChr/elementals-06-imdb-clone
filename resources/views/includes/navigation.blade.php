@@ -39,6 +39,14 @@
                         <p class="control">
                             {{ Auth::user()->name }}
                         </p>
+                        @if (Auth::user()->type == 'admin')
+                        <p class="control">
+                            <a href="/admin/dashboard" 
+                            class="button button--small button--solid-yellow">
+                            Admin Dashboard
+                            </a>
+                        </p>
+                        @endif
                         <p class="control">
                             <a href="{{ route('logout') }}" 
                             class="button button--small button--solid-blue" 
