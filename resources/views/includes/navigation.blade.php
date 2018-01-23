@@ -36,11 +36,17 @@
                             <a href="{{ route('register') }}" class="button button--small button--solid-turquoise">Sign up</a>
                         </p>
                     @else
-                        <a class="control" href="/users/{{ Auth::user()->id }}">
-                            <p class="control">
-                                {{ Auth::user()->name }}
-                            </p>
-                        </a>
+                        <p class="control">
+                            {{ Auth::user()->name }}
+                        </p>
+                        @if (Auth::user()->type == 'admin')
+                        <p class="control">
+                            <a href="/admin/dashboard" 
+                            class="button button--small button--solid-yellow">
+                            Admin Dashboard
+                            </a>
+                        </p>
+                        @endif
                         <p class="control">
                             <a href="{{ route('logout') }}" 
                             class="button button--small button--solid-blue" 

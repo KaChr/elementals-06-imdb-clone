@@ -53,6 +53,9 @@ Route::resource('genres', 'GenresController');
 Route::resource('tvshows', 'TvshowsController');
 Route::resource('reviews', 'ReviewsController');
 
+Route::group(['middleware' => 'web', 'prefix' => config('backpack.base.route_prefix')], function () {
+    Route::get('logout', 'Auth\LoginController@logout');
+});
 Route::get('categories', 'MoviesController@genreSelect');
 
 Route::get('tvshows/{item_id}/seasons/{season_nr}', 'SeasonsController@show');
