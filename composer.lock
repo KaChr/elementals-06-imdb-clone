@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "89d5522accabdbeb3a2f687bd4a8bbac",
-=======
     "content-hash": "c89c54cbd3f2ed94625e0b737eaf4de2",
->>>>>>> develop
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1345,7 +1341,6 @@
             "time": "2015-04-20T18:58:01+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "jenssegers/date",
             "version": "v3.2.12",
             "source": {
@@ -1380,7 +1375,8 @@
                     "aliases": {
                         "Date": "Jenssegers\\Date\\Date"
                     }
-=======
+                }
+            },
             "name": "kyslik/column-sortable",
             "version": "5.5.4",
             "source": {
@@ -1409,16 +1405,12 @@
                     "providers": [
                         "Kyslik\\ColumnSortable\\ColumnSortableServiceProvider"
                     ]
->>>>>>> develop
                 }
             },
             "autoload": {
                 "psr-4": {
-<<<<<<< HEAD
-                    "Jenssegers\\Date\\": "src/"
-=======
+                    "Jenssegers\\Date\\": "src/",
                     "Kyslik\\ColumnSortable\\": "src/ColumnSortable/"
->>>>>>> develop
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1427,7 +1419,6 @@
             ],
             "authors": [
                 {
-<<<<<<< HEAD
                     "name": "Jens Segers",
                     "homepage": "https://jenssegers.com"
                 }
@@ -1444,22 +1435,6 @@
                 "translation"
             ],
             "time": "2017-06-30T11:51:03+00:00"
-=======
-                    "name": "Martin Kiesel",
-                    "email": "martin.kiesel@gmail.com",
-                    "role": "Developer and maintainer"
-                }
-            ],
-            "description": "Package for handling column sorting in Laravel 5.x",
-            "keywords": [
-                "column",
-                "laravel",
-                "sort",
-                "sortable",
-                "sorting"
-            ],
-            "time": "2017-11-29T12:30:09+00:00"
->>>>>>> develop
         },
         {
             "name": "laravel-frontend-presets/bulma",
