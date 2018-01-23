@@ -18,3 +18,5 @@ _design
 LOG
 /public/vendor
 /public/packages
+/resources/views/vendor
+/resources/lang/vendor
