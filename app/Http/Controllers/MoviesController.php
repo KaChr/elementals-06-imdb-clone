@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Movie;
 use App\Item;
+use App\Watchlist;
 use App\Review;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Genre;
 
@@ -76,6 +78,8 @@ class MoviesController extends Controller
     public function show(Movie $movie)
     {
         $id = $movie->item_id;
+        $watchlist = Watchlist::where('user_id', '=', Auth::user()->id)
+        ->where('item_id', '=', $id)->first();
         $movie = Movie::find($id);
         $reviews = Review::orderBy('reviews.created_at', 'desc')
             ->where('reviews.item_id', $id)
@@ -90,7 +94,7 @@ class MoviesController extends Controller
                 ->where('item_id', $id)
                 ->get();
                 
-        return view('movies.show', ['movie'=>$movie, 'item'=>$item, 'reviews'=>$reviews]);
+        return view('movies.show', ['movie'=>$movie, 'item'=>$item, 'reviews'=>$reviews, 'watchlist' => $watchlist]);
     }
 
     /**

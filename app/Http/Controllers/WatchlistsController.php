@@ -35,7 +35,6 @@ class WatchlistsController extends Controller
         $watchlist = Watchlist::where('user_id', '=', Auth::user()->id)
         ->where('item_id', '=', $request->input('id'))->first();
         
-        //If the user doesn't already have the item saved in watchlist: add it. 
         if ($watchlist == null) {
             $watchlist = Watchlist::create([
                 'user_id' => Auth::user()->id,
@@ -43,14 +42,11 @@ class WatchlistsController extends Controller
             ]);
             $watchlist->save();
             return back();
+        } else {
+            $watchlist->delete();
+            return back();
         }
 
-        // else {
-        //     //ERROR MESSAGE: ALREADY EXISTS IN WATCHLIST
-        // }
-
-    //}
-        
     }
 
     public function destroy(Request $request)
@@ -63,14 +59,6 @@ class WatchlistsController extends Controller
         $watchlist->delete();
         return back();
     }
-        
-    //     //Create a new watchlist using the request data
-
-    //     // Save it to the database
-
-    //     //And redirect...
-    // }
-
 
 }
 

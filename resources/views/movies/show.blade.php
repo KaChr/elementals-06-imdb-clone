@@ -14,22 +14,19 @@
                     <li>
                         <form method="POST" action="/watchlist">
                             {{ csrf_field() }}
-
-
                             <input type="hidden" name="id" value="{{ $movie->item_id }}">
-
                             <button class="button button--small button--border-blue" type="submit">
-
-                            
                                 <span class="icon">
+                                    @if($watchlist)
+                                        <i class="fa fa-minus" area-hidden="true"></i>
+                                    @else
                                     <i class="fa fa-plus" area-hidden="true"></i>
+                                    @endif
                                 </span>
                                 WATCHLIST
                             </button>
                             </form>
-
                         </li>
-                        
                         <li>
                             <a href="#">
                                 <button class="button button--small button--border-blue" type="button">TRAILER</button>
