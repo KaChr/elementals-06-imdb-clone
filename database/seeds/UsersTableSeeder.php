@@ -17,58 +17,55 @@ class UsersTableSeeder extends Seeder
 
         //Add admin user when seeding
         User::create(array(
-            'name' => 'Izabel', 
+            'name' => 'Izabel',
             'email' => 'izabel@emdb.com',
             'password' => bcrypt('elem'),
             'type' => 'admin'
-            ));
+        ));
 
         User::create(array(
-            'name' => 'Joakim', 
+            'name' => 'Joakim',
             'email' => 'joakim@emdb.com',
             'password' => bcrypt('elem'),
             'type' => 'admin'
-            ));
+        ));
 
         User::create(array(
-            'name' => 'Zav', 
+            'name' => 'Zav',
             'email' => 'zav@emdb.com',
             'password' => bcrypt('elem'),
             'type' => 'admin'
-            ));
+        ));
 
         User::create(array(
-            'name' => 'Gabriel', 
+            'name' => 'Gabriel',
             'email' => 'gabriel@emdb.com',
             'password' => bcrypt('elem'),
             'type' => 'admin'
-            ));
+        ));
 
         User::create(array(
-            'name' => 'Karin', 
+            'name' => 'Karin',
             'email' => 'karin@emdb.com',
             'password' => bcrypt('elem'),
             'type' => 'admin'
-            ));
+        ));
 
         User::create(array(
-            'name' => 'Kaveh', 
+            'name' => 'Kaveh',
             'email' => 'kaveh@emdb.com',
             'password' => bcrypt('elem'),
             'type' => 'admin'
-            ));
-        
+        ));
+
         User::create(array(
-            'name' => 'Axel', 
+            'name' => 'Axel',
             'email' => 'axel@emdb.com',
             'password' => bcrypt('elem'),
             'type' => 'admin'
-            ));
-
-
+        ));
 
         //Add 50 fake users
         factory(App\User::class, 50)->create();
-
     }
 }

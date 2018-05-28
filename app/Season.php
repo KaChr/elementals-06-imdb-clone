@@ -14,12 +14,12 @@ class Season extends Model
     ];
 
     protected $primaryKey = 'item_id';
-    
+
     public $incrementing = [false];
 
     public function episodes()
     {
-        return $this->hasMany('App\Episode', 'episodes');
+        return $this->hasMany('App\Episode', 'item_id');
     }
 
     public function tvshow()

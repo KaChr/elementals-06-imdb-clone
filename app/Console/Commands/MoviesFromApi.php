@@ -42,7 +42,9 @@ class MoviesFromApi extends Command
      * @return mixed
      */
     public function handle()
-    { 
+    {
+        $omdbApiKey = env('OMDB_API_KEY');
+        $tmdbApiKey = env('TMDB_API_KEY');
 
         $curl = curl_init();
              //array of movies
@@ -72,7 +74,7 @@ class MoviesFromApi extends Command
             foreach($movies as $movie) {
                  //request to API using cURL¨
                 curl_setopt_array($curl, array(
-                    CURLOPT_URL => "http://www.omdbapi.com/?t=$movie&plot=full&apikey=8ea32694",
+                    CURLOPT_URL => "http://www.omdbapi.com/?t=$movie&plot=full&apikey=$omdbApiKey",
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => "",
                     CURLOPT_TIMEOUT => 6000000,
@@ -85,15 +87,15 @@ class MoviesFromApi extends Command
                 ));
                 $response = curl_exec($curl);
                 $err = curl_error($curl);
-        
+
                 if ($err) {
                     echo "cURL Error #:" . $err;
-                } else { 
+                } else {
                     $obj = json_decode($response);
                     $imdbID = $obj->imdbID;
                     //new request to new API themoviedb using the imdbID that we got from OMDB to get the backdrop for our movies
                     curl_setopt_array($curl, array(
-                        CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID?api_key=cdc32d79384ddc6326eff808e85db1c7",
+                        CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID?api_key=$tmdbApiKey",
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_TIMEOUT => 6000000,
@@ -105,12 +107,12 @@ class MoviesFromApi extends Command
                     ));
                     $response = curl_exec($curl);
                     $err = curl_error($curl);
-                
+
                     if ($err) {
                         echo "cURL Error #:" . $err;
-                    } else { 
+                    } else {
                         $movieBackdrop = json_decode($response);
-        
+
                         curl_setopt_array($curl, array(
                         CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID/credits?api_key=ec3cda1b6d80802d7b2222e300f2f846",
                         CURLOPT_RETURNTRANSFER => true,
@@ -124,7 +126,7 @@ class MoviesFromApi extends Command
                     ));
                     $response = curl_exec($curl);
                     $err = curl_error($curl);
-            
+
                     if ($err) {
                         echo "cURL Error #:" . $err;
                     } else {
@@ -175,7 +177,7 @@ class MoviesFromApi extends Command
                                 'created_at' => date('Y-m-d H:i:s'),
                                 'updated_at' =>  date('Y-m-d H:i:s')
                                 ]);
-        
+
                         }
                         //here we are making the connection with pivot table, so it connects the movie and the genres
                         $query = DB::table('genres')->select('id')->where('genre_title', '=', $genre)->get();
@@ -184,7 +186,7 @@ class MoviesFromApi extends Command
                             $queryPivot = DB::table('genre_item')->select('item_id')->where('item_id', '=', $query_movie[0]->id)->
                             where('genre_id', '=', $query[0]->id)->get();
                         }
-        
+
                         if(!isset($queryPivot[0])){
                             DB::table('genre_item')->insert([
                                 'item_id' => $query_movie[0]->id,
@@ -194,7 +196,7 @@ class MoviesFromApi extends Command
                                 ]);
                         }
                     }
-                        
+
                    $profile_url = "http://image.tmdb.org/t/p/w185";
                    $cast_i = 0;
                    foreach($movie_credits->cast as $index => $actors) {
@@ -217,7 +219,7 @@ class MoviesFromApi extends Command
                             'created_at' => date('Y-m-d H:i:s'),
                             'updated_at' =>  date('Y-m-d H:i:s')
                             ]);
-    
+
                     }
                     $query_character = DB::table('characters')->select('character')->where('character', '=', $character)->get();
                         DB::table('characters')->insert([
@@ -242,9 +244,9 @@ class MoviesFromApi extends Command
                             'created_at' => date('Y-m-d H:i:s'),
                             'updated_at' =>  date('Y-m-d H:i:s')
                             ]);
-    
+
                     }
-                } 
+                }
                     //$directors = explode(", ", $obj->Director);
                     $cast_i = 0;
                     foreach($movie_credits->crew as $index => $director){
@@ -267,7 +269,7 @@ class MoviesFromApi extends Command
                                 'created_at' => date('Y-m-d H:i:s'),
                                 'updated_at' =>  date('Y-m-d H:i:s')
                                 ]);
-        
+
                         }
                         //inserting the id of movie and the id of person(in this case director) into Database
                         $query = DB::table('people')->select('id')->where('name', '=', $director)->get();
@@ -283,22 +285,22 @@ class MoviesFromApi extends Command
                                 'created_at' => date('Y-m-d H:i:s'),
                                 'updated_at' =>  date('Y-m-d H:i:s')
                                 ]);
-        
+
                         }
                     }
-                
+
                         }
                     }
-                
+
                 }
             }
             curl_close($curl);
-            
+
  echo (PHP_EOL);
  echo '##############################';
- echo (PHP_EOL); 
+ echo (PHP_EOL);
  echo 'movies added successfully!';
- echo (PHP_EOL); 
+ echo (PHP_EOL);
  echo '##############################';
  echo (PHP_EOL);
 }

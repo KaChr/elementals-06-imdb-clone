@@ -23,7 +23,7 @@ class Movie extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
-        protected $fillable = [
+    protected $fillable = [
         'item_id',
         'title',
         'summary',
@@ -34,10 +34,10 @@ class Movie extends Model
     ];
 
     protected $primaryKey = 'item_id';
-    
+
     public $incrementing = [false];
 
-    public function item(){
+    public function item() {
         return $this->belongsTo('App\Item', 'items');
     }
     /*

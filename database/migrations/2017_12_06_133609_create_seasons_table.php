@@ -21,8 +21,8 @@ class CreateSeasonsTable extends Migration
         });
 
         Schema::table('seasons', function (Blueprint $table) {
-            $table->foreign('item_id')->references('id')->on('items');
-            $table->foreign('tvshow_id')->references('item_id')->on('tvshows');
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->foreign('tvshow_id')->references('item_id')->on('tvshows')->onDelete('cascade');
         });
     }
 

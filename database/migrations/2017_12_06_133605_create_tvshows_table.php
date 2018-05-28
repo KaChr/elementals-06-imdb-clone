@@ -14,7 +14,7 @@ class CreateTvshowsTable extends Migration
     public function up()
     {
         Schema::create('tvshows', function (Blueprint $table) {
-            $table->integer('item_id')->unsigned();
+            $table->integer('item_id')->unsigned()->nullalbe();
             $table->string('title')->nullable();
             $table->integer('seasons')->nullable();
             $table->text('summary')->nullable();

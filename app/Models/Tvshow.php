@@ -23,6 +23,22 @@ class Tvshow extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
+    protected $fillable = [
+        'title',
+        'summary',
+        'year',
+        'runtime',
+        'rating'
+    ];
+
+    protected $primaryKey = 'item_id';
+
+    public $incrementing = [false];
+
+    public function item() {
+        return $this->belongsTo('App\Item', 'items');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
