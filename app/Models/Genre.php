@@ -9,6 +9,14 @@ class Genre extends Model
 {
     use CrudTrait;
 
+    protected $fillable = [
+        'genre_title'
+    ];
+
+    public function item()
+    {
+        return $this->belongsToMany('App\Item', 'genre_item');
+    }
      /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES

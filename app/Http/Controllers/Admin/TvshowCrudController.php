@@ -117,7 +117,7 @@ class TvshowCrudController extends CrudController
         $tvshows = [
             $parsedTitle
         ];
-
+        
         foreach ($tvshows as $tvshow) {
             //request to API using cURL¨
             curl_setopt_array($curl, array(
