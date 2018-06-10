@@ -101,29 +101,31 @@ class MovieCrudController extends CrudController
     }
 
     public function store(StoreRequest $request)
-    { 
-
+    {
         $curl = curl_init();
-             //array of movies
-             
-            $parsedTitle = str_replace(" ", "+", $request->title);
 
-             $movies = [
-                 $parsedTitle
-             ];
+        $omdbApiKey = env('OMDB_API_KEY');
+        $tmdbApiKey = env('TMDB_API_KEY');
 
-            // Get latest insert from items table and set $i to this number. 
-             if (DB::select('SELECT id FROM items ORDER BY id DESC LIMIT 1')) {
-                 $id = DB::select('SELECT id FROM items ORDER BY id DESC LIMIT 1');
-                 $i = $id[0]->id;
-                 $i++;
-             } else {
-                 $i = 1;
-             }
+        // array of movies
+        $parsedTitle = str_replace(" ", "+", $request->title);
 
-            foreach($movies as $movie) {
-                curl_setopt_array($curl, array(
-                    CURLOPT_URL => "http://www.omdbapi.com/?t=$movie&plot=full&apikey=8ea32694",
+        $movies = [
+            $parsedTitle
+        ];
+
+        // Get latest insert from items table and set $i to this number.
+        if (DB::select('SELECT id FROM items ORDER BY id DESC LIMIT 1')) {
+            $id = DB::select('SELECT id FROM items ORDER BY id DESC LIMIT 1');
+            $i = $id[0]->id;
+            $i++;
+        } else {
+            $i = 1;
+        }
+
+        foreach ($movies as $movie) {
+            curl_setopt_array($curl, array(
+                    CURLOPT_URL => "http://www.omdbapi.com/?t=$movie&plot=full&apikey=$omdbApiKey",
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => "",
                     CURLOPT_TIMEOUT => 6000000,
@@ -133,40 +135,42 @@ class MovieCrudController extends CrudController
                         'Content-Type: application/json',
                     ),
                 ));
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+
+            if ($err) {
+                echo "cURL Error #:" . $err;
+            } else {
+                $obj = json_decode($response);
+
+                $imdbID = $obj->imdbID;
+                //new request to new API themoviedb using the imdbID that we got from OMDB to get the backdrop for our movies
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID?api_key=$tmdbApiKey",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_TIMEOUT => 6000000,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "GET",
+                    CURLOPT_HTTPHEADER => array(
+                        'Content-Type: application/json',
+                    ),
+                ));
+
                 $response = curl_exec($curl);
                 $err = curl_error($curl);
-        
+
                 if ($err) {
                     echo "cURL Error #:" . $err;
-                } else { 
-                    $obj = json_decode($response);
-                    $imdbID = $obj->imdbID;
-                    //new request to new API themoviedb using the imdbID that we got from OMDB to get the backdrop for our movies
-                    curl_setopt_array($curl, array(
-                        CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID?api_key=cdc32d79384ddc6326eff808e85db1c7",
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_ENCODING => "",
-                        CURLOPT_TIMEOUT => 6000000,
-                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_CUSTOMREQUEST => "GET",
-                        CURLOPT_HTTPHEADER => array(
-                            'Content-Type: application/json',
-                        ),
-                    ));
-                    $response = curl_exec($curl);
-                    $err = curl_error($curl);
-                
-                    if ($err) {
-                        echo "cURL Error #:" . $err;
-                    } else { 
-                        $movieBackdrop = json_decode($response);
+                } else {
+                    $movieBackdrop = json_decode($response);
 
-                        if(!isset($movieBackdrop->backdrop_path)) {
-                            return;
-                        }
-        
-                        curl_setopt_array($curl, array(
-                        CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID/credits?api_key=ec3cda1b6d80802d7b2222e300f2f846",
+                    if (!isset($movieBackdrop->backdrop_path)) {
+                        return;
+                    }
+
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => "https://api.themoviedb.org/3/movie/$imdbID/credits?api_key=$tmdbApiKey",
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_TIMEOUT => 6000000,
@@ -176,21 +180,22 @@ class MovieCrudController extends CrudController
                             'Content-Type: application/json',
                         ),
                     ));
+
                     $response = curl_exec($curl);
                     $err = curl_error($curl);
-            
+
                     if ($err) {
                         echo "cURL Error #:" . $err;
                     } else {
                         $movie_credits = json_decode($response);
                         $backdrop_url = "http://image.tmdb.org/t/p/w1280";
-                    //inserting content of people in db
-                    $query = DB::table('movies')->select('title')->where('title', '=', $obj->Title)->get();
-                    if(!isset($query[0])){
-                        DB::table('items')->insert([
+                        //inserting content of people in db
+                        $query = DB::table('movies')->select('title')->where('title', '=', $obj->Title)->get();
+                        if (!isset($query[0])) {
+                            DB::table('items')->insert([
                             'type' => 'movie'
                         ]);
-                        DB::table('movies')->insert([
+                            DB::table('movies')->insert([
                             'item_id' => $i,
                             'title'=>$obj->Title,
                             'summary'=>$obj->Plot,
@@ -204,128 +209,126 @@ class MovieCrudController extends CrudController
                             ]);
                         } else {
                             echo $input . ' already exists in database!';
-                            echo (PHP_EOL);
+                            echo(PHP_EOL);
                             return;
                         }
-                    //getting the genres of the film, exploiting it and storing in databse
-                    $genres = explode(", ", $obj->Genre);
-                    //storing the content of movie into database
-                    foreach ($genres as $genre) {
-                        //just inserting the genre titles we got into the table genres
-                        $query = DB::table('genres')->select('genre_title')->where('genre_title', '=', $genre)->get();
-                        if(!isset($query[0])) {
-                            DB::table('genres')->insert([
+
+                        //getting the genres of the film, exploiting it and storing in databse
+                        $genres = explode(", ", $obj->Genre);
+                        //storing the content of movie into database
+                        foreach ($genres as $genre) {
+                            //just inserting the genre titles we got into the table genres
+                            $query = DB::table('genres')->select('genre_title')->where('genre_title', '=', $genre)->get();
+                            if (!isset($query[0])) {
+                                DB::table('genres')->insert([
                                 'genre_title' => $genre
                                 ]);
-        
-                        }
-                        //here we are making the connection with pivot table, so it connects the movie and the genres
-                        $query = DB::table('genres')->select('id')->where('genre_title', '=', $genre)->get();
-                        if(isset($query[0])){
-                            $queryPivot = DB::table('genre_item')->select('item_id')->where('item_id', '=', $i)->
+                            }
+                            //here we are making the connection with pivot table, so it connects the movie and the genres
+                            $query = DB::table('genres')->select('id')->where('genre_title', '=', $genre)->get();
+                            if (isset($query[0])) {
+                                $queryPivot = DB::table('genre_item')->select('item_id')->where('item_id', '=', $i)->
                             where('genre_id', '=', $query[0]->id)->get();
-                        }
-        
-                        if(!isset($queryPivot[0])){
-                            DB::table('genre_item')->insert([
+                            }
+
+                            if (!isset($queryPivot[0])) {
+                                DB::table('genre_item')->insert([
                                 'item_id' => $i,
                                 'genre_id' => $query[0]->id
                             ]);
-                        }
-                    }
-                        
-                   $profile_url = "http://image.tmdb.org/t/p/w185";
-                   $cast_i = 0;
-                    foreach($movie_credits->cast as $index => $actors) {
-                        $cast_i ++;
-                            if($cast_i >= 7){
-                                break;
                             }
-                        $actor = $actors->name;
-                        $character = $actors->character;
-                        //inserting actor content into people table, storing name, date of birth and city
-                        $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
-                        if(!isset($query[0])){
-                            $prof_pic = $movie_credits->cast[$index]->profile_path;
-                            DB::table('people')->insert([
-                                'name' => $actor,
-                                'dob' => date('Y-m-d'),
-                                'city' => 'random',
-                                'profile_pic' => $profile_url . $prof_pic
-                            ]);
                         }
 
-                        $query_character = DB::table('characters')->select('character')->where('character', '=', $character)->get();
+                        $profile_url = "http://image.tmdb.org/t/p/w185";
+                        $cast_i = 0;
+                        foreach ($movie_credits->cast as $index => $actors) {
+                            $cast_i ++;
+                            if ($cast_i >= 7) {
+                                break;
+                            }
+                            $actor = $actors->name;
+                            $character = $actors->character;
+                            //inserting actor content into people table, storing name, date of birth and city
+                            $query = DB::table('people')->select('name')->where('name', '=', $actor)->get();
+                            if (!isset($query[0])) {
+                                $prof_pic = $movie_credits->cast[$index]->profile_path;
+                                DB::table('people')->insert([
+                                    'name' => $actor,
+                                    'dob' => date('Y-m-d'),
+                                    'city' => 'random',
+                                    'profile_pic' => $profile_url . $prof_pic
+                                ]);
+                            }
+
+                            $query_character = DB::table('characters')->select('character')->where('character', '=', $character)->get();
                             DB::table('characters')->insert([
                                 'character' => $character
                             ]);
-                        $query_character = DB::table('characters')->select('id')->latest('id')->get();
+                            $query_character = DB::table('characters')->select('id')->latest('id')->get();
 
-                        //inserting movie id and person id(actor) in our pivot table
-                        $query = DB::table('people')->select('id')->where('name', '=', $actor)->get();
-                        if(isset($query[0])){
-                            $queryPivot = DB::table('actor_character_item')->select('person_id')->where('item_id', '=', $i)->
+                            //inserting movie id and person id(actor) in our pivot table
+                            $query = DB::table('people')->select('id')->where('name', '=', $actor)->get();
+                            if (isset($query[0])) {
+                                $queryPivot = DB::table('actor_character_item')->select('person_id')->where('item_id', '=', $i)->
                             where('person_id', '=', $query[0]->id)->where('character_id', '=', $query[0]->id)->get();
+                            }
+                            if (!isset($queryPivot[0])) {
+                                    DB::table('actor_character_item')->insert([
+                                    'item_id' => $i,
+                                    'person_id' => $query[0]->id,
+                                    'character_id' => $query_character[0]->id
+                                ]);
+                            }
                         }
-                        if(!isset($queryPivot[0])){
-                            DB::table('actor_character_item')->insert([
-                                'item_id' => $i,
-                                'person_id' => $query[0]->id,
-                                'character_id' => $query_character[0]->id
-                            ]);
-                        }
-                    } 
-        
-                    //$directors = explode(", ", $obj->Director);
-                    $cast_i = 0;
-                    foreach($movie_credits->crew as $index => $director){
-                        $cast_i ++;
-                            if($cast_i >= 2){
+
+                        //$directors = explode(", ", $obj->Director);
+                        $cast_i = 0;
+                        foreach ($movie_credits->crew as $index => $director) {
+                            $cast_i ++;
+                            if ($cast_i >= 2) {
                                 break;
                             }
-                        $director = $director->name;
-                        /* inserting content of people in database */
+                            $director = $director->name;
+                            /* inserting content of people in database */
 
-                        $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
-                        //if we have the data in table rows then it will not store it anymore(no duplicates)
-                        if(!isset($query[0])){
-                            $director_pic = $movie_credits->crew[$index]->profile_path;
-                            DB::table('people')->insert([
-                                'name' => $director,
-                                'dob' => date('Y-m-d'),
-                                'city' => 'random',
-                                'profile_pic' => $profile_url . $director_pic
-                            ]);
-                        }
-                        //inserting the id of movie and the id of person(in this case director) into Database
-                        $query = DB::table('people')->select('id')->where('name', '=', $director)->get();
-                        if(isset($query[0])){
-                            $queryPivot = DB::table('director_item')->select('person_id')->where('item_id', '=', $i)->
+                            $query = DB::table('people')->select('name')->where('name', '=', $director)->get();
+                            //if we have the data in table rows then it will not store it anymore(no duplicates)
+                            if (!isset($query[0])) {
+                                $director_pic = $movie_credits->crew[$index]->profile_path;
+                                DB::table('people')->insert([
+                                    'name' => $director,
+                                    'dob' => date('Y-m-d'),
+                                    'city' => 'random',
+                                    'profile_pic' => $profile_url . $director_pic
+                                ]);
+                            }
+                            //inserting the id of movie and the id of person(in this case director) into Database
+                            $query = DB::table('people')->select('id')->where('name', '=', $director)->get();
+                            if (isset($query[0])) {
+                                $queryPivot = DB::table('director_item')->select('person_id')->where('item_id', '=', $i)->
                             where('person_id', '=', $query[0]->id)->get();
-                        }
-                        //if we have the data in table rows then it will not store it anymore(no duplicates)
-                        if(!isset($queryPivot[0])){
-                            DB::table('director_item')->insert([
-                                'item_id' => $i,
-                                'person_id' => $query[0]->id
-                            ]);
-                        }
-                    }
-                
+                            }
+                            //if we have the data in table rows then it will not store it anymore(no duplicates)
+                            if (!isset($queryPivot[0])) {
+                                DB::table('director_item')->insert([
+                                    'item_id' => $i,
+                                    'person_id' => $query[0]->id
+                                ]);
+                            }
                         }
                     }
-                
                 }
             }
-            curl_close($curl);
-            
-        echo (PHP_EOL);
+        }
+        curl_close($curl);
+
+        echo(PHP_EOL);
         echo '##############################';
-        echo (PHP_EOL); 
+        echo(PHP_EOL);
         echo 'movie added successfully';
-        echo (PHP_EOL); 
+        echo(PHP_EOL);
         echo '##############################';
-        echo (PHP_EOL);
+        echo(PHP_EOL);
 
         return redirect('admin/movie');
     }

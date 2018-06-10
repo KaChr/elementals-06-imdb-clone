@@ -24,8 +24,8 @@ class CreateReviewsTable extends Migration
         });
 
         Schema::table('reviews', function (Blueprint $table) {
-           $table->foreign('author_id')->references('id')->on('users');
-           $table->foreign('item_id')->references('id')->on('items');
+           $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
+           $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
         });
     }
 

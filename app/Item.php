@@ -19,7 +19,7 @@ class Item extends Model
 
     public function tvshow()
     {
-        return $this->hasOne('App\Tvshow', 'tvshows');
+        return $this->hasOne('App\Tvshow', 'item_id');
     }
 
     public function seasons()
@@ -29,7 +29,7 @@ class Item extends Model
 
     public function episodes()
     {
-        return $this->hasMany('App\Episode', 'episodes');
+        return $this->hasMany('App\Episode', 'item_id');
     }
 
     public function actors()
@@ -41,7 +41,7 @@ class Item extends Model
     {
         return $this->belongsToMany('App\Person', 'director_item');
     }
-    
+
     public function genres()
     {
         return $this->belongsToMany('App\Genre', 'genre_item');
