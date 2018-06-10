@@ -28,6 +28,25 @@ class User extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
+
+    protected $fillable = [
+        'name', 'email', 'password', 'type',
+    ];
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review', 'reviews');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment', 'comments');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

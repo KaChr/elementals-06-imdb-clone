@@ -23,6 +23,24 @@ class Comment extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
+    protected $fillable = [
+        'id',
+        'author_id',
+        'review_id',
+        'body',
+        'created_at'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'users');
+    }
+
+    public function review()
+    {
+        return $this->belongsTo('App\Review', 'reviews');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
